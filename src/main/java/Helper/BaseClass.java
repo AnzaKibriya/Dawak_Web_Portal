@@ -34,7 +34,7 @@ public class BaseClass {
     public static String storestring;
     public static Properties prop;
     public static WebDriverWait webWait;
-    public static String prescriptionOrderID;
+    public static String prescriptionOrderID="3577325688";
     public static String accessToken;
     public static OkHttpClient client;
     public static String loginWindow;
@@ -42,6 +42,9 @@ public class BaseClass {
     public static SoftAssert softAssert;
     public static String emiratesID;
     public static String formattedDate;
+
+    public static String accessTokens;
+
 
     public static String propertyFile(String PropFileName, String stringName) {
         try {
