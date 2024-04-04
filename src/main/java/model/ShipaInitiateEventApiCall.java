@@ -16,15 +16,15 @@ import java.time.format.DateTimeFormatter;
 import static Helper.BaseClass.client;
 import static Helper.BaseClass.test;
 
-public class PrescriptionApiCall {
-    private static final String API_URL = "https://dawak-apim-uat.azure-api.net/dawak-portal/api/prescription/new";
+public class ShipaInitiateEventApiCall {
+    private static final String API_URL = "https://dawak-apim-uat.azure-api.net/dawak-patient/api/shipa/webhook";
 
-    public static void makePrescriptionApiCall(String AUTH_TOKEN, String orderID) {
+    public static void makeShipaInitiateEventApiCall(String AUTH_TOKEN, String orderID, String event) {
         try {
             MediaType mediaType = MediaType.parse("application/json");
             Gson gson = new Gson();
-            PrescriptionApiCall prescriptionApiCall = new PrescriptionApiCall();
-            String jsonPayload = gson.toJson(prescriptionApiCall.getPrescriptionRequest(orderID));
+            ShipaInitiateEventApiCall shipaInitiateEventApiCall = new ShipaInitiateEventApiCall();
+            String jsonPayload = gson.toJson(shipaInitiateEventApiCall.shipaInitiateEventRequest(orderID, event));
             RequestBody body = RequestBody.create(jsonPayload, mediaType);
             Request request = new Request.Builder()
                     .url(API_URL)
@@ -34,27 +34,37 @@ public class PrescriptionApiCall {
                     .build();
             Response response = client.newCall(request).execute();
             int  a = response.code();
-            if (response.isSuccessful()) {
+            assert response.body() != null;
+            String responseString = response.body().string();
+            if (responseString.contains("Notification")){
                 System.out.println("API call successful!");
-                System.out.println("Response: " + response.body().string());
-                test.log(Status.PASS, "Prescription created successfully");
+                System.out.println("Response: " + responseString);
+                test.log(Status.PASS, "ShipaInitiateEventApiCall called successfully");
 
-            } else {
-                System.out.println("API call failed!");
-                System.out.println("Response: " + response.body().string());
             }
+            else {
+                System.out.println("API call failed!");
+            }
+
+//            if (response.isSuccessful()) {
+//                System.out.println("API call successful!");
+//                System.out.println("Response: " + response.body().string());
+//            } else {
+//                System.out.println("API call failed!");
+//                System.out.println("Response: " + response.body().string());
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public PrescriptionRequest getPrescriptionRequest(String orderID) {
-        try (Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/CreatingOrder.json"))) {
+    public ShipaInitiateEvent shipaInitiateEventRequest(String orderID, String event) {
+        try (Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/ShipaInitiateEvent.json"))) {
             Gson gson = new Gson();
-            PrescriptionRequest result = gson.fromJson(reader, PrescriptionRequest.class);
-            result.getOrder().setPhysicianEncounterId(orderID);
-            result.getOrder().setPhysicianOrderDate(getCurrentDateTime());
-            result.getOrder().setOrderVisitDate(getCurrentDateTime());
+            ShipaInitiateEvent result = gson.fromJson(reader, ShipaInitiateEvent.class);
+            result.setShipaRef(orderID);
+            result.setDate(getCurrentDateTime());
+            result.setEvent("order.dropoff."+ event);
             System.out.println(result);
             return result;
         } catch (IOException e) {
@@ -68,5 +78,4 @@ public class PrescriptionApiCall {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         return now.format(formatter);
     }
-
 }

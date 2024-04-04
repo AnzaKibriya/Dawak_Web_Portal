@@ -83,6 +83,12 @@ public class Pages {
         return pg;
     }
 
+    public static ReadyForDelivery ReadyForDelivery() {
+        ReadyForDelivery pg = new ReadyForDelivery(BaseClass.driver);
+        PageFactory.initElements(BaseClass.driver, pg);
+        return pg;
+    }
+
     public static PatientInformation PatientInformation() {
         PatientInformation pg = new PatientInformation(BaseClass.driver);
         PageFactory.initElements(BaseClass.driver, pg);
@@ -91,6 +97,13 @@ public class Pages {
 
     public static PatientInformations PatientInformations() {
         PatientInformations pg = new PatientInformations(BaseClass.driver);
+        PageFactory.initElements(BaseClass.driver, pg);
+        return pg;
+    }
+
+
+    public static Dispatched Dispatched() {
+        Dispatched pg = new Dispatched(BaseClass.driver);
         PageFactory.initElements(BaseClass.driver, pg);
         return pg;
     }

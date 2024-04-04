@@ -6,10 +6,7 @@ import org.testng.annotations.Test;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class TestDawakPrescriptionWithCoPay extends BaseClass {
-
-
-
+public class TestDawakPrescriptionWithNoPay extends BaseClass {
     @Test(priority = 1)
     public void createANewPrescription() throws InterruptedException {
         test = extent.createTest("create a new prescription");
@@ -68,7 +65,7 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
 
         test = extent.createTest("Verify Filter Validation");
         Pages.WebCommon().waitForElementsInteractions();
-       Pages.Home().verifyFilters();
+        Pages.Home().verifyFilters();
 
 
     }
@@ -145,7 +142,7 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
         Pages.OrderDetails().clickOnSendInsurenceApproval();
         Pages.NavigationsCP().navigateTOInsuranceInprogressTab();
         Pages.OrderDetails().verifySendInsuranceApproval();
-        Pages.OrderDetails().approveMedicineInsuranceUsingCopay();
+        Pages.OrderDetails().approveMedicineInsuranceUsingNopay();
     }
 
     @Test(priority = 15)
@@ -269,4 +266,7 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
         Pages.Dispatched().OutForDeliveryFunctionality();
 
     }
+
+
+
 }

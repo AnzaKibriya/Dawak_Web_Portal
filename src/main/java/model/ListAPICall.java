@@ -1,5 +1,6 @@
 package model;
 
+import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -10,15 +11,14 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.json.JSONObject;
 
+import java.io.FileWriter;
 import java.io.IOException;
 
-import static Helper.BaseClass.accessTokens;
-import static Helper.BaseClass.client;
+import static Helper.BaseClass.*;
 
 public class ListAPICall {
 
-    public static String makeListApiCall()
-    {
+    public static String makeListApiCall() {
         try {
             MediaType mediaType = MediaType.parse("application/json");
             Gson gson = new Gson();
@@ -34,37 +34,35 @@ public class ListAPICall {
 
             // Execute the request
             Response response = client.newCall(request).execute();
-
             // Handle the response
             if (response.isSuccessful()) {
                 JSONObject jsonResponse = new JSONObject(response.body().string());
-
                 System.out.println("Request successful");
                 System.out.println(jsonResponse);
+                test.log(Status.PASS, "List API called successfully");
                 JsonObject jsonObject = gson.fromJson(String.valueOf(jsonResponse), JsonObject.class);
                 JsonArray dataArray = jsonObject.getAsJsonObject("data").getAsJsonArray("result");
                 for (JsonElement element : dataArray) {
                     JsonObject dataObject = element.getAsJsonObject();
                     try {
                         String encounterId = dataObject.get("encounterId").getAsString();
-                        if(encounterId.equals("93844697"))
-                        {
-                            String taskId = dataObject.get("taskId").getAsString();
+                        if (encounterId.equals(prescriptionOrderID)) {
+                            taskId = dataObject.get("taskId").getAsString();
+                            id = dataObject.get("id").getAsString();
+                            processInstanceId=dataObject.get("processInstanceId").getAsInt();
                             System.out.println(taskId);
-
+                            System.out.println(id);
+                            System.out.println(processInstanceId);
                         }
 
-                    }
-                    catch (NullPointerException e)
-                    {
+                    } catch (NullPointerException e) {
                         e.printStackTrace();
 
                     }
                 }
 
 
-
-                } else {
+            } else {
                 System.out.println("Request failed: " + response.code() + " " + response.message());
             }
         } catch (IOException e) {
@@ -73,7 +71,6 @@ public class ListAPICall {
             System.err.println("Request failed: " + e.getMessage());
         }
         return null;
-
 
 
     }

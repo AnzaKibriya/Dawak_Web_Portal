@@ -86,7 +86,6 @@ public class Home {
         Thread.sleep(3000);
         search.sendKeys(orderid);
         Pages.WebCommon().verifyTaskTable();
-        // Assert.assertEquals(encounterNumberTodoPage.getText(), orderid));
 
     }
 
@@ -134,8 +133,10 @@ public class Home {
             WebElement tableHeading = driver.findElement(By.xpath(String.format(taskTableHeading, TaskTableFilters[i].value)));
             WebElement filterValue = driver.findElement(By.xpath(String.format(taskTableValues, TaskTableFilters[i].value)));
             validateFilter(tableHeading, FilterDataEnums[i].value, TaskTableFilters[i].value);
+
         }
 
+        test.log(Status.PASS, "Filters functionality verified successfully");
 
     }
 

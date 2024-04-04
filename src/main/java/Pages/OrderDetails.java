@@ -3,8 +3,10 @@ package Pages;
 import Helper.BaseClass;
 import com.aventstack.extentreports.Status;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
@@ -105,6 +107,13 @@ public class OrderDetails {
 
     @FindBy(xpath = "//div[@class='mat-mdc-form-field-infix ng-tns-c6-14']//textarea[@rows='5']")
     WebElement reason;
+
+    @FindBy(xpath = "//div[@class='mat-mdc-form-field-infix ng-tns-c6-15']//input")
+    WebElement dosageInstruction;
+
+
+    @FindBy(xpath = "//div[@class='mat-mdc-form-field-infix ng-tns-c6-32']//input")
+    WebElement dosageInstruction2;
 
 
     @FindBy(xpath = "//span[text()=' Task Complete ']")
@@ -256,18 +265,24 @@ public class OrderDetails {
             if(i==1) {
                 //webJavascriptExecutor().executeScript("arguments[0].value = '" + "Test" + "'", comment);
                 reason.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
+                dosageInstruction.sendKeys("test");
             }
             if(i==2)
             {  if(counter==1) {
                 secondMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
+                dosageInstruction2.sendKeys("test");
             }
                 if(counter==2)
                 {
                     ThirdMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
+                    dosageInstruction2.sendKeys("test");
+
 
                 }
             }
 
+            Actions actions = new Actions(driver);
+            actions.sendKeys(Keys.TAB).build().perform();
             WebElement clickSaveBtn = driver.findElement(By.xpath(String.format(saveButton, i)));
                 clickSaveBtn.click();
                 Pages.WebCommon().waitForLoaderInvisibility();
@@ -282,6 +297,7 @@ public class OrderDetails {
 
 
         }
+        Thread.sleep(2000);
         taskCompletedButton.click();
         test.log(Status.PASS, " clicked on Task completed Button ");
 
@@ -309,21 +325,23 @@ public class OrderDetails {
 
             if(i==1) {
                 //webJavascriptExecutor().executeScript("arguments[0].value = '" + "Test" + "'", comment);
-                    comment.sendKeys(BaseClass.propertyFile("config", "selfpaypaymentComment"));
-                    reason.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
+                reason.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
+                    dosageInstruction.sendKeys("test");
                 }
                 if(i==2)
                 {  if(count==1) {
-                    rejectionReasonSecondMedicine.sendKeys(BaseClass.propertyFile("config", "selfpaypaymentComment"));
                     secondMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
+                    dosageInstruction2.sendKeys("test");
                 }
                     if(count==2)
                     {
-                        rejectionReasonThirdMedicine.sendKeys(BaseClass.propertyFile("config", "selfpaypaymentComment"));
                         ThirdMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
+                        dosageInstruction2.sendKeys("test");
 
                     }
                 }
+                    Actions actions = new Actions(driver);
+                    actions.sendKeys(Keys.TAB).build().perform();
                 WebElement clickSaveBtn = driver.findElement(By.xpath(String.format(saveButton, i)));
                 Pages.WebCommon().waitForElementsInteractions();
                 clickSaveBtn.click();
@@ -336,6 +354,64 @@ public class OrderDetails {
                 {
                     i++;
                 }
+
+
+        }
+        taskCompletedButton.click();
+        test.log(Status.PASS, " clicked on Task completed Button ");
+
+    }
+
+
+
+    public void approveMedicineInsuranceUsingNopay() throws InterruptedException {
+
+        List<WebElement> detail = driver.findElements(By.xpath(viewDetailscolumn));
+        int counter=0;
+        for (int i = 1; i <= detail.size(); i++) {
+            webJavascriptExecutor().executeScript("arguments[0].click();", viewDetailsButton);
+            if(i==3)
+            {
+                i--;
+            }
+            Pages.WebCommon().waitForElementsInteractions();
+            test.log(Status.PASS, " View Detail button gets clicked successfully");
+            WebElement enterQuantity = driver.findElement(By.xpath(String.format(enterQty, i)));
+            enterQuantity.sendKeys(BaseClass.propertyFile("config", "enterQuantity"));
+            WebElement clickHealthPlan = driver.findElement(By.xpath(String.format(healthPlan, i)));
+            clickHealthPlan.click();
+            noPay.click();
+            if(i==1) {
+                //webJavascriptExecutor().executeScript("arguments[0].value = '" + "Test" + "'", comment);
+                reason.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
+                dosageInstruction.sendKeys("test");
+            }
+            if(i==2)
+            {  if(counter==1) {
+                secondMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
+                dosageInstruction2.sendKeys("test");
+            }
+                if(counter==2)
+                {
+                    ThirdMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
+                    dosageInstruction2.sendKeys("test");
+
+
+                }
+            }
+            Actions actions = new Actions(driver);
+            actions.sendKeys(Keys.TAB).build().perform();
+            WebElement clickSaveBtn = driver.findElement(By.xpath(String.format(saveButton, i)));
+            clickSaveBtn.click();
+            Pages.WebCommon().waitForLoaderInvisibility();
+            test.log(Status.PASS, " Drug Details gets saved successfully ");
+            driver.navigate().refresh();
+            Pages.WebCommon().waitForLoaderInvisibility();
+            counter++;
+            if(counter==3)
+            {
+                i++;
+            }
 
 
         }

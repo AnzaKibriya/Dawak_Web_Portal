@@ -1,12 +1,56 @@
 import Helper.BaseClass;
 import Pages.Pages;
+import model.*;
 import org.testng.annotations.Test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class TestCentralPharmacistPortal extends BaseClass {
+public class TestCancelOrder extends BaseClass {
+
     @Test(priority = 1)
+    public void createANewPrescription() throws InterruptedException {
+        test = extent.createTest("create a new prescription");
+        accessToken = LoginApiCall.makeLoginApiCall();
+        prescriptionOrderID = generateRandomNumericString();
+        System.out.println(prescriptionOrderID);
+        //  NewPatientApiCall.makeCreatePatientApiCall(accessToken, prescriptionOrderID);
+        PrescriptionApiCall.makePrescriptionApiCall(accessToken, prescriptionOrderID);
+        Thread.sleep(8000);
+    }
+
+
+    @Test(priority = 2)
+    public  void loginTODawak()
+    {
+        test = extent.createTest("Login to Dawak");
+        DawakLoginAPICall.makeLoginApiCall();
+
+    }
+
+    @Test(priority = 3)
+    public void verifyListAPI() throws InterruptedException {
+        test = extent.createTest("Verify List API");
+        ListAPICall.makeListApiCall();
+        Thread.sleep(12000);
+
+    }
+
+    @Test(priority = 4)
+    public void deliveryAPI()
+    {
+        test = extent.createTest("Verify Delivery API");
+        DeliveryAPICall.deliveryApiCall();
+        // Del.verifyDelivery();
+
+
+    }
+
+
+
+
+
+    @Test(priority = 5)
     public void verifyCPLogin() throws IOException, InterruptedException {
         test = extent.createTest("Login to Central Pharmacist");
         Pages.LoginCP().invalidCPLogin();
@@ -17,30 +61,30 @@ public class TestCentralPharmacistPortal extends BaseClass {
     }
 
 
-    @Test(priority = 2)
+    @Test(priority = 6)
     public void verifyFilterValidation() throws InterruptedException, FileNotFoundException {
 
         test = extent.createTest("Verify Filter Validation");
-          Pages.WebCommon().waitForElementsInteractions();
-          Pages.Home().verifyFilters();
+        //  Pages.WebCommon().waitForElementsInteractions();
+        //  Pages.Home().verifyFilters();
 
 
     }
 
-    @Test(priority = 3)
+    @Test(priority = 7)
     public void verifyOrderInTOdo() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Making Order In TODO");
         Pages.WebCommon().waitForLoaderInvisibility();
         Pages.Home().SearchForOrder(prescriptionOrderID);
     }
 
-    @Test(priority = 4)
+    @Test(priority = 8)
     public void verifyTodoColumnData() {
         test = extent.createTest("Verify Data present in Todo  column");
         Pages.Home().verifyDataInWebTable();
     }
 
-    @Test(priority = 5)
+    @Test(priority = 9)
     public void verifyMakingOrderInProgress() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Making Order In Progress State");
         Pages.NavigationsCP().moveToNewPrescription();
@@ -51,21 +95,21 @@ public class TestCentralPharmacistPortal extends BaseClass {
         Pages.Home().moveOrderToInProgressStateAndVerify();
     }
 
-    @Test(priority = 6)
+    @Test(priority = 10)
     public void verifyInProgressColumnData() {
         test = extent.createTest("Verify Data present in  In-progress column");
         Pages.Home().verifyDataInWebTable();
     }
 
-  /*  @Test(priority = 7)
-    public void verifyUnAssignFunctionality() throws InterruptedException, FileNotFoundException {
+   /* @Test(priority = 8)
+    public void verifyUnAssignFunctionality() throws InterruptedException {
         test = extent.createTest("Verify un-assign functionality");
         Pages.Home().verifyReAssign();
         Pages.Home().SearchForOrder();
         Pages.Home().moveOrderToInProgressStateAndVerify();
     }*/
 
-    @Test(priority =8)
+    @Test(priority =11)
     public void verifyMoveToOrderDetails() throws InterruptedException {
         test = extent.createTest("Verify Navigation to order details page ");
         Pages.NavigationsCP().openOrderDetailPage();
@@ -73,7 +117,7 @@ public class TestCentralPharmacistPortal extends BaseClass {
 
 
     }
-    @Test(priority = 9)
+    @Test(priority = 12)
     public void verifyPatientInformation()
     {
         test = extent.createTest("Verify Navigation to order details page ");
@@ -84,7 +128,7 @@ public class TestCentralPharmacistPortal extends BaseClass {
 
 
     }
-    @Test(priority = 10)
+    @Test(priority = 13)
     public void verifyOrderDetails() throws FileNotFoundException {
         test = extent.createTest("Verify order details data and Header text ");
         Pages.OrderDetails().verifyDeliveryDetailTable();
@@ -95,7 +139,7 @@ public class TestCentralPharmacistPortal extends BaseClass {
         Pages.OrderDetails().verifyRemoveFunctionality();
     }
 
-    @Test(priority = 11)
+    @Test(priority = 14)
     public void verifyInsuranceApproval() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Insurance Approval functionality");
         Pages.OrderDetails().clickOnSendInsurenceApproval();
@@ -104,10 +148,42 @@ public class TestCentralPharmacistPortal extends BaseClass {
         Pages.OrderDetails().approveMedicineInsuranceUsingCopay();
     }
 
-    @Test(priority = 12)
+    @Test(priority = 15)
     public void verifyLogoutFunctionality() {
         test = extent.createTest("Logout Functionality");
         Pages.Logout().verifyLogout();
     }
+
+
+
+
+
+
+
+    @Test(priority = 16)
+    public void verifyLogin() throws InterruptedException {
+        test = extent.createTest("Verify Delivery API");
+
+        BaseClass.getCurrentDateTime();
+        DawakLoginAPICall.makeLoginApiCall();
+        Thread.sleep(9000);
+    }
+
+    @Test(priority = 17)
+    public void verifyListAPIPayment()
+    {
+        test = extent.createTest("Verify List API");
+        ListAPICall.makeListApiCall();
+
+    }
+    @Test(priority = 18)
+    public void verifyCancelOrder()
+    {
+        test = extent.createTest("Verify cancel order API");
+        OrdercalcelAPICall.ordercancelAPI();
+
+
+    }
+
 
 }

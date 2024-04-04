@@ -1,0 +1,17 @@
+<suite name="Dawak  Payments Scenario">
+    <test name="Dawak coPay Scenario">
+        <classes>
+            <class name="TestDawakPrescriptionWithCoPay"/>
+        </classes>
+    </test>
+    <test name="Dawak NoPay Scenario">
+        <classes>
+            <class name="TestDawakPrescriptionWithNoPay"/>
+        </classes>
+    </test>
+    <test name="Dawak selfPay Scenario">
+        <classes>
+            <class name="TestMobilePaymentAPI"/>
+        </classes>
+    </test>
+</suite>

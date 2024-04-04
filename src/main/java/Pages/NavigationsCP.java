@@ -54,12 +54,15 @@ public class NavigationsCP {
 
     public void openOrderDetailPage() throws InterruptedException {
         actionButton.click();
+        test.log(Status.PASS, "order details page opened successfully");
         Pages.WebCommon().waitForLoaderInvisibility();
         Pages.WebCommon().waitForElementsInteractions();
     }
 
     public void navigateTOInsuranceInprogressTab() {
         webJavascriptExecutor().executeScript("arguments[0].click();", insurenceInprogressButton);
+        test.log(Status.PASS, "Navigated to insurenceInprogress Tab");
+
     }
 
 

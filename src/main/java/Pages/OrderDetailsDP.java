@@ -36,6 +36,8 @@ public class OrderDetailsDP {
             Pages.WebCommon().waitForElementsInteractions();
             webJavascriptExecutor().executeScript("arguments[0].scrollIntoView(true);", dispencingOrder);
             dispencingOrder.click();
+            test.log(Status.PASS, "clicked on Despensing started");
+
 
         } catch (StaleElementReferenceException e) {
         }
@@ -45,7 +47,7 @@ public class OrderDetailsDP {
     }
 
     public void orderReadyForDelivery() throws InterruptedException {
-        Pages.WebCommon().waitForLoaderInvisibility();
+       Pages.WebCommon().waitForLoaderInvisibility();
         Pages.WebCommon().waitForElementsInteractions();
         webJavascriptExecutor().executeScript("arguments[0].click();", readyForDelivery);
        webJavascriptExecutor().executeScript("arguments[0].click();", yesButton);

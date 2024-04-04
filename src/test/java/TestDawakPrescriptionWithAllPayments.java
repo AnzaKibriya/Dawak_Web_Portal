@@ -36,9 +36,10 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
     }
 
     @Test(priority = 4)
-    public void verifyTodoColumnData() {
+    public void verifyTodoColumnData() throws FileNotFoundException {
         test = extent.createTest("Verify Data present in Todo  column");
         Pages.Home().verifyDataInWebTable();
+        Pages.WebCommon().verifyTaskTable();
     }
 
     @Test(priority = 5)

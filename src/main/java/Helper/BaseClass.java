@@ -34,7 +34,7 @@ public class BaseClass {
     public static String storestring;
     public static Properties prop;
     public static WebDriverWait webWait;
-    public static String prescriptionOrderID="3577325688";
+    public static String prescriptionOrderID;
     public static String accessToken;
     public static OkHttpClient client;
     public static String loginWindow;
@@ -42,8 +42,28 @@ public class BaseClass {
     public static SoftAssert softAssert;
     public static String emiratesID;
     public static String formattedDate;
+    public static String formattedDateAPI;
+
+    public static String paymentDate;
+
 
     public static String accessTokens;
+    public static String taskId;
+
+    public static String id;
+
+    public static DateTimeFormatter DateFormat;
+
+    public static DateTimeFormatter DateFormatpayment;
+
+
+    public static int medicationRequestId;
+
+    public static int medicationRequestId2;
+
+    public static int medicationRequestId3;
+
+    public static int processInstanceId;
 
 
     public static String propertyFile(String PropFileName, String stringName) {
@@ -115,7 +135,17 @@ public class BaseClass {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         DateTimeFormatter formatte = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+         DateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        DateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        DateFormatpayment = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+
+
         formattedDate=now.format(formatte);
+        formattedDateAPI=now.format(DateFormat);
+        paymentDate=now.format(DateFormatpayment);
+        System.out.println(formattedDateAPI);
+
         return now.format(formatter);
     }
 

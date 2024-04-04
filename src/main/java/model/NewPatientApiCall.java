@@ -52,10 +52,10 @@ public class NewPatientApiCall {
             result.getOrder().setPhysicianEncounterId(orderID);
             result.getOrder().setPhysicianOrderDate(getCurrentDateTime());
             result.getOrder().setOrderVisitDate(getCurrentDateTime());
-            result.getPatient().setEid("784"+ generateRandomEID());
+            result.getPatient().setEid("784985832907443");
             result.getPatient().setMrn(orderID);
             result.getPatient().setCmrn(orderID);
-            result.getPatient().setPhoneNumber("9715"+ orderID);
+            result.getPatient().setPhoneNumber("971502201010");
             System.out.println(result);
             return result;
         } catch (IOException e) {

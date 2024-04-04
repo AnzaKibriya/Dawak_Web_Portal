@@ -5,15 +5,17 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class TestDawakMobileAPI extends BaseClass {
+public class TestDawakDeliveryAPI extends BaseClass {
 
     @Test(priority = 1)
-    public void createANewPrescription() {
+    public void createANewPrescription() throws InterruptedException {
         test = extent.createTest("create a new prescription");
         accessToken = LoginApiCall.makeLoginApiCall();
         prescriptionOrderID = generateRandomNumericString();
         System.out.println(prescriptionOrderID);
-        NewPatientApiCall.makeCreatePatientApiCall(accessToken, prescriptionOrderID);
+        //  NewPatientApiCall.makeCreatePatientApiCall(accessToken, prescriptionOrderID);
+        PrescriptionApiCall.makePrescriptionApiCall(accessToken, prescriptionOrderID);
+        Thread.sleep(8000);
     }
 
 
@@ -26,10 +28,20 @@ public class TestDawakMobileAPI extends BaseClass {
     }
 
     @Test(priority = 3)
-    public void verifyListAPI()
-    {
+    public void verifyListAPI() throws InterruptedException {
         test = extent.createTest("Verify List API");
         ListAPICall.makeListApiCall();
+        Thread.sleep(12000);
+
+    }
+
+    @Test(priority = 4)
+    public void deliveryAPI()
+    {
+        test = extent.createTest("Verify Delivery API");
+        DeliveryAPICall.deliveryApiCall();
+        // Del.verifyDelivery();
+
 
     }
 

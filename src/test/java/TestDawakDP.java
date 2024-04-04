@@ -4,11 +4,13 @@ import org.testng.annotations.Test;
 public class TestDawakDP extends BaseClass {
 
     @Test(priority = 1)
-    public void verifyCPLogin() {
+    public void verifyCPLogin() throws InterruptedException {
         test = extent.createTest("Login to DP Portal");
         Pages.LoginDP().DPLogin();
         Pages.Mailinator().verifyDpOtp();
         Pages.LoginDP().verifyEnteringOtp();
+       // Pages.ReadyForDelivery().deliveryFunctionality(prescriptionOrderID);
+
 //        Pages.ReadyForDelivery().deliveryFunctionality("2401120311");
     }
 
@@ -21,7 +23,7 @@ public class TestDawakDP extends BaseClass {
     }
 
     @Test(priority = 3)
-    public void verifyOrderInProgress() {
+    public void verifyOrderInProgress() throws InterruptedException {
         test = extent.createTest("Verify Making Order In InProgressTAB");
         Pages.NavigationsDP().navigateTOInprogressTab();
         Pages.HomeDP().moveToInprogressandVerify();
@@ -33,15 +35,16 @@ public class TestDawakDP extends BaseClass {
         test = extent.createTest("Verify Making Order In Dispensing TAB");
         Pages.OrderDetailsDP().dispensingOrder();
         Pages.NavigationsDP().navigateTODispensingInProgressTab();
-        Pages.HomeDP().searchOrderInDispensingInProgress();
-        Pages.HomeDP().clickDetailButtonInDispensingInprogress();
+       Pages.HomeDP().searchOrderInDispensingInProgress();
+       Pages.HomeDP().clickDetailButtonInDispensingInprogress();
         Pages.OrderDetailsDP().orderReadyForDelivery();
+
     }
 
     @Test(priority = 5)
-    public void verifyDeliveryFunctionality(){
+    public void verifyDeliveryFunctionality() throws InterruptedException {
         test = extent.createTest("Verify Making Order In  Ready for Delivery TAB");
-      //  Pages.ReadyForDelivery().deliveryFunctionality(prescriptionOrderID);
+       Pages.ReadyForDelivery().deliveryFunctionality(prescriptionOrderID);
 
     }
     @Test(priority = 5)
