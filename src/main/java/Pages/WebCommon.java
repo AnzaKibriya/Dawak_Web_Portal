@@ -33,11 +33,17 @@ public class WebCommon {
 
     String taskTableColumn="//app-task-list//tbody[contains(@class, 'mdc-data-table__content')]//tr[1]//td";
 
+    String taskTableColumnDespensing="//app-dispencing-task-list//tbody[contains(@class, 'mdc-data-table__content')]//tr[1]//td";
+
     String taskTableValues="//app-task-list//tbody[contains(@class, 'mdc-data-table__content')]//td[%s]";
+
+    String taskTableValuesDespensing="//app-dispencing-task-list//tbody[contains(@class, 'mdc-data-table__content')]//td[%s]";
 
     String justNowText = "//td[contains(text(),'just now')]";
 
     String taskTableHeading="//app-task-list//table[contains(@class, 'mat-mdc-table mdc-data-table__table cdk-table mat-sort')]//th[%s]";
+
+    String taskTableHeadingDespensing="//app-dispencing-task-list//table[contains(@class, 'mat-mdc-table mdc-data-table__table cdk-table mat-sort')]//th[%s]";
 
 
     String loader = "//ngx-spinner//img";
@@ -66,6 +72,28 @@ public class WebCommon {
 
 
     }
+
+
+
+    public void verifyDespensingTaskTable() throws FileNotFoundException {
+        List<WebElement> taskDetailsTable = driver.findElements(By.xpath(taskTableColumnDespensing));
+        System.out.println(taskDetailsTable.size());
+        test.log(Status.PASS, "verifying task table information");
+
+        for(int i=1;i<=taskDetailsTable.size()-1;i++)
+        {
+            WebElement tableHeading = driver.findElement(By.xpath(String.format(taskTableHeadingDespensing, i)));
+            WebElement tasktableData = driver.findElement(By.xpath(String.format(taskTableValuesDespensing, i)));
+            Pages.PatientInformations().info(tableHeading,tasktableData);
+
+        }
+
+
+    }
+
+
+
+
 
 
 

@@ -65,6 +65,12 @@ public class BaseClass {
 
     public static int processInstanceId;
 
+    public static int physicicianOrderCounter=0;
+
+    public static int ndcCodecounter=0;
+
+    public static int drugDescriptionCounter=0;
+
 
     public static String propertyFile(String PropFileName, String stringName) {
         try {

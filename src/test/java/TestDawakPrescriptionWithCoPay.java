@@ -121,12 +121,12 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
 
     }
     @Test(priority = 12)
-    public void verifyPatientInformation()
-    {
+    public void verifyPatientInformation() throws FileNotFoundException {
         test = extent.createTest("Verify patient information in orderDetails page ");
         Pages.PatientInformations().verifyBasicDetailTable();
         Pages.PatientInformations().verifyContactDetail();
         Pages.PatientInformations().userDetails();
+        Pages.PatientInformations().pendingMedicationTable();
     }
     @Test(priority = 13)
     public void verifyOrderDetails() throws FileNotFoundException {
@@ -226,11 +226,11 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
         Pages.HomeDP().clickonDetailButtonInInprogressTab();
     }
 
-  /*  @Test(priority = 24)
+ /*  @Test(priority = 24)
     public void verifyInprogressData() throws FileNotFoundException {
         test = extent.createTest("Verify InProgress column Data");
-        Pages.WebCommon().verifyWebTableData();
-        Pages.WebCommon().verifyTaskTable();
+       // Pages.WebCommon().verifyWebTableData();
+        Pages.WebCommon().verifyDespensingTaskTable();
 
 
 

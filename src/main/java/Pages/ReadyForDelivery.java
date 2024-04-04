@@ -31,7 +31,7 @@ public class ReadyForDelivery {
         GetShipaIdApiCall.setDeliveryID(tokens[tokens.length-3]); //getting shipa id from url
         LoginDpApiCall.makeLoginApiCall();
         CreateOtpApiCall.createOtpApiCall();
-        Thread.sleep(7000);
+        Thread.sleep(9000);
         String dpAccessToken = PutOTPApiCall.OTPApiCall();
         String shipaOrderNum = GetShipaIdApiCall.makeShipaIdApiCall(dpAccessToken);
         ShipaInitiateEventApiCall.makeShipaInitiateEventApiCall(dpAccessToken, shipaOrderNum, "initiated");

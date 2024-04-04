@@ -77,7 +77,7 @@ public class PatientInformations {
             {
                 WebElement medicationHeader=driver.findElement(By.xpath(String.format(pendingMedicationTableHeading,j)));
                 WebElement medicationDetails=driver.findElement(By.xpath(String.format(pendingMedicationTableData,i,j)));
-                System.out.println(medicationDetails);
+                System.out.println(medicationDetails.getText());
                 info(medicationHeader,medicationDetails);
             }
         }
@@ -289,20 +289,69 @@ public class PatientInformations {
             Pages.WebCommon().assertjson(actualText.getText(),"Mobile App");
 
         } else if (element.getText().contains("Physician Order Id")) {
-            JsonObject medicationObject = medicationsArray.get(0).getAsJsonObject();
-            String physicianOrderId = medicationObject.get("physicianOrderId").getAsString();
-            Pages.WebCommon().assertjson(actualText.getText(),physicianOrderId);
+
+               if(physicicianOrderCounter==0) {
+                   JsonObject medicationObject = medicationsArray.get(0).getAsJsonObject();
+                   String physicianOrderId = medicationObject.get("physicianOrderId").getAsString();
+                   Pages.WebCommon().assertjson(actualText.getText(), physicianOrderId);
+               }
+            if(physicicianOrderCounter==1)
+            {
+                JsonObject medicationObject2 = medicationsArray.get(1).getAsJsonObject();
+                String physicianOrderId2 = medicationObject2.get("physicianOrderId").getAsString();
+                Pages.WebCommon().assertjson(actualText.getText(),physicianOrderId2);
+            }
+            if(physicicianOrderCounter==2)
+            {
+                JsonObject medicationObject3 = medicationsArray.get(2).getAsJsonObject();
+                String physicianOrderId3 = medicationObject3.get("physicianOrderId").getAsString();
+                Pages.WebCommon().assertjson(actualText.getText(),physicianOrderId3);
+            }
+            physicicianOrderCounter++;
+
 
         } else if (element.getText().contains("NDC Code")) {
-            JsonObject medicationObject = medicationsArray.get(1).getAsJsonObject();
-            String ndcCode = medicationObject.get("ndcCode").getAsString();
-            Pages.WebCommon().assertjson(actualText.getText(),ndcCode);
+            if(ndcCodecounter==0) {
+                JsonObject medicationObject = medicationsArray.get(0).getAsJsonObject();
+                String ndcCode = medicationObject.get("ndcCode").getAsString();
+                Pages.WebCommon().assertjson(actualText.getText(), ndcCode);
+            }
+            if(ndcCodecounter==1)
+            {
+                JsonObject medicationObject = medicationsArray.get(1).getAsJsonObject();
+                String ndcCode = medicationObject.get("ndcCode").getAsString();
+                Pages.WebCommon().assertjson(actualText.getText(), ndcCode);
+
+            }
+            if(ndcCodecounter==2)
+            {
+                JsonObject medicationObject = medicationsArray.get(2).getAsJsonObject();
+                String ndcCode = medicationObject.get("ndcCode").getAsString();
+                Pages.WebCommon().assertjson(actualText.getText(), ndcCode);
+
+            }
+            ndcCodecounter++;
 
 
         } else if (element.getText().contains("Drug Description")) {
-            JsonObject medicationObject = medicationsArray.get(2).getAsJsonObject();
-            String drugDescription = medicationObject.get("drugDescription").getAsString();
-            Pages.WebCommon().assertjson(actualText.getText(),drugDescription);
+            if(drugDescriptionCounter==0) {
+                JsonObject medicationObject = medicationsArray.get(0).getAsJsonObject();
+                String drugDescription = medicationObject.get("drugDescription").getAsString();
+                Pages.WebCommon().assertjson(actualText.getText(), drugDescription);
+            }
+            if(drugDescriptionCounter==1)
+            {
+                JsonObject medicationObject = medicationsArray.get(1).getAsJsonObject();
+                String drugDescription = medicationObject.get("drugDescription").getAsString();
+                Pages.WebCommon().assertjson(actualText.getText(), drugDescription);
+            }
+            if(drugDescriptionCounter==2)
+            {
+                JsonObject medicationObject = medicationsArray.get(2).getAsJsonObject();
+                String drugDescription = medicationObject.get("drugDescription").getAsString();
+                Pages.WebCommon().assertjson(actualText.getText(), drugDescription);
+            }
+            drugDescriptionCounter++;
 
 
         }
