@@ -24,6 +24,7 @@ public class DeliveryAPICall {
             Gson gson = new Gson();
             DeliveryAPICall deliveryApiCall = new DeliveryAPICall();
             String jsonPayload = gson.toJson(deliveryApiCall.getDelivery(taskId, id));
+            System.out.println(jsonPayload);
             RequestBody body = RequestBody.create(jsonPayload, mediaType);
             Request request = new Request.Builder()
                     .url(API_URL)

@@ -53,15 +53,15 @@ public class HomeDP {
         test.log(Status.PASS, "Header is Verified");
     }
 
-    public void SearchForOrder() throws InterruptedException {
+    public void SearchForOrder() throws InterruptedException, FileNotFoundException {
         Pages.WebCommon().waitForLoaderInvisibility();
         search.sendKeys(prescriptionOrderID);
-        Pages.WebCommon().waitForElementsInteractions();
+        Pages.WebCommon().verifyDespensingTaskTable();
      //   Assert.assertEquals(encounterNumberTodoPage.getText(), prescriptionOrderID);
-        test.log(Status.PASS, "Encounter text verified in Todo Tab");
+        //test.log(Status.PASS, "Encounter text verified in Todo Tab");
       //  Assert.assertEquals(taskName.getText(), BaseClass.propertyFile("config", "TaskNameDP"));
-        test.log(Status.PASS, "TaskName text Verified in Todo Tab");
-        test.log(Status.PASS, "Order verified in TODO TAB");
+       // test.log(Status.PASS, "TaskName text Verified in Todo Tab");
+     //   test.log(Status.PASS, "Order verified in TODO TAB");
     }
 
 

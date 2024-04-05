@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
+import java.io.FileNotFoundException;
+
 import static Helper.BaseClass.webJavascriptExecutor;
 
 public class ReadyForDelivery {
@@ -19,7 +21,7 @@ public class ReadyForDelivery {
         driver = Driver;
     }
 
-    public void deliveryFunctionality(String ID) throws InterruptedException {
+    public void deliveryFunctionality(String ID) throws InterruptedException, FileNotFoundException {
         webJavascriptExecutor().executeScript("arguments[0].click();", readyDelivery);   // opening ready for delivery tab
         Pages.WebCommon().waitForLoaderInvisibility();//waiting for loader
         Pages.HomeDP().SearchForOrder();// searching for sepecific order

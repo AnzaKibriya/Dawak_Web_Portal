@@ -215,18 +215,42 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
         test = extent.createTest("Verify Making Order In TODO");
         Pages.HomeDP().verifyHomePageHeader();
         Pages.HomeDP().SearchForOrder();
-        Pages.HomeDP().clickonAssign();
     }
 
-    @Test(priority = 23)
+
+
+    @Test(priority =23 )
+    public void clickOnAssign()
+    {
+        test = extent.createTest("click on assign button on detail page");
+        Pages.HomeDP().clickonAssign();
+
+
+    }
+
+    @Test(priority = 24)
     public void verifyOrderInProgress() throws InterruptedException {
         test = extent.createTest("Verify Making Order In InProgressTAB");
         Pages.NavigationsDP().navigateTOInprogressTab();
         Pages.HomeDP().moveToInprogressandVerify();
         Pages.HomeDP().clickonDetailButtonInInprogressTab();
+        Pages.WebCommon().waitForElementsInteractions();
+
     }
 
- /*  @Test(priority = 24)
+    @Test(priority =25)
+
+    public void verifypatientInformation() throws FileNotFoundException {
+        test = extent.createTest("Verify patientInformation");
+        Pages.PatientInformations().verifyBasicDetailTable();
+        Pages.PatientInformations().verifyContactDetail();
+        Pages.PatientInformations().userDetails();
+        Pages.OrderDetailsDP().addressDetailsTable();
+        Pages.OrderDetailsDP().verifyDeliveryDetail();
+
+    }
+
+ /*  @Test(priority = 25)
     public void verifyInprogressData() throws FileNotFoundException {
         test = extent.createTest("Verify InProgress column Data");
        // Pages.WebCommon().verifyWebTableData();
@@ -236,7 +260,7 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
 
     }*/
 
-    @Test(priority = 25)
+    @Test(priority = 26)
     public void verifyOrderDispensing() throws InterruptedException {
         test = extent.createTest("Verify Making Order In Dispensing TAB");
         Pages.OrderDetailsDP().dispensingOrder();
@@ -247,20 +271,20 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
 
     }
 
-    @Test(priority = 26)
-    public void verifyDeliveryFunctionality() throws InterruptedException {
+    @Test(priority = 27)
+    public void verifyDeliveryFunctionality() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Making Order In  Ready for Delivery TAB");
         Pages.ReadyForDelivery().deliveryFunctionality(prescriptionOrderID);
 
     }
-    @Test(priority = 27)
+    @Test(priority = 28)
     public void verifyLogoutFunctionalityDespensing() {
         test = extent.createTest("Logout Functionality");
         Pages.Logout().verifyLogout();
     }
 
-    @Test(priority = 28)
-    public void verifyOutforDelivery() throws InterruptedException {
+    @Test(priority = 29)
+    public void verifyOutforDelivery() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Login to DP Portal");
         Pages.LoginDP().DPLogin();
         Pages.Mailinator().verifyDpOtp();
