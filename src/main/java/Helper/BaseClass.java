@@ -34,7 +34,7 @@ public class BaseClass {
     public static String storestring;
     public static Properties prop;
     public static WebDriverWait webWait;
-    public static String prescriptionOrderID="05500730";
+    public static String prescriptionOrderID="36325611";
     public static String accessToken;
     public static OkHttpClient client;
     public static String loginWindow;

@@ -109,6 +109,7 @@ public class Home {
 
     public void moveOrderToInProgressStateAndVerify() throws FileNotFoundException, InterruptedException {
         Pages.WebCommon().waitForLoaderInvisibility();
+        Pages.NavigationsCP().navigateTOInprogressTab();
         Pages.WebCommon().waitForLoaderInvisibility();
         webWait.until(ExpectedConditions.visibilityOf(encounterNumberInProgressPage));
         Pages.Home().SearchForOrder(prescriptionOrderID);

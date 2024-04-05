@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class TestCentralPharmacistPortal extends BaseClass {
-    @Test(priority = 1)
+    @Test(priority = 5)
     public void verifyCPLogin() throws IOException, InterruptedException {
         test = extent.createTest("Login to Central Pharmacist");
         Pages.LoginCP().invalidCPLogin();
@@ -17,30 +17,31 @@ public class TestCentralPharmacistPortal extends BaseClass {
     }
 
 
-    @Test(priority = 2)
+    @Test(priority = 6)
     public void verifyFilterValidation() throws InterruptedException, FileNotFoundException {
 
         test = extent.createTest("Verify Filter Validation");
-          Pages.WebCommon().waitForElementsInteractions();
-          Pages.Home().verifyFilters();
+        Pages.WebCommon().waitForElementsInteractions();
+        Pages.Home().verifyFilters();
 
 
     }
 
-    @Test(priority = 3)
+    @Test(priority = 7)
     public void verifyOrderInTOdo() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Making Order In TODO");
         Pages.WebCommon().waitForLoaderInvisibility();
         Pages.Home().SearchForOrder(prescriptionOrderID);
     }
 
-    @Test(priority = 4)
-    public void verifyTodoColumnData() {
+    @Test(priority = 8)
+    public void verifyTodoColumnData() throws FileNotFoundException {
         test = extent.createTest("Verify Data present in Todo  column");
         Pages.Home().verifyDataInWebTable();
+
     }
 
-    @Test(priority = 5)
+    @Test(priority = 9)
     public void verifyMakingOrderInProgress() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Making Order In Progress State");
         Pages.NavigationsCP().moveToNewPrescription();
@@ -51,40 +52,38 @@ public class TestCentralPharmacistPortal extends BaseClass {
         Pages.Home().moveOrderToInProgressStateAndVerify();
     }
 
-    @Test(priority = 6)
-    public void verifyInProgressColumnData() {
+    @Test(priority = 10)
+    public void verifyInProgressColumnData() throws FileNotFoundException {
         test = extent.createTest("Verify Data present in  In-progress column");
         Pages.Home().verifyDataInWebTable();
+        Pages.WebCommon().verifyTaskTable();
+
     }
 
-  /*  @Test(priority = 7)
+   @Test(priority = 11)
     public void verifyUnAssignFunctionality() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify un-assign functionality");
         Pages.Home().verifyReAssign();
-        Pages.Home().SearchForOrder();
-        Pages.Home().moveOrderToInProgressStateAndVerify();
-    }*/
+        Pages.Home().SearchForOrder(prescriptionOrderID);
+       Pages.Home().clickOnAssign();
+       Pages.Home().moveOrderToInProgressStateAndVerify();
+    }
 
-    @Test(priority =8)
+    @Test(priority =12)
     public void verifyMoveToOrderDetails() throws InterruptedException {
         test = extent.createTest("Verify Navigation to order details page ");
         Pages.NavigationsCP().openOrderDetailPage();
 
-
-
     }
-    @Test(priority = 9)
-    public void verifyPatientInformation()
-    {
-        test = extent.createTest("Verify Navigation to order details page ");
+    @Test(priority = 13)
+    public void verifyPatientInformation() throws FileNotFoundException {
+        test = extent.createTest("Verify patient information in orderDetails page ");
         Pages.PatientInformations().verifyBasicDetailTable();
         Pages.PatientInformations().verifyContactDetail();
         Pages.PatientInformations().userDetails();
-
-
-
+        Pages.PatientInformations().pendingMedicationTable();
     }
-    @Test(priority = 10)
+    @Test(priority = 14)
     public void verifyOrderDetails() throws FileNotFoundException {
         test = extent.createTest("Verify order details data and Header text ");
         Pages.OrderDetails().verifyDeliveryDetailTable();
@@ -95,7 +94,7 @@ public class TestCentralPharmacistPortal extends BaseClass {
         Pages.OrderDetails().verifyRemoveFunctionality();
     }
 
-    @Test(priority = 11)
+    @Test(priority = 15)
     public void verifyInsuranceApproval() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Insurance Approval functionality");
         Pages.OrderDetails().clickOnSendInsurenceApproval();
@@ -104,10 +103,12 @@ public class TestCentralPharmacistPortal extends BaseClass {
         Pages.OrderDetails().approveMedicineInsuranceUsingCopay();
     }
 
-    @Test(priority = 12)
+    @Test(priority = 16)
     public void verifyLogoutFunctionality() {
         test = extent.createTest("Logout Functionality");
         Pages.Logout().verifyLogout();
     }
+
+
 
 }

@@ -103,21 +103,22 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
 
     }
 
-   /* @Test(priority = 8)
-    public void verifyUnAssignFunctionality() throws InterruptedException {
+    @Test(priority = 11)
+    public void verifyUnAssignFunctionality() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify un-assign functionality");
         Pages.Home().verifyReAssign();
-        Pages.Home().SearchForOrder();
+        Pages.Home().SearchForOrder(prescriptionOrderID);
+        Pages.Home().clickOnAssign();
         Pages.Home().moveOrderToInProgressStateAndVerify();
-    }*/
+    }
 
-    @Test(priority =11)
+    @Test(priority =12)
     public void verifyMoveToOrderDetails() throws InterruptedException {
         test = extent.createTest("Verify Navigation to order details page ");
         Pages.NavigationsCP().openOrderDetailPage();
 
     }
-    @Test(priority = 12)
+    @Test(priority = 13)
     public void verifyPatientInformation() throws FileNotFoundException {
         test = extent.createTest("Verify patient information in orderDetails page ");
         Pages.PatientInformations().verifyBasicDetailTable();
@@ -125,7 +126,7 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
         Pages.PatientInformations().userDetails();
         Pages.PatientInformations().pendingMedicationTable();
     }
-    @Test(priority = 13)
+    @Test(priority = 14)
     public void verifyOrderDetails() throws FileNotFoundException {
         test = extent.createTest("Verify order details data and Header text ");
         Pages.OrderDetails().verifyDeliveryDetailTable();
@@ -136,7 +137,7 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
         Pages.OrderDetails().verifyRemoveFunctionality();
     }
 
-    @Test(priority = 14)
+    @Test(priority = 15)
     public void verifyInsuranceApproval() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Insurance Approval functionality");
         Pages.OrderDetails().clickOnSendInsurenceApproval();
@@ -145,19 +146,13 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
         Pages.OrderDetails().approveMedicineInsuranceUsingNopay();
     }
 
-    @Test(priority = 15)
+    @Test(priority = 16)
     public void verifyLogoutFunctionality() {
         test = extent.createTest("Logout Functionality");
         Pages.Logout().verifyLogout();
     }
 
-
-
-
-
-
-
-    @Test(priority = 16)
+    @Test(priority = 17)
     public void verifyLogin() throws InterruptedException {
         test = extent.createTest("Verify LOgin to Dawak Mobile  API");
         BaseClass.getCurrentDateTime();
@@ -165,7 +160,7 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
         Thread.sleep(12000);
     }
 
-    @Test(priority = 17)
+    @Test(priority = 18)
     public void verifyListAPIPayment()
     {
         test = extent.createTest("Verify List API");
@@ -173,7 +168,7 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
 
     }
 
-    @Test(priority = 18)
+    @Test(priority = 19)
     public void verifyDateAPICall()
     {
         test = extent.createTest("Verify selecting Date API");
@@ -181,7 +176,7 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
 
 
     }
-    @Test(priority = 19)
+    @Test(priority = 20)
     public void verifyDashboardAPI()
     {
         test = extent.createTest("Verify DashboardPrescription API");
@@ -189,7 +184,7 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
 
     }
 
-    @Test(priority = 20)
+    @Test(priority = 21)
     public void verifyPaymentAPI()
     {
         test = extent.createTest("Verify Payment API");
@@ -198,7 +193,7 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
     }
 
 
-    @Test(priority = 21)
+    @Test(priority = 22)
     public void verifyDPLogin() throws InterruptedException {
         test = extent.createTest("Login to DP Portal");
         Pages.LoginDP().DPLogin();
@@ -207,22 +202,12 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
 
     }
 
-    @Test(priority = 22)
+    @Test(priority = 23)
     public void verifyOrderInTOdoDespensing() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Making Order In TODO");
         Pages.HomeDP().verifyHomePageHeader();
         Pages.HomeDP().SearchForOrder();
-    }
-
-
-
-    @Test(priority =23 )
-    public void clickOnAssign()
-    {
-        test = extent.createTest("click on assign button on detail page");
         Pages.HomeDP().clickonAssign();
-
-
     }
 
     @Test(priority = 24)
@@ -290,5 +275,4 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
         Pages.Dispatched().OutForDeliveryFunctionality();
 
     }
-
 }
