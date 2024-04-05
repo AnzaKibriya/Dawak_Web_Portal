@@ -18,6 +18,15 @@ public class OrderDetailsDP {
 
     WebDriver driver;
 
+
+    String pendingMedicationTableRowdp="//app-dispensing-medication-info//tbody[contains(@class, 'mdc-data-table__content')]//tr";
+
+    String pendingMedicationColumndp="//app-dispensing-medication-info//table[contains(@class, 'mat-mdc-table mdc-data-table__table cdk-table mat-sort mat-elevation-z8')]//th";
+
+    String pendingMedicationTableDatadp="//app-dispensing-medication-info//tbody[contains(@class, 'mdc-data-table__content')]//tr[%s]//td[%s]";
+
+    String pendingMedicationTableHeadingdp="//app-dispensing-medication-info//table[contains(@class, 'mat-mdc-table mdc-data-table__table cdk-table mat-sort mat-elevation-z8')]//th[%s]";
+
     public String deliveryInfostring="//h5[contains(text(), '%s')]";
 
     public String deliveryInfoSiblingstring = "//h5[contains(text(), '%s')]/following-sibling::h5";
@@ -92,6 +101,27 @@ public class OrderDetailsDP {
         }
 
     }
+
+
+
+    public void pendingMedicationTableDp() throws FileNotFoundException {
+        List<WebElement> pendingMedicationdprowSize = driver.findElements(By.xpath(pendingMedicationTableRowdp));
+        List<WebElement> pendingMedicationdpColumnSize = driver.findElements(By.xpath(pendingMedicationColumndp));
+        for(int i=1;i<=pendingMedicationdprowSize.size();i++)
+        {
+            for(int j=1;j<=pendingMedicationdpColumnSize.size();j++)
+            {
+                WebElement medicationHeader=driver.findElement(By.xpath(String.format(pendingMedicationTableHeadingdp,j)));
+                WebElement medicationDetails=driver.findElement(By.xpath(String.format(pendingMedicationTableDatadp,i,j)));
+                System.out.println(medicationDetails.getText());
+                Pages.PatientInformations().info(medicationHeader,medicationDetails);
+            }
+        }
+
+
+    }
+
+
 
 
     public void addressDetailsTable() throws FileNotFoundException {

@@ -7,11 +7,12 @@ import java.io.FileNotFoundException;
 public class TestDawakDP extends BaseClass {
 
     @Test(priority = 21)
-    public void verifyDPLogin() throws InterruptedException {
+    public void verifyDPLogin() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Login to DP Portal");
         Pages.LoginDP().DPLogin();
         Pages.Mailinator().verifyDpOtp();
         Pages.LoginDP().verifyEnteringOtp();
+
 
     }
 
@@ -52,6 +53,8 @@ public class TestDawakDP extends BaseClass {
         Pages.PatientInformations().userDetails();
         Pages.OrderDetailsDP().addressDetailsTable();
         Pages.OrderDetailsDP().verifyDeliveryDetail();
+        Pages.OrderDetailsDP().pendingMedicationTableDp();
+
 
     }
 

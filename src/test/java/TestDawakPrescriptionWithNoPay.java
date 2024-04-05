@@ -229,6 +229,8 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
         Pages.PatientInformations().userDetails();
         Pages.OrderDetailsDP().addressDetailsTable();
         Pages.OrderDetailsDP().verifyDeliveryDetail();
+        Pages.OrderDetailsDP().pendingMedicationTableDp();
+
 
     }
 

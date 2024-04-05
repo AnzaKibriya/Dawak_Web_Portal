@@ -501,6 +501,50 @@ public class PatientInformations {
             }
 
 
+        } else if (element.getText().contains("Refill Qty")) {
+
+            Pages.WebCommon().assertjson(actualText.getText(), BaseClass.propertyFile("config", "enterQuantity"));
+            test.log(Status.PASS, "Refill Qty verified");
+            
+        } else if (element.getText().contains("Pill Packed")) {
+
+            if(actualText.getText().isEmpty())
+            {
+                softAssert.fail("Webtable cell does not contain" + element.getText() + " data");
+
+            }
+            else {
+                test.log(Status.PASS, "WebTable  contains data in " + element.getText() + " column ");
+
+
+            }
+        }
+
+        else if (element.getText().contains("Copay amount")) {
+
+            Pages.WebCommon().assertjson(actualText.getText(), BaseClass.propertyFile("config", "Amount"));
+            test.log(Status.PASS, "Copy amount  verified");
+
+        }
+
+        else if (element.getText().contains("Insurance Status")) {
+            if(actualText.getText().isEmpty())
+            {
+                softAssert.fail("Webtable cell does not contain" + element.getText() + " data");
+
+            }
+            else {
+                test.log(Status.PASS, "WebTable  contains data in " + element.getText() + " column ");
+
+
+            }
+
+        }
+
+        else if (element.getText().contains("Dispensing Status")) {
+            Pages.WebCommon().assertjson(actualText.getText(), "Pending");
+            test.log(Status.PASS, "Dispensing Status verified");
+
         }
 
 
