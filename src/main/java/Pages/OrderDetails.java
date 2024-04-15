@@ -286,7 +286,7 @@ public class OrderDetails {
             WebElement clickSaveBtn = driver.findElement(By.xpath(String.format(saveButton, i)));
                 clickSaveBtn.click();
                 Pages.WebCommon().waitForLoaderInvisibility();
-                test.log(Status.PASS, " Drug Details gets saved successfully ");
+                test.log(Status.PASS, " Drug Details gets saved successfully using copay ");
                 driver.navigate().refresh();
                 Pages.WebCommon().waitForLoaderInvisibility();
                 counter++;
@@ -346,7 +346,7 @@ public class OrderDetails {
                 Pages.WebCommon().waitForElementsInteractions();
                 clickSaveBtn.click();
                 Pages.WebCommon().waitForLoaderInvisibility();
-                test.log(Status.PASS, " Drug Details gets saved successfully");
+                test.log(Status.PASS, " Drug Details gets saved successfully using self pay");
                 driver.navigate().refresh();
                 Pages.WebCommon().waitForLoaderInvisibility();
                 count++;
@@ -404,7 +404,7 @@ public class OrderDetails {
             WebElement clickSaveBtn = driver.findElement(By.xpath(String.format(saveButton, i)));
             clickSaveBtn.click();
             Pages.WebCommon().waitForLoaderInvisibility();
-            test.log(Status.PASS, " Drug Details gets saved successfully ");
+            test.log(Status.PASS, " Drug Details gets saved successfully using Nopay");
             driver.navigate().refresh();
             Pages.WebCommon().waitForLoaderInvisibility();
             counter++;

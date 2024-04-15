@@ -159,8 +159,9 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
     public void verifyLogin() throws InterruptedException {
         test = extent.createTest("Verify LOgin to Dawak Mobile  API");
         BaseClass.getCurrentDateTime();
+        Thread.sleep(19000);
         DawakLoginAPICall.makeLoginApiCall();
-        Thread.sleep(14000);
+        Thread.sleep(12000);
     }
 
     @Test(priority = 18)

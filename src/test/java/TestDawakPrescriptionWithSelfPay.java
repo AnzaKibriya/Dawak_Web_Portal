@@ -157,6 +157,7 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
     public void verifyLogin() throws InterruptedException {
         test = extent.createTest("Verify LOgin to Dawak Mobile  API");
         BaseClass.getCurrentDateTime();
+        Thread.sleep(19000);
         DawakLoginAPICall.makeLoginApiCall();
         Thread.sleep(12000);
     }
