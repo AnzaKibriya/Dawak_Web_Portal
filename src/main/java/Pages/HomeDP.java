@@ -76,6 +76,7 @@ public class HomeDP {
     public void moveToInprogressandVerify() throws InterruptedException {
         Pages.WebCommon().waitForLoaderInvisibility();
         webWait.until(ExpectedConditions.visibilityOf(encounterNumberInProgressPage));
+        Thread.sleep(2000);
         search.sendKeys(prescriptionOrderID);
         Assert.assertEquals(encounterNumberDispensingInProgressPage.getText(), prescriptionOrderID);
         test.log(Status.PASS, "Encounter text verified in Inprogress tab");

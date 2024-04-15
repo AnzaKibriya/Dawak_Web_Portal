@@ -160,7 +160,7 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
         test = extent.createTest("Verify LOgin to Dawak Mobile  API");
         BaseClass.getCurrentDateTime();
         DawakLoginAPICall.makeLoginApiCall();
-        Thread.sleep(12000);
+        Thread.sleep(14000);
     }
 
     @Test(priority = 18)

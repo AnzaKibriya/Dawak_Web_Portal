@@ -257,6 +257,7 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
     @Test(priority =27)
     public void verifypatientInformations() throws FileNotFoundException, InterruptedException {
         test = extent.createTest("Verify patientInformation");
+        Thread.sleep(4000);
         Pages.PatientInformations().verifyBasicDetailTable();
         Pages.PatientInformations().verifyContactDetail();
         Pages.PatientInformations().userDetails();
