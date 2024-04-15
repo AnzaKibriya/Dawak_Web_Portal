@@ -231,7 +231,6 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
         Pages.OrderDetailsDP().verifyDeliveryDetail();
         Pages.OrderDetailsDP().pendingMedicationTableDp();
 
-
     }
 
  /*  @Test(priority = 25)
@@ -250,24 +249,37 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
         Pages.OrderDetailsDP().dispensingOrder();
         Pages.NavigationsDP().navigateTODispensingInProgressTab();
         Pages.HomeDP().searchOrderInDispensingInProgress();
+        Pages.WebCommon().waitForElementsInteractions();
         Pages.HomeDP().clickDetailButtonInDispensingInprogress();
+
+    }
+    @Test(priority =27)
+    public void verifypatientInformations() throws FileNotFoundException, InterruptedException {
+        test = extent.createTest("Verify patientInformation");
+        Pages.PatientInformations().verifyBasicDetailTable();
+        Pages.PatientInformations().verifyContactDetail();
+        Pages.PatientInformations().userDetails();
+        Pages.OrderDetailsDP().addressDetailsTable();
+        Pages.OrderDetailsDP().verifyDeliveryDetail();
+        Pages.OrderDetailsDP().pendingMedicationTableDp();
         Pages.OrderDetailsDP().orderReadyForDelivery();
+
 
     }
 
-    @Test(priority = 27)
+    @Test(priority = 28)
     public void verifyDeliveryFunctionality() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Making Order In  Ready for Delivery TAB");
         Pages.ReadyForDelivery().deliveryFunctionality(prescriptionOrderID);
 
     }
-    @Test(priority = 28)
+    @Test(priority = 29)
     public void verifyLogoutFunctionalityDespensing() {
         test = extent.createTest("Logout Functionality");
         Pages.Logout().verifyLogout();
     }
 
-    @Test(priority = 29)
+    @Test(priority = 30)
     public void verifyOutforDelivery() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Login to DP Portal");
         Pages.LoginDP().DPLogin();

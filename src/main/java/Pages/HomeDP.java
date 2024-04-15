@@ -92,9 +92,9 @@ public class HomeDP {
     }
 
 
-    public void searchOrderInDispensingInProgress()
-    {
+    public void searchOrderInDispensingInProgress() throws InterruptedException {
         Pages.WebCommon().waitForLoaderInvisibility();
+        Thread.sleep(2000);
         search.sendKeys(prescriptionOrderID);
     }
 
