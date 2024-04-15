@@ -113,7 +113,7 @@ public class PatientInformations {
 
 
 
-    public void verifyBasicDetailTable() {
+    public void verifyBasicDetailTable()  {
         basicInfoButton.click();
         BasicInformationEnum[] BasicInformationEnums = BasicInformationEnum.values();
         System.out.println(BasicInformationEnums.length + "enum length");

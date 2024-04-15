@@ -275,8 +275,9 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
 
     }
     @Test(priority = 29)
-    public void verifyLogoutFunctionalityDespensing() {
+    public void verifyLogoutFunctionalityDespensing() throws InterruptedException {
         test = extent.createTest("Logout Functionality");
+        Thread.sleep(2000);
         Pages.Logout().verifyLogout();
     }
 
@@ -288,6 +289,12 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
         Pages.LoginDP().verifyEnteringOtp();
         Thread.sleep(4000);
         Pages.Dispatched().OutForDeliveryFunctionality();
+        Thread.sleep(3000);
 
+    }
+    @Test(priority = 31)
+    public void verifyLogoutAfterDispatchedFunctionality() {
+        test = extent.createTest("Logout Functionality");
+        Pages.Logout().verifyLogout();
     }
 }

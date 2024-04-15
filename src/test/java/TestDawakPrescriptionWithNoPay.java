@@ -119,7 +119,7 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
 
     }
     @Test(priority = 13)
-    public void verifyPatientInformation() throws FileNotFoundException {
+    public void verifyPatientInformation() throws FileNotFoundException, InterruptedException {
         test = extent.createTest("Verify patient information in orderDetails page ");
         Pages.PatientInformations().verifyBasicDetailTable();
         Pages.PatientInformations().verifyContactDetail();
@@ -222,8 +222,9 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
 
     @Test(priority =25)
 
-    public void verifypatientInformation() throws FileNotFoundException {
+    public void verifypatientInformation() throws FileNotFoundException, InterruptedException {
         test = extent.createTest("Verify patientInformation");
+        Thread.sleep(2000);
         Pages.PatientInformations().verifyBasicDetailTable();
         Pages.PatientInformations().verifyContactDetail();
         Pages.PatientInformations().userDetails();
@@ -256,6 +257,7 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
     @Test(priority =27)
     public void verifypatientInformations() throws FileNotFoundException, InterruptedException {
         test = extent.createTest("Verify patientInformation");
+        Thread.sleep(2000);
         Pages.PatientInformations().verifyBasicDetailTable();
         Pages.PatientInformations().verifyContactDetail();
         Pages.PatientInformations().userDetails();
@@ -274,8 +276,9 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
 
     }
     @Test(priority = 29)
-    public void verifyLogoutFunctionalityDespensing() {
+    public void verifyLogoutFunctionalityDespensing() throws InterruptedException {
         test = extent.createTest("Logout Functionality");
+        Thread.sleep(2000);
         Pages.Logout().verifyLogout();
     }
 
@@ -287,6 +290,12 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
         Pages.LoginDP().verifyEnteringOtp();
         Thread.sleep(4000);
         Pages.Dispatched().OutForDeliveryFunctionality();
+        Thread.sleep(3000);
 
+    }
+    @Test(priority = 31)
+    public void verifyLogoutAfterDispatchedFunctionality() {
+        test = extent.createTest("Logout Functionality");
+        Pages.Logout().verifyLogout();
     }
 }

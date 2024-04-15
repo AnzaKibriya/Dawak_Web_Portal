@@ -11,7 +11,7 @@
     </test>
     <test name="Dawak selfPay Scenario">
         <classes>
-            <class name="TestMobilePaymentAPI"/>
+            <class name="TestDawakPrescriptionWithSelfPay"/>
         </classes>
     </test>
 </suite>
