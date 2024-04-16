@@ -65,8 +65,8 @@ public class TestCancelOrder extends BaseClass {
     public void verifyFilterValidation() throws InterruptedException, FileNotFoundException {
 
         test = extent.createTest("Verify Filter Validation");
-        //  Pages.WebCommon().waitForElementsInteractions();
-        //  Pages.Home().verifyFilters();
+        Pages.WebCommon().waitForElementsInteractions();
+        Pages.Home().verifyFilters();
 
 
     }
@@ -79,9 +79,10 @@ public class TestCancelOrder extends BaseClass {
     }
 
     @Test(priority = 8)
-    public void verifyTodoColumnData() {
+    public void verifyTodoColumnData() throws FileNotFoundException {
         test = extent.createTest("Verify Data present in Todo  column");
         Pages.Home().verifyDataInWebTable();
+
     }
 
     @Test(priority = 9)
@@ -96,39 +97,37 @@ public class TestCancelOrder extends BaseClass {
     }
 
     @Test(priority = 10)
-    public void verifyInProgressColumnData() {
+    public void verifyInProgressColumnData() throws FileNotFoundException {
         test = extent.createTest("Verify Data present in  In-progress column");
         Pages.Home().verifyDataInWebTable();
+        Pages.WebCommon().verifyTaskTable();
+
     }
 
-   /* @Test(priority = 8)
-    public void verifyUnAssignFunctionality() throws InterruptedException {
+    @Test(priority = 11)
+    public void verifyUnAssignFunctionality() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify un-assign functionality");
         Pages.Home().verifyReAssign();
-        Pages.Home().SearchForOrder();
+        Pages.Home().SearchForOrder(prescriptionOrderID);
+        Pages.Home().clickOnAssign();
         Pages.Home().moveOrderToInProgressStateAndVerify();
-    }*/
+    }
 
-    @Test(priority =11)
+    @Test(priority =12)
     public void verifyMoveToOrderDetails() throws InterruptedException {
         test = extent.createTest("Verify Navigation to order details page ");
         Pages.NavigationsCP().openOrderDetailPage();
 
-
-
     }
-    @Test(priority = 12)
-    public void verifyPatientInformation()
-    {
-        test = extent.createTest("Verify Navigation to order details page ");
+    @Test(priority = 13)
+    public void verifyPatientInformation() throws FileNotFoundException {
+        test = extent.createTest("Verify patient information in orderDetails page ");
         Pages.PatientInformations().verifyBasicDetailTable();
         Pages.PatientInformations().verifyContactDetail();
         Pages.PatientInformations().userDetails();
-
-
-
+        Pages.PatientInformations().pendingMedicationTable();
     }
-    @Test(priority = 13)
+    @Test(priority = 14)
     public void verifyOrderDetails() throws FileNotFoundException {
         test = extent.createTest("Verify order details data and Header text ");
         Pages.OrderDetails().verifyDeliveryDetailTable();
@@ -139,7 +138,7 @@ public class TestCancelOrder extends BaseClass {
         Pages.OrderDetails().verifyRemoveFunctionality();
     }
 
-    @Test(priority = 14)
+    @Test(priority = 15)
     public void verifyInsuranceApproval() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Insurance Approval functionality");
         Pages.OrderDetails().clickOnSendInsurenceApproval();
@@ -148,35 +147,30 @@ public class TestCancelOrder extends BaseClass {
         Pages.OrderDetails().approveMedicineInsuranceUsingCopay();
     }
 
-    @Test(priority = 15)
+    @Test(priority = 16)
     public void verifyLogoutFunctionality() {
         test = extent.createTest("Logout Functionality");
         Pages.Logout().verifyLogout();
     }
 
 
-
-
-
-
-
-    @Test(priority = 16)
+    @Test(priority = 17)
     public void verifyLogin() throws InterruptedException {
         test = extent.createTest("Verify Delivery API");
-
+           Thread.sleep(10000);
         BaseClass.getCurrentDateTime();
         DawakLoginAPICall.makeLoginApiCall();
         Thread.sleep(9000);
     }
 
-    @Test(priority = 17)
+    @Test(priority = 18)
     public void verifyListAPIPayment()
     {
         test = extent.createTest("Verify List API");
         ListAPICall.makeListApiCall();
 
     }
-    @Test(priority = 18)
+    @Test(priority = 19)
     public void verifyCancelOrder()
     {
         test = extent.createTest("Verify cancel order API");

@@ -167,7 +167,7 @@ public class Home {
             Pages.Home().applyFilters(prescriptionOrderID, filterName);
             WebElement Encounterid = driver.findElement(By.xpath(String.format(taskTableValues, taskTabletext)));
             Pages.WebCommon().waitForElementInteractivity(Encounterid);
-            System.out.println(Encounterid);
+            System.out.println(Encounterid.getText());
             Assert.assertEquals(prescriptionOrderID, Encounterid.getText());
             Pages.Home().clearFilter();
 

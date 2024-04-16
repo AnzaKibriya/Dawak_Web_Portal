@@ -80,20 +80,20 @@ public class TestDawakDP extends BaseClass {
 
     }
 
-    @Test(priority = 6)
+    @Test(priority = 7)
     public void verifyDeliveryFunctionality() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Making Order In  Ready for Delivery TAB");
         Pages.ReadyForDelivery().deliveryFunctionality(prescriptionOrderID);
 
     }
-    @Test(priority = 7)
+    @Test(priority = 8)
     public void verifyLogoutFunctionalityDespensing() throws InterruptedException {
         test = extent.createTest("Logout Functionality");
         Thread.sleep(2000);
         Pages.Logout().verifyLogout();
     }
 
-    @Test(priority = 8)
+    @Test(priority = 9)
     public void verifyOutforDelivery() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Login to DP Portal");
         Pages.LoginDP().DPLogin();
@@ -102,10 +102,8 @@ public class TestDawakDP extends BaseClass {
         Thread.sleep(4000);
         Pages.Dispatched().OutForDeliveryFunctionality();
         Thread.sleep(3000);
-
-
     }
-    @Test(priority = 9)
+    @Test(priority = 10)
     public void verifyLogoutAfterDispatchedFunctionality() {
         test = extent.createTest("Logout Functionality");
         Pages.Logout().verifyLogout();

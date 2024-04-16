@@ -1,5 +1,6 @@
 package model;
 
+import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
 import okhttp3.MediaType;
 import okhttp3.Request;
@@ -43,6 +44,8 @@ public class OrdercalcelAPICall {
                 JSONObject jsonResponse = new JSONObject(response.body().string());
                 System.out.println("Request successful");
                 System.out.println(jsonResponse);
+                test.log(Status.PASS, "cancel order API called successfully");
+
 
             } else {
                 System.out.println("Request failed: " + response.code() + " " + response.message());

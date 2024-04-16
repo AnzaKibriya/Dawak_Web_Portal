@@ -1,0 +1,7 @@
+<suite name="cancel order  Scenario">
+    <test name="cancel order">
+        <classes>
+            <class name="TestCancelOrder"/>
+        </classes>
+    </test>
+</suite>
