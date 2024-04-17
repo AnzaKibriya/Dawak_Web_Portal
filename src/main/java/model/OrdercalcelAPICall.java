@@ -2,15 +2,14 @@ package model;
 
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
-import okhttp3.MediaType;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import static Helper.BaseClass.*;
 
@@ -21,7 +20,10 @@ public class OrdercalcelAPICall {
 
     public static String ordercancelAPI() {
         try {
-            MediaType mediaType = MediaType.parse("application/json");
+             OkHttpClient client = new OkHttpClient.Builder()
+                    .connectTimeout(90, TimeUnit.SECONDS) // Set connection timeout to 30 seconds
+                    .build();
+             MediaType mediaType = MediaType.parse("application/json");
             Gson gson = new Gson();
             OrdercalcelAPICall ordercalcelAPICall = new OrdercalcelAPICall();
             String jsonPayload = gson.toJson(ordercalcelAPICall.getordercancel(processInstanceId, id));
@@ -60,12 +62,11 @@ public class OrdercalcelAPICall {
     }
 
     public OrderCancel getordercancel(int processInstanceid, String id) {
-        try (Reader reader = new InputStreamReader(this.getClass()
-                .getResourceAsStream("/Ordercancel.json"))) {
+        try (Reader reader = new InputStreamReader(Objects.requireNonNull(this.getClass()
+                .getResourceAsStream("/Ordercancel.json")))) {
             Gson gson = new Gson();
             OrderCancel result = gson.fromJson(reader, OrderCancel.class);
             int encounterid=Integer.parseInt(id);
-
             result.setId(encounterid);
             result.setProcessInstanceId(processInstanceid);
             return result;

@@ -157,17 +157,17 @@ public class TestCancelOrder extends BaseClass {
     @Test(priority = 17)
     public void verifyLogin() throws InterruptedException {
         test = extent.createTest("Verify Delivery API");
-           Thread.sleep(10000);
+           Thread.sleep(19000);
         BaseClass.getCurrentDateTime();
         DawakLoginAPICall.makeLoginApiCall();
-        Thread.sleep(9000);
+        Thread.sleep(12000);
     }
 
     @Test(priority = 18)
-    public void verifyListAPIPayment()
-    {
+    public void verifyListAPIPayment() throws InterruptedException {
         test = extent.createTest("Verify List API");
         ListAPICall.makeListApiCall();
+        Thread.sleep(5000);
 
     }
     @Test(priority = 19)
@@ -175,7 +175,6 @@ public class TestCancelOrder extends BaseClass {
     {
         test = extent.createTest("Verify cancel order API");
         OrdercalcelAPICall.ordercancelAPI();
-
 
     }
 
