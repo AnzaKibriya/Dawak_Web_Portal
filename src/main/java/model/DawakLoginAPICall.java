@@ -2,10 +2,7 @@ package model;
 
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
-import okhttp3.MediaType;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -14,6 +11,7 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import static Helper.BaseClass.*;
 
@@ -21,6 +19,10 @@ public class DawakLoginAPICall {
 
     private static final String API_URL="https://dawak-apim-uat.azure-api.net/dawak-auth/api/auth/v3/mobile-login";
     public static  String makeLoginApiCall() {
+        client = new OkHttpClient.Builder()
+                .connectTimeout(30, TimeUnit.SECONDS) // Adjust timeout as needed
+                .readTimeout(30, TimeUnit.SECONDS) // Adjust timeout as needed
+                .build();
         try {
             MediaType mediaType = MediaType.parse("application/json");
             Gson gson = new Gson();

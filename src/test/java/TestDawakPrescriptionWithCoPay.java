@@ -23,10 +23,10 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
 
 
     @Test(priority = 2)
-    public  void loginTODawak()
-    {
+    public  void loginTODawak() throws InterruptedException {
         test = extent.createTest("Login to Dawak");
         DawakLoginAPICall.makeLoginApiCall();
+        Thread.sleep(30000);
 
     }
 
@@ -159,9 +159,8 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
     public void verifyLogin() throws InterruptedException {
         test = extent.createTest("Verify LOgin to Dawak Mobile  API");
         BaseClass.getCurrentDateTime();
-        Thread.sleep(25000);
         DawakLoginAPICall.makeLoginApiCall();
-        Thread.sleep(12000);
+        Thread.sleep(30000);
     }
 
     @Test(priority = 18)
@@ -277,7 +276,6 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
     public void verifyDeliveryFunctionality() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Making Order In  Ready for Delivery TAB");
         Pages.ReadyForDelivery().deliveryFunctionality(prescriptionOrderID);
-
     }
     @Test(priority = 29)
     public void verifyLogoutFunctionalityDespensing() throws InterruptedException {

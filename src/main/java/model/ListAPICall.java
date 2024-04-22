@@ -5,25 +5,28 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import okhttp3.MediaType;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
 import org.json.JSONObject;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import static Helper.BaseClass.*;
 
 public class ListAPICall {
 
     public static String makeListApiCall() {
+
+        client = new OkHttpClient.Builder()
+                .connectTimeout(50, TimeUnit.SECONDS) // Adjust timeout as needed
+                .readTimeout(50, TimeUnit.SECONDS) // Adjust timeout as needed
+                .build();
         try {
             MediaType mediaType = MediaType.parse("application/json");
             Gson gson = new Gson();
             Request request = new Request.Builder()
-                    .url("https://dawak-apim-uat.azure-api.net/dawak-patient/api/dashboard/prescriptions?key=1")
+                    .url("https://dawak-apim-uat.azure-api.net/dawak-patient/api/dashboard/v2/prescriptions?key=1")
                     .header("Authorization", "Bearer " + accessTokens)
                     .addHeader("deviceType", "android")
                     .addHeader("devicePlayerId", "1b68739e-d137-40f7-8100-1a854e5c9769")

@@ -415,7 +415,9 @@ public class OrderDetails {
 
 
         }
+        Pages.WebCommon().waitForElementsInteractions();
         taskCompletedButton.click();
+        Pages.WebCommon().waitForElementsInteractions();
         test.log(Status.PASS, " clicked on Task completed Button ");
 
     }

@@ -21,10 +21,10 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
 
 
     @Test(priority = 2)
-    public  void loginTODawak()
-    {
+    public  void loginTODawak() throws InterruptedException {
         test = extent.createTest("Login to Dawak");
         DawakLoginAPICall.makeLoginApiCall();
+        Thread.sleep(30000);
 
     }
 
@@ -45,9 +45,6 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
 
 
     }
-
-
-
 
 
     @Test(priority = 5)
@@ -157,9 +154,8 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
     public void verifyLogin() throws InterruptedException {
         test = extent.createTest("Verify LOgin to Dawak Mobile  API");
         BaseClass.getCurrentDateTime();
-        Thread.sleep(19000);
         DawakLoginAPICall.makeLoginApiCall();
-        Thread.sleep(12000);
+        Thread.sleep(30000);
     }
 
     @Test(priority = 18)

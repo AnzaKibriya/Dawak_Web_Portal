@@ -20,11 +20,10 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
 
 
     @Test(priority = 2)
-    public  void loginTODawak()
-    {
+    public  void loginTODawak() throws InterruptedException {
         test = extent.createTest("Login to Dawak");
         DawakLoginAPICall.makeLoginApiCall();
-
+        Thread.sleep(35000);
     }
 
     @Test(priority = 3)
