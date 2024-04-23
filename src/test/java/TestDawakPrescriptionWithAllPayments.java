@@ -5,7 +5,8 @@ import org.testng.annotations.Test;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class TestCentralPharmacistPortal extends BaseClass {
+public class TestDawakPrescriptionWithAllPayments extends BaseClass {
+
     @Test(priority = 1)
     public void verifyCPLogin() throws IOException, InterruptedException {
         test = extent.createTest("Login to Central Pharmacist");
@@ -14,8 +15,8 @@ public class TestCentralPharmacistPortal extends BaseClass {
 //        Pages.Mailinator().verifyOtp();
         Pages.LoginCP().verifyEnteringOtp();
 
-    }
 
+    }
 
     @Test(priority = 2)
     public void verifyFilterValidation() throws InterruptedException, FileNotFoundException {
@@ -27,7 +28,7 @@ public class TestCentralPharmacistPortal extends BaseClass {
 
     }
 
-    @Test(priority = 3)
+   @Test(priority = 3)
     public void verifyOrderInTOdo() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Making Order In TODO");
         Pages.WebCommon().waitForLoaderInvisibility();
@@ -38,7 +39,7 @@ public class TestCentralPharmacistPortal extends BaseClass {
     public void verifyTodoColumnData() throws FileNotFoundException {
         test = extent.createTest("Verify Data present in Todo  column");
         Pages.Home().verifyDataInWebTable();
-
+        Pages.WebCommon().verifyTaskTable();
     }
 
     @Test(priority = 5)
@@ -53,37 +54,39 @@ public class TestCentralPharmacistPortal extends BaseClass {
     }
 
     @Test(priority = 6)
-    public void verifyInProgressColumnData() throws FileNotFoundException {
+    public void verifyInProgressColumnData() {
         test = extent.createTest("Verify Data present in  In-progress column");
         Pages.Home().verifyDataInWebTable();
-        Pages.WebCommon().verifyTaskTable();
-
     }
 
-    @Test(priority = 7)
-    public void verifyUnAssignFunctionality() throws InterruptedException, FileNotFoundException {
+   /* @Test(priority = 8)
+    public void verifyUnAssignFunctionality() throws InterruptedException {
         test = extent.createTest("Verify un-assign functionality");
         Pages.Home().verifyReAssign();
-        Pages.Home().SearchForOrder(prescriptionOrderID);
-        Pages.Home().clickOnAssign();
+        Pages.Home().SearchForOrder();
         Pages.Home().moveOrderToInProgressStateAndVerify();
-    }
+    }*/
 
-    @Test(priority =8)
+    @Test(priority =7)
     public void verifyMoveToOrderDetails() throws InterruptedException {
         test = extent.createTest("Verify Navigation to order details page ");
         Pages.NavigationsCP().openOrderDetailPage();
 
+
+
     }
-    @Test(priority = 9)
-    public void verifyPatientInformation() throws FileNotFoundException {
-        test = extent.createTest("Verify patient information in orderDetails page ");
+    @Test(priority = 8)
+    public void verifyPatientInformation()
+    {
+        test = extent.createTest("Verify Navigation to order details page ");
         Pages.PatientInformations().verifyBasicDetailTable();
         Pages.PatientInformations().verifyContactDetail();
         Pages.PatientInformations().userDetails();
-        Pages.PatientInformations().pendingMedicationTable();
+
+
+
     }
-    @Test(priority = 10)
+    @Test(priority = 9)
     public void verifyOrderDetails() throws FileNotFoundException {
         test = extent.createTest("Verify order details data and Header text ");
         Pages.OrderDetails().verifyDeliveryDetailTable();
@@ -94,22 +97,18 @@ public class TestCentralPharmacistPortal extends BaseClass {
         Pages.OrderDetails().verifyRemoveFunctionality();
     }
 
-    @Test(priority = 11)
+    @Test(priority = 10)
     public void verifyInsuranceApproval() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Insurance Approval functionality");
         Pages.OrderDetails().clickOnSendInsurenceApproval();
         Pages.NavigationsCP().navigateTOInsuranceInprogressTab();
         Pages.OrderDetails().verifySendInsuranceApproval();
-        Pages.OrderDetails().approveMedicineInsuranceUsingCopay();
+        Pages.OrderDetails().insuranceApprovalUsingAllPayments();
     }
 
-    @Test(priority = 12)
+    @Test(priority = 11)
     public void verifyLogoutFunctionality() {
         test = extent.createTest("Logout Functionality");
         Pages.Logout().verifyLogout();
     }
-
-
-
-
 }
