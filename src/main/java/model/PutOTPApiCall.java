@@ -31,18 +31,19 @@ public class PutOTPApiCall {
                     .post(RequestBody.create(jsonPayload, MediaType.parse("application/json")))
                     .addHeader("Content-Type", "application/json")
                     .build();
-            Response response = client.newCall(request).execute();
-            if (response.isSuccessful()) {
-                JSONObject jsonResponse = new JSONObject(response.body().string());
-                System.out.println(jsonResponse);
-                JSONObject data = jsonResponse.getJSONObject("data");
-                JSONObject token = data.getJSONObject("token");
-                dpAccessToken = String.valueOf(token.getString("accessToken"));
-                test.log(Status.PASS, "PUT OTP API called successfully");
+            try (Response response = client.newCall(request).execute()) {
+                if (response.isSuccessful()) {
+                    JSONObject jsonResponse = new JSONObject(response.body().string());
+                    System.out.println(jsonResponse);
+                    JSONObject data = jsonResponse.getJSONObject("data");
+                    JSONObject token = data.getJSONObject("token");
+                    dpAccessToken = String.valueOf(token.getString("accessToken"));
+                    test.log(Status.PASS, "PUT OTP API called successfully");
 
-            } else {
-                System.out.println("API call failed!");
-                System.out.println("Response: " + response.body().string());
+                } else {
+                    System.out.println("API call failed!");
+                    System.out.println("Response: " + response.body().string());
+                }
             }
             return dpAccessToken;
         } catch (Exception e) {

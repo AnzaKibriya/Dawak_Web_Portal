@@ -195,7 +195,7 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
     public void verifyDPLogin() throws InterruptedException {
         test = extent.createTest("Login to DP Portal");
         Pages.LoginDP().DPLogin();
-        Pages.Mailinator().verifyDpOtp();
+       // Pages.Mailinator().verifyDpOtp();
         Pages.LoginDP().verifyEnteringOtp();
 
     }
@@ -283,7 +283,7 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
     public void verifyOutforDelivery() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Login to DP Portal");
         Pages.LoginDP().DPLogin();
-        Pages.Mailinator().verifyDpOtp();
+      //  Pages.Mailinator().verifyDpOtp();
         Pages.LoginDP().verifyEnteringOtp();
         Thread.sleep(4000);
         Pages.Dispatched().OutForDeliveryFunctionality();

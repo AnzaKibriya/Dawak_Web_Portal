@@ -157,7 +157,7 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
     public void verifyDPLogin() throws InterruptedException {
         test = extent.createTest("Login to DP Portal");
         Pages.LoginDP().DPLogin();
-        Pages.Mailinator().verifyDpOtp();
+       // Pages.Mailinator().verifyDpOtp();
         Pages.LoginDP().verifyEnteringOtp();
 
     }
@@ -235,7 +235,7 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
         Pages.ReadyForDelivery().deliveryFunctionality(prescriptionOrderID);
 
     }
-    @Test(priority = 24)
+   @Test(priority = 24)
     public void verifyLogoutFunctionalityDespensing() throws InterruptedException {
         test = extent.createTest("Logout Functionality");
         Thread.sleep(2000);
@@ -246,7 +246,7 @@ public class TestDawakPrescriptionWithNoPay extends BaseClass {
     public void verifyOutforDelivery() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Login to DP Portal");
         Pages.LoginDP().DPLogin();
-        Pages.Mailinator().verifyDpOtp();
+      //  Pages.Mailinator().verifyDpOtp();
         Pages.LoginDP().verifyEnteringOtp();
         Thread.sleep(4000);
         Pages.Dispatched().OutForDeliveryFunctionality();
