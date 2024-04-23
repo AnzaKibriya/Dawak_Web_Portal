@@ -1,10 +1,10 @@
 <suite name="Dawak  Payments Scenario">
-    <test name="Dawak coPay Scenario">
+    <test name="Dawak NoPay Scenario">
         <classes>
             <class name="TestDawakPrescriptionWithNoPay"/>
         </classes>
     </test>
-    <test name="Dawak NoPay Scenario">
+    <test name="Dawak CoPay Scenario">
         <classes>
             <class name="TestDawakPrescriptionWithCoPay"/>
         </classes>
