@@ -1,7 +1,8 @@
-package model;
+package APICalls;
 
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
+import model.CreateOtpDp;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -12,16 +13,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
-import static Helper.BaseClass.*;
+import static Helper.BaseClass.client;
+import static Helper.BaseClass.test;
 
-public class LoginDpApiCall {
-    static String apiUrl = "https://dawak-apim-uat.azure-api.net/dawak-auth/api/auth/v2/web-login";
-    public static void makeLoginApiCall() {
+public class CreateOtpApiCall {
+    static String apiUrl = "https://dawak-apim-uat.azure-api.net/dawak-auth/api/auth/createOtp";
+    public static void createOtpApiCall() {
         try{
             MediaType mediaType = MediaType.parse("application/json");
             Gson gson = new Gson();
-            LoginDpApiCall loginDpApiCall = new LoginDpApiCall();
-            String jsonPayload = gson.toJson(loginDpApiCall.getLoginDp());
+            CreateOtpApiCall createOtpApiCall = new CreateOtpApiCall();
+            String jsonPayload = gson.toJson(createOtpApiCall.getCreateOtp());
             RequestBody body = RequestBody.create(jsonPayload, mediaType);
             Request request = new Request.Builder()
                     .url(apiUrl)
@@ -31,8 +33,9 @@ public class LoginDpApiCall {
             Response response = client.newCall(request).execute();
             if (response.isSuccessful()) {
                 JSONObject jsonResponse = new JSONObject(response.body().string());
-                System.out.println(jsonResponse);
-                test.log(Status.PASS, "LoginDp API called successfully");
+//                JSONObject data = jsonResponse.getJSONObject("data");
+//                accessToken = data.getString("access_token");
+                test.log(Status.PASS, "create OTP API called successfully");
 
             } else {
                 System.out.println("API call failed!");
@@ -43,10 +46,10 @@ public class LoginDpApiCall {
             e.printStackTrace();
         }
     }
-    public LoginDP getLoginDp() {
+    public CreateOtpDp getCreateOtp() {
         try (Reader reader = new InputStreamReader(this.getClass()
-                .getResourceAsStream("/LoginDP.json"))) {
-            LoginDP result = new Gson().fromJson(reader, LoginDP.class);
+                .getResourceAsStream("/CreateOTP.json"))) {
+            CreateOtpDp result = new Gson().fromJson(reader, CreateOtpDp.class);
             return result;
         } catch (IOException e) {
             e.printStackTrace();

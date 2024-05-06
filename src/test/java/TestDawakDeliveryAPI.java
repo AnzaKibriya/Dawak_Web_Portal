@@ -1,9 +1,10 @@
+import APICalls.DawakLoginAPICall;
+import APICalls.DeliveryAPICall;
+import APICalls.LoginApiCall;
+import APICalls.PrescriptionApiCall;
 import Helper.BaseClass;
 import model.*;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
 
 public class TestDawakDeliveryAPI extends BaseClass {
 

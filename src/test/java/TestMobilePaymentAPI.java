@@ -1,3 +1,7 @@
+import APICalls.DashboardPrescriptionAPICall;
+import APICalls.DawakLoginAPICall;
+import APICalls.PaymentAPICall;
+import APICalls.SelectingDateAPICall;
 import Helper.BaseClass;
 import model.*;
 import org.testng.annotations.Test;

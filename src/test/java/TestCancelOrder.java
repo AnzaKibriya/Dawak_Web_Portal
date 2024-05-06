@@ -1,3 +1,4 @@
+import APICalls.*;
 import Helper.BaseClass;
 import Pages.Pages;
 import model.*;

@@ -70,6 +70,9 @@ public class OrderDetails {
     @FindBy(xpath = "//span[normalize-space()='Send Insurance for Approval']")
     WebElement sendInsuranceApprovalButton;
 
+    @FindBy(xpath = "//button[text()=' OK']")
+    WebElement okButton;
+
 
     @FindBy(xpath = "//input[@placeholder='Search by Attribute']")
     WebElement search;
@@ -187,6 +190,8 @@ public class OrderDetails {
         Pages.WebCommon().waitForLoaderInvisibility();
         Pages.WebCommon().waitForElementsInteractions();
         webJavascriptExecutor().executeScript("arguments[0].click();", sendInsuranceApprovalButton);
+        Pages.WebCommon().waitForElementsInteractions();
+        webJavascriptExecutor().executeScript("arguments[0].click();", okButton);
         test.log(Status.PASS, " order sent for insurance Approval");
         Pages.WebCommon().waitForLoaderInvisibility();
         Pages.WebCommon().waitForElementsInteractions();
@@ -265,17 +270,17 @@ public class OrderDetails {
             if(i==1) {
                 //webJavascriptExecutor().executeScript("arguments[0].value = '" + "Test" + "'", comment);
                 reason.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
-                dosageInstruction.sendKeys("test");
+                dosageInstruction.sendKeys("DIS8W");
             }
             if(i==2)
             {  if(counter==1) {
                 secondMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
-                dosageInstruction2.sendKeys("test");
+                dosageInstruction2.sendKeys("DIS8W");
             }
                 if(counter==2)
                 {
                     ThirdMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
-                    dosageInstruction2.sendKeys("test");
+                    dosageInstruction2.sendKeys("DIS8W");
 
 
                 }
@@ -326,17 +331,17 @@ public class OrderDetails {
             if(i==1) {
                 //webJavascriptExecutor().executeScript("arguments[0].value = '" + "Test" + "'", comment);
                 reason.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
-                    dosageInstruction.sendKeys("test");
+                    dosageInstruction.sendKeys("DIS8W");
                 }
                 if(i==2)
                 {  if(count==1) {
                     secondMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
-                    dosageInstruction2.sendKeys("test");
+                    dosageInstruction2.sendKeys("DIS8W");
                 }
                     if(count==2)
                     {
                         ThirdMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
-                        dosageInstruction2.sendKeys("test");
+                        dosageInstruction2.sendKeys("DIS8W");
 
                     }
                 }
@@ -384,17 +389,17 @@ public class OrderDetails {
             if(i==1) {
                 //webJavascriptExecutor().executeScript("arguments[0].value = '" + "Test" + "'", comment);
                 reason.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
-                dosageInstruction.sendKeys("test");
+                dosageInstruction.sendKeys("DIS8W");
             }
             if(i==2)
             {  if(counter==1) {
                 secondMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
-                dosageInstruction2.sendKeys("test");
+                dosageInstruction2.sendKeys("DIS8W");
             }
                 if(counter==2)
                 {
                     ThirdMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
-                    dosageInstruction2.sendKeys("test");
+                    dosageInstruction2.sendKeys("DIS8W");
 
 
                 }

@@ -17,6 +17,9 @@ public class Order {
     @SerializedName("orderVisitDate")
     private String orderVisitDate;
 
+    @SerializedName("orderDelivery")
+    private String orderDelivery;
+
     @SerializedName("orderLocation")
     private OrderLocation orderLocation;
 
@@ -79,6 +82,14 @@ public class Order {
 
     public void setMedications(List<Medication> medications) {
         this.medications = medications;
+    }
+
+    public String getOrderDelivery() {
+        return orderDelivery;
+    }
+
+    public void setOrderDelivery(String orderDelivery) {
+        this.orderDelivery = orderDelivery;
     }
 }
 

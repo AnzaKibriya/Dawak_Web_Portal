@@ -1,7 +1,8 @@
-package model;
+package APICalls;
 
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
+import model.ShipaInitiateEvent;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;

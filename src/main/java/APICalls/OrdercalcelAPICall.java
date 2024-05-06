@@ -1,7 +1,8 @@
-package model;
+package APICalls;
 
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
+import model.OrderCancel;
 import okhttp3.*;
 import org.json.JSONObject;
 
