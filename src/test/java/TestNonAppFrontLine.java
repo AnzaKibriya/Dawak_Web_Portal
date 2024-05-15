@@ -20,52 +20,45 @@ public class TestNonAppFrontLine extends BaseClass {
         //  NewPatientApiCall.makeCreatePatientApiCall(accessToken, prescriptionOrderID);
         NonAppFrontLineDeliveryAPICall.makeCreatePatientApiCall(accessToken, prescriptionOrderID);
     }
-    @Test(priority =2)
+
+    @Test(priority = 2)
     public void LoginFrontLine() throws InterruptedException {
         test = extent.createTest("Login Front Line Pharmacist");
         Pages.LoginFrontLine().CCLogin();
         Pages.LoginCallCentre().verifyEnteringOtp();
-        Thread.sleep(7000);
+        Pages.WebCommon().waitForLoaderInvisibility();
     }
+
     @Test(priority = 3)
-    public void verifysearch() throws InterruptedException {
+    public void verifySearch() throws InterruptedException {
         test = extent.createTest("search for the order");
         Pages.HomepageFrontLine().searchrecord();
     }
+
     @Test(priority = 4)
-    public void verifyMoveToOrderDetailscc() throws InterruptedException, AWTException {
+    public void verifyMoveToOrderDetailsCallCenter() throws InterruptedException, AWTException {
         test = extent.createTest("Verify Navigation to order details page ");
         Pages.NavigationsCP().openOrderDetailPage();
         Pages.OrderDetailsFrontLine().addAddress();
         Thread.sleep(3000);
     }
+
     @Test(priority = 5)
-    public void verifyLogoutccFunctionality() throws InterruptedException {
+    public void verifyLogoutCallCenterFunctionality() throws InterruptedException {
         test = extent.createTest("Logout Functionality");
         Pages.Logout().verifyLogout();
         Pages.WebCommon().waitForElementsInteractions();
     }
+
     @Test(priority = 6)
-    public void verifyCPLogin() throws IOException, InterruptedException {
+    public void verifyCPLogin() throws IOException {
         test = extent.createTest("Login to Central Pharmacist");
         Pages.LoginCP().invalidCPLogin();
         Pages.LoginCP().CPLogin();
-//        Pages.Mailinator().verifyOtp();
         Pages.LoginCP().verifyEnteringOtp();
-
     }
-
 
     @Test(priority = 7)
-    public void verifyFilterValidation() throws InterruptedException, FileNotFoundException {
-
-        test = extent.createTest("Verify Filter Validation");
-        Pages.WebCommon().waitForElementsInteractions();
-       // Pages.Home().verifyFilters();
-
-    }
-
-    @Test(priority = 8)
     public void verifyOrderInTOdo() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Making Order In TODO");
         Pages.WebCommon().waitForLoaderInvisibility();
@@ -73,14 +66,13 @@ public class TestNonAppFrontLine extends BaseClass {
         Pages.Home().SearchForOrder(prescriptionOrderID);
     }
 
-    @Test(priority = 9)
-    public void verifyTodoColumnData() throws FileNotFoundException {
+    @Test(priority = 8)
+    public void verifyTodoColumnData() {
         test = extent.createTest("Verify Data present in Todo  column");
         Pages.Home().verifyDataInWebTable();
-
     }
 
-    @Test(priority = 10)
+    @Test(priority = 9)
     public void verifyMakingOrderInProgress() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Making Order In Progress State");
         Pages.NavigationsCP().moveToNewPrescription();
@@ -91,15 +83,13 @@ public class TestNonAppFrontLine extends BaseClass {
         Pages.Home().moveOrderToInProgressStateAndVerify();
     }
 
-    @Test(priority = 11)
-    public void verifyInProgressColumnData() throws FileNotFoundException {
-        test = extent.createTest("Verify Data present in  In-progress column");
+    @Test(priority = 10)
+    public void verifyInProgressColumnData() {
+        test = extent.createTest("Verify Data present in  In-progress column CP Portal");
         Pages.Home().verifyDataInWebTable();
-        //  Pages.WebCommon().verifyTaskTable();
-
     }
 
-    @Test(priority = 12)
+    @Test(priority = 11)
     public void verifyUnAssignFunctionality() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify un-assign functionality");
         Pages.Home().verifyReAssign();
@@ -108,28 +98,29 @@ public class TestNonAppFrontLine extends BaseClass {
         Pages.Home().moveOrderToInProgressStateAndVerify();
     }
 
-    @Test(priority =13)
+    @Test(priority = 12)
     public void verifyMoveToOrderDetails() throws InterruptedException {
         test = extent.createTest("Verify Navigation to order details page ");
         Pages.NavigationsCP().openOrderDetailPage();
 
     }
-    @Test(priority = 14)
+
+    @Test(priority = 13)
     public void verifyPatientInformation() throws FileNotFoundException {
         test = extent.createTest("Verify patient information in orderDetails page ");
-        //  Pages.PatientInformations().verifyBasicDetailTable();
-        //Pages.PatientInformations().verifyContactDetail();
-        // Pages.PatientInformations().userDetails();
+        Pages.PatientInformations().verifyBasicDetailTable();
+        Pages.PatientInformations().verifyContactDetail();
+        Pages.PatientInformations().userDetails();
         Pages.PatientInformations().pendingMedicationTable();
     }
+
     @Test(priority = 15)
-    public void verifyOrderDetails() throws FileNotFoundException {
+    public void verifyOrderDetails() {
         test = extent.createTest("Verify order details data and Header text ");
         Pages.OrderDetails().verifyDeliveryDetailTable();
         Pages.OrderDetails().verifyOrderDetailTable();
         Pages.OrderDetails().verifyOrderDetailsHeader();
         Pages.OrderDetails().verifyTrackDetailTable();
-//        Pages.OrderDetails().verifyViewDetailsInformation();
         Pages.OrderDetails().verifyRemoveFunctionality();
     }
 
@@ -144,62 +135,61 @@ public class TestNonAppFrontLine extends BaseClass {
 
     @Test(priority = 17)
     public void verifyLogoutFunctionality() throws InterruptedException {
-        test = extent.createTest("Logout Functionality");
+        test = extent.createTest("Logout Functionality CP Portal");
         Pages.WebCommon().waitForElementsInteractions();
         Pages.Logout().verifyLogout();
     }
 
-    @Test(priority =18)
-    public void Logincallcentre() throws InterruptedException {
-        test = extent.createTest("Logincc");
+    @Test(priority = 18)
+    public void LoginCallCentre() throws InterruptedException {
+        test = extent.createTest("Login Call Centre");
         Pages.WebCommon().waitForElementsInteractions();
         Pages.LoginCallCentre().CCLogin();
         Pages.LoginCallCentre().verifyEnteringOtp();
-        Thread.sleep(7000);
+        Pages.WebCommon().waitForLoaderInvisibility();
     }
 
 
     @Test(priority = 19)
-    public  void Homepagecallcentre() throws FileNotFoundException, InterruptedException {
-        test = extent.createTest("Home page call centre");
+    public void homePageCallCentre() throws FileNotFoundException, InterruptedException {
+        test = extent.createTest("Verify Home page call centre And Move Order to Inprogres");
         Pages.HomePageCallCentre().SearchForOrder(prescriptionOrderID);
         Pages.WebCommon().waitForElementsInteractions();
         Pages.Home().clickOnAssign();
         Pages.Home().moveOrderToInProgressStateAndVerify();
     }
 
-    @Test(priority =20 )
-    public  void moveTOorderDetails() throws InterruptedException {
+    @Test(priority = 20)
+    public void moveToOrderDetails() throws InterruptedException {
         test = extent.createTest("Move to order details page ");
         Pages.NavigationsCP().openOrderDetailPage();
     }
 
 
     @Test(priority = 21)
-    public void Completeorder() throws InterruptedException, AWTException {
+    public void completeOrder() throws InterruptedException, AWTException {
         test = extent.createTest("complete order ");
         Pages.OrderDetailsCallCentre().payment();
-        Thread.sleep(10000);
-
+        Pages.WebCommon().waitForLoaderInvisibility();
     }
+
     @Test(priority = 22)
-    public void verifyLogoutcallcentreFunctionality() throws InterruptedException {
-        test = extent.createTest("Logout Functionality");
+    public void verifyLogoutCallCentreFunctionality() throws InterruptedException {
+        test = extent.createTest("Verify Logout Call Centre Functionality");
         Pages.Logout().verifyLogout();
         Pages.WebCommon().waitForElementsInteractions();
     }
 
     @Test(priority = 23)
-    public void verifyDPLogin() throws InterruptedException {
+    public void verifyDPLogin() {
         test = extent.createTest("Login to DP Portal");
         Pages.LoginDP().DPLogin();
-        // Pages.Mailinator().verifyDpOtp();
         Pages.LoginDP().verifyEnteringOtp();
 
     }
 
     @Test(priority = 24)
-    public void verifyOrderInTOdoDespensing() throws InterruptedException, FileNotFoundException {
+    public void verifyOrderInTOdoDispensing() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Making Order In TODO");
         Pages.HomeDP().verifyHomePageHeader();
         Pages.HomeDP().SearchForOrder();
@@ -216,29 +206,19 @@ public class TestNonAppFrontLine extends BaseClass {
 
     }
 
-    @Test(priority =26)
+    @Test(priority = 26)
 
-    public void verifypatientInformation() throws FileNotFoundException, InterruptedException {
+    public void verifyPatientInformationDP() throws FileNotFoundException, InterruptedException {
         test = extent.createTest("Verify patientInformation");
-        Thread.sleep(4000);
-        // Pages.PatientInformations().verifyBasicDetailTable();
-        //  Pages.PatientInformations().verifyContactDetail();
-        //  Pages.PatientInformations().userDetails();
-        // Pages.OrderDetailsDP().addressDetailsTable();
-        // Pages.OrderDetailsDP().verifyDeliveryDetail();
+        Pages.WebCommon().waitForLoaderInvisibility();
+        Pages.PatientInformations().verifyBasicDetailTable();
+        Pages.PatientInformations().verifyContactDetail();
+        Pages.PatientInformations().userDetails();
+        Pages.OrderDetailsDP().addressDetailsTable();
+        Pages.OrderDetailsDP().verifyDeliveryDetail();
         Pages.OrderDetailsDP().pendingMedicationTableDp();
-
     }
 
- /*  @Test(priority = 25)
-    public void verifyInprogressData() throws FileNotFoundException {
-        test = extent.createTest("Verify InProgress column Data");
-       // Pages.WebCommon().verifyWebTableData();
-        Pages.WebCommon().verifyDespensingTaskTable();
-
-
-
-    }*/
 
     @Test(priority = 27)
     public void verifyOrderDispensing() throws InterruptedException {
@@ -250,15 +230,16 @@ public class TestNonAppFrontLine extends BaseClass {
         Pages.HomeDP().clickDetailButtonInDispensingInprogress();
 
     }
-    @Test(priority =28)
-    public void verifypatientInformations() throws FileNotFoundException, InterruptedException {
+
+    @Test(priority = 28)
+    public void verifyPatientInformationDispensingTab() throws FileNotFoundException, InterruptedException {
         test = extent.createTest("Verify patientInformation");
-        Thread.sleep(4000);
-        //  Pages.PatientInformations().verifyBasicDetailTable();
-        //  Pages.PatientInformations().verifyContactDetail();
-        //  Pages.PatientInformations().userDetails();
-        //  Pages.OrderDetailsDP().addressDetailsTable();
-        //   Pages.OrderDetailsDP().verifyDeliveryDetail();
+        Pages.WebCommon().waitForLoaderInvisibility();
+        Pages.PatientInformations().verifyBasicDetailTable();
+        Pages.PatientInformations().verifyContactDetail();
+        Pages.PatientInformations().userDetails();
+        Pages.OrderDetailsDP().addressDetailsTable();
+        Pages.OrderDetailsDP().verifyDeliveryDetail();
         Pages.OrderDetailsDP().pendingMedicationTableDp();
         Pages.OrderDetailsDP().orderReadyForDelivery();
 
@@ -270,10 +251,11 @@ public class TestNonAppFrontLine extends BaseClass {
         test = extent.createTest("Verify Making Order In  Ready for Delivery TAB");
         Pages.ReadyForDelivery().deliveryFunctionality(prescriptionOrderID);
     }
+
     @Test(priority = 30)
-    public void verifyLogoutFunctionalityDespensing() throws InterruptedException {
+    public void verifyLogoutFunctionalityDispensing() throws InterruptedException {
         test = extent.createTest("Logout Functionality");
-        Thread.sleep(2000);
+        Pages.WebCommon().waitForElementsInteractions();
         Pages.Logout().verifyLogout();
     }
 
@@ -281,19 +263,15 @@ public class TestNonAppFrontLine extends BaseClass {
     public void verifyOutforDelivery() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Login to DP Portal");
         Pages.LoginDP().DPLogin();
-        // Pages.Mailinator().verifyDpOtp();
         Pages.LoginDP().verifyEnteringOtp();
-        Thread.sleep(4000);
+        Pages.WebCommon().waitForLoaderInvisibility();
         Pages.Dispatched().OutForDeliveryFunctionality();
-        Thread.sleep(3000);
-
-
+        Pages.WebCommon().waitForLoaderInvisibility();
     }
+
     @Test(priority = 32)
     public void verifyLogoutAfterDispatchedFunctionality() {
         test = extent.createTest("Logout Functionality");
         Pages.Logout().verifyLogout();
     }
-
-
 }

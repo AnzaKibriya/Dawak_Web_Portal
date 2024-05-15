@@ -17,15 +17,15 @@ public class TestCancelOrder extends BaseClass {
         System.out.println(prescriptionOrderID);
         //  NewPatientApiCall.makeCreatePatientApiCall(accessToken, prescriptionOrderID);
         PrescriptionApiCall.makePrescriptionApiCall(accessToken, prescriptionOrderID);
-        Thread.sleep(8000);
+        Pages.WebCommon().waitForAPIResponse();
     }
 
 
     @Test(priority = 2)
-    public  void loginTODawak()
-    {
+    public void loginTODawak() throws InterruptedException {
         test = extent.createTest("Login to Dawak");
         DawakLoginAPICall.makeLoginApiCall();
+        Pages.WebCommon().waitForAPIResponse();
 
     }
 
@@ -33,42 +33,31 @@ public class TestCancelOrder extends BaseClass {
     public void verifyListAPI() throws InterruptedException {
         test = extent.createTest("Verify List API");
         ListAPICall.makeListApiCall();
-        Thread.sleep(12000);
+        Pages.WebCommon().waitForAPIResponse();
 
     }
 
     @Test(priority = 4)
-    public void deliveryAPI()
-    {
+    public void deliveryAPI() {
         test = extent.createTest("Verify Delivery API");
         DeliveryAPICall.deliveryApiCall();
-        // Del.verifyDelivery();
-
-
     }
 
 
-
-
-
     @Test(priority = 5)
-    public void verifyCPLogin() throws IOException, InterruptedException {
+    public void verifyCPLogin() throws IOException {
         test = extent.createTest("Login to Central Pharmacist");
         Pages.LoginCP().invalidCPLogin();
         Pages.LoginCP().CPLogin();
-//        Pages.Mailinator().verifyOtp();
         Pages.LoginCP().verifyEnteringOtp();
 
     }
 
-
     @Test(priority = 6)
     public void verifyFilterValidation() throws InterruptedException, FileNotFoundException {
-
         test = extent.createTest("Verify Filter Validation");
         Pages.WebCommon().waitForElementsInteractions();
         Pages.Home().verifyFilters();
-
 
     }
 
@@ -114,12 +103,13 @@ public class TestCancelOrder extends BaseClass {
         Pages.Home().moveOrderToInProgressStateAndVerify();
     }
 
-    @Test(priority =12)
+    @Test(priority = 12)
     public void verifyMoveToOrderDetails() throws InterruptedException {
         test = extent.createTest("Verify Navigation to order details page ");
         Pages.NavigationsCP().openOrderDetailPage();
 
     }
+
     @Test(priority = 13)
     public void verifyPatientInformation() throws FileNotFoundException {
         test = extent.createTest("Verify patient information in orderDetails page ");
@@ -128,6 +118,7 @@ public class TestCancelOrder extends BaseClass {
         Pages.PatientInformations().userDetails();
         Pages.PatientInformations().pendingMedicationTable();
     }
+
     @Test(priority = 14)
     public void verifyOrderDetails() throws FileNotFoundException {
         test = extent.createTest("Verify order details data and Header text ");
@@ -135,7 +126,6 @@ public class TestCancelOrder extends BaseClass {
         Pages.OrderDetails().verifyOrderDetailTable();
         Pages.OrderDetails().verifyOrderDetailsHeader();
         Pages.OrderDetails().verifyTrackDetailTable();
-//        Pages.OrderDetails().verifyViewDetailsInformation();
         Pages.OrderDetails().verifyRemoveFunctionality();
     }
 
@@ -158,7 +148,7 @@ public class TestCancelOrder extends BaseClass {
     @Test(priority = 17)
     public void verifyLogin() throws InterruptedException {
         test = extent.createTest("Verify Delivery API");
-           Thread.sleep(19000);
+        Thread.sleep(19000);
         BaseClass.getCurrentDateTime();
         DawakLoginAPICall.makeLoginApiCall();
         Thread.sleep(12000);
@@ -171,9 +161,9 @@ public class TestCancelOrder extends BaseClass {
         Thread.sleep(5000);
 
     }
+
     @Test(priority = 19)
-    public void verifyCancelOrder()
-    {
+    public void verifyCancelOrder() {
         test = extent.createTest("Verify cancel order API");
         OrdercalcelAPICall.ordercancelAPI();
 

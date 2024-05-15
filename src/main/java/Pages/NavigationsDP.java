@@ -18,22 +18,21 @@ public class NavigationsDP {
 
     @FindBy(xpath = "//span[text()=' Dispensing In-Progress ']")
     WebElement dispensingInProgressTab;
+
     public NavigationsDP(WebDriver Driver) {
 
-        driver=Driver;
+        driver = Driver;
     }
 
-    public void navigateTOInprogressTab()
-    {
+    public void navigateTOInprogressTab() {
         test.log(Status.PASS, "Navigated to  in Inprogress tab");
         webJavascriptExecutor().executeScript("arguments[0].click();", inProgressTabButton);
 
 
     }
 
-    public void navigateTODispensingInProgressTab()
-    {
+    public void navigateTODispensingInProgressTab() {
         test.log(Status.PASS, "Navigated to  DispensingInProgressTab");
-       webJavascriptExecutor().executeScript("arguments[0].click();", dispensingInProgressTab);
+        webJavascriptExecutor().executeScript("arguments[0].click();", dispensingInProgressTab);
     }
 }

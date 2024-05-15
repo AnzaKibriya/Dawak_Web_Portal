@@ -24,8 +24,8 @@ public class NonAppHomeDeliveryAPICall {
         try {
             MediaType mediaType = MediaType.parse("application/json");
             Gson gson = new Gson();
-            NewPatientApiCall NewPatientApiCall = new NewPatientApiCall();
-            String jsonPayload = gson.toJson(NewPatientApiCall.getPrescriptionRequest(orderID));
+            NonAppHomeDeliveryAPICall NonAppHomeDeliveryAPICall = new NonAppHomeDeliveryAPICall();
+            String jsonPayload = gson.toJson(NonAppHomeDeliveryAPICall.getPrescriptionRequest(orderID));
             RequestBody body = RequestBody.create(jsonPayload, mediaType);
             Request request = new Request.Builder()
                     .url(API_URL)

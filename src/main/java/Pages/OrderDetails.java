@@ -23,20 +23,20 @@ public class OrderDetails {
 
     String medicinePendingInfoInTable = "//app-pending-medication-info//tbody[contains(@class, 'mdc-data-table__content')]//td[%s]";
     String deliveryDetails = "//app-address-detail//tbody[contains(@class, 'mdc-data-table__content')]//tr[1]//td[%s]";
-    String deliveryDetailcolum = "//app-address-detail//tbody[contains(@class, 'mdc-data-table__content')]//tr[1]//td";
+    String deliveryDetailColum = "//app-address-detail//tbody[contains(@class, 'mdc-data-table__content')]//tr[1]//td";
     String orderDetailColumn = "//app-pending-medication-info//tbody[contains(@class, 'mdc-data-table__content')]//td";
     String trackingDetails = "//app-tracking-info//tbody[contains(@class, 'mdc-data-table__content')]//tr[1]//td[%s]";
     String trackDetailsColumn = "//app-tracking-info//tbody[contains(@class, 'mdc-data-table__content')]//tr[1]//td";
     String viewDetails = "//label[contains(text(), '%s')]//following::h5[1]";
     String basicInString = "//div[contains(text(), '%s')]/following-sibling::div";
 
-    String viewDetailscolumn = "//mat-drawer-content//tbody//button[2]/span[contains(@class, 'mat-mdc-button-persistent-ripple')]";
+    String viewDetailsColumn = "//mat-drawer-content//tbody//button[2]/span[contains(@class, 'mat-mdc-button-persistent-ripple')]";
 
 
     String healthPlan = "(//mat-label[text()='Health Plans'])[%s]";
     String enterQty = "(//input[@placeholder='Enter Qty'])[%s]";
     String payAmount = "(//input[@placeholder='Enter Co-Pay Amount in AED'])[%s]";
-    String commentTextbox = "(//textarea[@id='mat-input-15'])[%s]";
+    String commentTextBox = "(//textarea[@id='mat-input-15'])[%s]";
     String saveButton = ("(//span[normalize-space()='Save'])[%s]");
     @FindBy(xpath = "//span[text()='New Prescription']")
     WebElement newPrescriptionText;
@@ -131,7 +131,7 @@ public class OrderDetails {
     }
 
     public void verifyDeliveryDetailTable() {
-        List<WebElement> orderDeliveryTable = driver.findElements(By.xpath(deliveryDetailcolum));
+        List<WebElement> orderDeliveryTable = driver.findElements(By.xpath(deliveryDetailColum));
         test.log(Status.PASS, " Started verfying Data in Delivery Details Table");
         for (int i = 1; i <= orderDeliveryTable.size() - 2; i++) {
             WebElement orderDeliveryDetail = driver.findElement(By.xpath(String.format(deliveryDetails, i)));
@@ -250,35 +250,33 @@ public class OrderDetails {
 
     public void approveMedicineInsuranceUsingCopay() throws InterruptedException {
 
-        List<WebElement> detail = driver.findElements(By.xpath(viewDetailscolumn));
-        int counter=0;
+        List<WebElement> detail = driver.findElements(By.xpath(viewDetailsColumn));
+        int counter = 0;
         for (int i = 1; i <= detail.size(); i++) {
             webJavascriptExecutor().executeScript("arguments[0].click();", viewDetailsButton);
-            if(i==3)
-            {
+            if (i == 3) {
                 i--;
             }
-                Pages.WebCommon().waitForElementsInteractions();
-                test.log(Status.PASS, " View Detail button gets clicked successfully");
-                WebElement enterQuantity = driver.findElement(By.xpath(String.format(enterQty, i)));
-                enterQuantity.sendKeys(BaseClass.propertyFile("config", "enterQuantity"));
-                WebElement clickHealthPlan = driver.findElement(By.xpath(String.format(healthPlan, i)));
-                clickHealthPlan.click();
-                coPay.click();
-                WebElement enterPaymentAmount = driver.findElement(By.xpath(String.format(payAmount, i)));
-                enterPaymentAmount.sendKeys(BaseClass.propertyFile("config", "Amount"));
-            if(i==1) {
+            Pages.WebCommon().waitForElementsInteractions();
+            test.log(Status.PASS, " View Detail button gets clicked successfully");
+            WebElement enterQuantity = driver.findElement(By.xpath(String.format(enterQty, i)));
+            enterQuantity.sendKeys(BaseClass.propertyFile("config", "enterQuantity"));
+            WebElement clickHealthPlan = driver.findElement(By.xpath(String.format(healthPlan, i)));
+            clickHealthPlan.click();
+            coPay.click();
+            WebElement enterPaymentAmount = driver.findElement(By.xpath(String.format(payAmount, i)));
+            enterPaymentAmount.sendKeys(BaseClass.propertyFile("config", "Amount"));
+            if (i == 1) {
                 //webJavascriptExecutor().executeScript("arguments[0].value = '" + "Test" + "'", comment);
                 reason.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
                 dosageInstruction.sendKeys("DIS8W");
             }
-            if(i==2)
-            {  if(counter==1) {
-                secondMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
-                dosageInstruction2.sendKeys("DIS8W");
-            }
-                if(counter==2)
-                {
+            if (i == 2) {
+                if (counter == 1) {
+                    secondMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
+                    dosageInstruction2.sendKeys("DIS8W");
+                }
+                if (counter == 2) {
                     ThirdMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
                     dosageInstruction2.sendKeys("DIS8W");
 
@@ -289,16 +287,15 @@ public class OrderDetails {
             Actions actions = new Actions(driver);
             actions.sendKeys(Keys.TAB).build().perform();
             WebElement clickSaveBtn = driver.findElement(By.xpath(String.format(saveButton, i)));
-                clickSaveBtn.click();
-                Pages.WebCommon().waitForLoaderInvisibility();
-                test.log(Status.PASS, " Drug Details gets saved successfully using copay ");
-                driver.navigate().refresh();
-                Pages.WebCommon().waitForLoaderInvisibility();
-                counter++;
-                if(counter==3)
-                {
-                    i++;
-                }
+            clickSaveBtn.click();
+            Pages.WebCommon().waitForLoaderInvisibility();
+            test.log(Status.PASS, " Drug Details gets saved successfully using copay ");
+            driver.navigate().refresh();
+            Pages.WebCommon().waitForLoaderInvisibility();
+            counter++;
+            if (counter == 3) {
+                i++;
+            }
 
 
         }
@@ -309,56 +306,53 @@ public class OrderDetails {
     }
 
     public void approveMedicineInsuranceselfpay() throws InterruptedException {
-        List<WebElement> detail = driver.findElements(By.xpath(viewDetailscolumn));
-        int count=0;
+        List<WebElement> detail = driver.findElements(By.xpath(viewDetailsColumn));
+        int count = 0;
         for (int i = 1; i <= detail.size(); i++) {
             webJavascriptExecutor().executeScript("arguments[0].click();", viewDetailsButton);
-            if(i==3)
-            {
+            if (i == 3) {
                 i--;
 
             }
-                Pages.WebCommon().waitForElementsInteractions();
-                test.log(Status.PASS, " View Detail button gets clicked successfully");
-                WebElement enterQuantity = driver.findElement(By.xpath(String.format(enterQty, i)));
-                enterQuantity.sendKeys(BaseClass.propertyFile("config", "enterQuantity"));
-                WebElement clickHealthPlan = driver.findElement(By.xpath(String.format(healthPlan, i)));
-                clickHealthPlan.click();
-                selfPay.click();
-                WebElement enterPaymentAmount = driver.findElement(By.xpath(String.format(payAmount, i)));
-                enterPaymentAmount.sendKeys(BaseClass.propertyFile("config", "Amount"));
+            Pages.WebCommon().waitForElementsInteractions();
+            test.log(Status.PASS, " View Detail button gets clicked successfully");
+            WebElement enterQuantity = driver.findElement(By.xpath(String.format(enterQty, i)));
+            enterQuantity.sendKeys(BaseClass.propertyFile("config", "enterQuantity"));
+            WebElement clickHealthPlan = driver.findElement(By.xpath(String.format(healthPlan, i)));
+            clickHealthPlan.click();
+            selfPay.click();
+            WebElement enterPaymentAmount = driver.findElement(By.xpath(String.format(payAmount, i)));
+            enterPaymentAmount.sendKeys(BaseClass.propertyFile("config", "Amount"));
 
-            if(i==1) {
+            if (i == 1) {
                 //webJavascriptExecutor().executeScript("arguments[0].value = '" + "Test" + "'", comment);
                 reason.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
-                    dosageInstruction.sendKeys("DIS8W");
-                }
-                if(i==2)
-                {  if(count==1) {
+                dosageInstruction.sendKeys("DIS8W");
+            }
+            if (i == 2) {
+                if (count == 1) {
                     secondMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
                     dosageInstruction2.sendKeys("DIS8W");
                 }
-                    if(count==2)
-                    {
-                        ThirdMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
-                        dosageInstruction2.sendKeys("DIS8W");
+                if (count == 2) {
+                    ThirdMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
+                    dosageInstruction2.sendKeys("DIS8W");
 
-                    }
                 }
-                    Actions actions = new Actions(driver);
-                    actions.sendKeys(Keys.TAB).build().perform();
-                WebElement clickSaveBtn = driver.findElement(By.xpath(String.format(saveButton, i)));
-                Pages.WebCommon().waitForElementsInteractions();
-                clickSaveBtn.click();
-                Pages.WebCommon().waitForLoaderInvisibility();
-                test.log(Status.PASS, " Drug Details gets saved successfully using self pay");
-                driver.navigate().refresh();
-                Pages.WebCommon().waitForLoaderInvisibility();
-                count++;
-                if(count==3)
-                {
-                    i++;
-                }
+            }
+            Actions actions = new Actions(driver);
+            actions.sendKeys(Keys.TAB).build().perform();
+            WebElement clickSaveBtn = driver.findElement(By.xpath(String.format(saveButton, i)));
+            Pages.WebCommon().waitForElementsInteractions();
+            clickSaveBtn.click();
+            Pages.WebCommon().waitForLoaderInvisibility();
+            test.log(Status.PASS, " Drug Details gets saved successfully using self pay");
+            driver.navigate().refresh();
+            Pages.WebCommon().waitForLoaderInvisibility();
+            count++;
+            if (count == 3) {
+                i++;
+            }
 
 
         }
@@ -368,15 +362,13 @@ public class OrderDetails {
     }
 
 
-
     public void approveMedicineInsuranceUsingNopay() throws InterruptedException {
 
-        List<WebElement> detail = driver.findElements(By.xpath(viewDetailscolumn));
-        int counter=0;
+        List<WebElement> detail = driver.findElements(By.xpath(viewDetailsColumn));
+        int counter = 0;
         for (int i = 1; i <= detail.size(); i++) {
             webJavascriptExecutor().executeScript("arguments[0].click();", viewDetailsButton);
-            if(i==3)
-            {
+            if (i == 3) {
                 i--;
             }
             Pages.WebCommon().waitForElementsInteractions();
@@ -386,18 +378,17 @@ public class OrderDetails {
             WebElement clickHealthPlan = driver.findElement(By.xpath(String.format(healthPlan, i)));
             clickHealthPlan.click();
             noPay.click();
-            if(i==1) {
+            if (i == 1) {
                 //webJavascriptExecutor().executeScript("arguments[0].value = '" + "Test" + "'", comment);
                 reason.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
                 dosageInstruction.sendKeys("DIS8W");
             }
-            if(i==2)
-            {  if(counter==1) {
-                secondMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
-                dosageInstruction2.sendKeys("DIS8W");
-            }
-                if(counter==2)
-                {
+            if (i == 2) {
+                if (counter == 1) {
+                    secondMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
+                    dosageInstruction2.sendKeys("DIS8W");
+                }
+                if (counter == 2) {
                     ThirdMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
                     dosageInstruction2.sendKeys("DIS8W");
 
@@ -413,8 +404,7 @@ public class OrderDetails {
             driver.navigate().refresh();
             Pages.WebCommon().waitForLoaderInvisibility();
             counter++;
-            if(counter==3)
-            {
+            if (counter == 3) {
                 i++;
             }
 
@@ -429,7 +419,7 @@ public class OrderDetails {
 
 
     public void insuranceApprovalUsingAllPayments() throws InterruptedException {
-        List<WebElement> detail = driver.findElements(By.xpath(viewDetailscolumn));
+        List<WebElement> detail = driver.findElements(By.xpath(viewDetailsColumn));
         for (int i = 1; i <= detail.size(); i++) {
             webJavascriptExecutor().executeScript("arguments[0].click();", viewDetailsButton);
 
@@ -449,12 +439,12 @@ public class OrderDetails {
                 }
                 WebElement enterPaymentAmount = driver.findElement(By.xpath(String.format(payAmount, i)));
                 enterPaymentAmount.sendKeys(BaseClass.propertyFile("config", "Amount"));
-                if(i==1) {
+                if (i == 1) {
                     //webJavascriptExecutor().executeScript("arguments[0].value = '" + "Test" + "'", comment);
                     reason.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
                     dosageInstruction.sendKeys("DIS8W");
                 }
-                if(i==2) {
+                if (i == 2) {
                     secondMedicineComment.sendKeys(BaseClass.propertyFile("config", "paymentComment"));
                     dosageInstruction2.sendKeys("DIS8W");
 
@@ -464,7 +454,7 @@ public class OrderDetails {
                 Actions actions = new Actions(driver);
                 actions.sendKeys(Keys.TAB).build().perform();
 
-                    WebElement clickSaveBtn = driver.findElement(By.xpath(String.format(saveButton, i)));
+                WebElement clickSaveBtn = driver.findElement(By.xpath(String.format(saveButton, i)));
                 clickSaveBtn.click();
                 Pages.WebCommon().waitForLoaderInvisibility();
                 test.log(Status.PASS, " Drug Details gets saved successfully");

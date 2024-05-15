@@ -35,11 +35,6 @@ public class Pages {
     }
 
 
-
-
-
-
-
     public static LoginDP LoginDP() {
         LoginDP pg = new LoginDP(BaseClass.driver);
         PageFactory.initElements(BaseClass.driver, pg);
@@ -108,44 +103,38 @@ public class Pages {
         return pg;
     }
 
-    public static LoginCallCentre LoginCallCentre()
-    {
+    public static LoginCallCentre LoginCallCentre() {
         LoginCallCentre pg = new LoginCallCentre(BaseClass.driver);
         PageFactory.initElements(BaseClass.driver, pg);
         return pg;
     }
 
-    public static  HomePageCallCentre HomePageCallCentre()
-    {
+    public static HomePageCallCentre HomePageCallCentre() {
         HomePageCallCentre pg = new HomePageCallCentre(BaseClass.driver);
         PageFactory.initElements(BaseClass.driver, pg);
         return pg;
     }
 
-    public  static  OrderDetailsCallCentre OrderDetailsCallCentre()
-    {
+    public static OrderDetailsCallCentre OrderDetailsCallCentre() {
         OrderDetailsCallCentre pg = new OrderDetailsCallCentre(BaseClass.driver);
         PageFactory.initElements(BaseClass.driver, pg);
         return pg;
     }
 
-    public  static  LoginFrontLine LoginFrontLine()
-    {
+    public static LoginFrontLine LoginFrontLine() {
         LoginFrontLine pg = new LoginFrontLine(BaseClass.driver);
         PageFactory.initElements(BaseClass.driver, pg);
         return pg;
     }
 
-    public  static  HomepageFrontLine  HomepageFrontLine()
-    {
-        HomepageFrontLine  pg = new HomepageFrontLine(BaseClass.driver);
+    public static HomepageFrontLine HomepageFrontLine() {
+        HomepageFrontLine pg = new HomepageFrontLine(BaseClass.driver);
         PageFactory.initElements(BaseClass.driver, pg);
         return pg;
     }
 
-    public static OrderDetailsFrontLine OrderDetailsFrontLine()
-    {
-        OrderDetailsFrontLine  pg = new OrderDetailsFrontLine(BaseClass.driver);
+    public static OrderDetailsFrontLine OrderDetailsFrontLine() {
+        OrderDetailsFrontLine pg = new OrderDetailsFrontLine(BaseClass.driver);
         PageFactory.initElements(BaseClass.driver, pg);
         return pg;
 

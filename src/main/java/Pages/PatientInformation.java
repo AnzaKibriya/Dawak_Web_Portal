@@ -53,44 +53,44 @@ public class PatientInformation {
                     String fullname = firstName + middleName + lastName;
                     String fullnamewithoutspace = fullname.replaceAll("\\s", "");
                     String fullnameUI = basicInfo.getText().replaceAll("\\s", "");
-                    Pages.WebCommon().assertjson(fullnameUI, fullnamewithoutspace);
+                    Pages.WebCommon().assertJson(fullnameUI, fullnamewithoutspace);
                     break;
                 case 1:
                     String eid = patient.getAsJsonPrimitive("eid").getAsString();
-                    Pages.WebCommon().assertjson(basicInfo.getText(), eid);
+                    Pages.WebCommon().assertJson(basicInfo.getText(), eid);
                     break;
                 case 2:
                     String mrn = patient.getAsJsonPrimitive("mrn").getAsString();
-                    Pages.WebCommon().assertjson(basicInfo.getText(), mrn);
+                    Pages.WebCommon().assertJson(basicInfo.getText(), mrn);
                     break;
                 case 3:
                     String dob = patient.getAsJsonPrimitive("dob").getAsString();
                     System.out.println(basicInfo.getText());
                     System.out.println(dob);
-                    //  assertjson(basicInfo.getText(), dob);
+                    //  assertJson(basicInfo.getText(), dob);
                     break;
                 case 4:
                    /* String dob=patient.getAsJsonPrimitive("dob").getAsString();
                     System.out.println(dob);
-                    assertjson(basicInfo.getText(),dob);*/
+                    assertJson(basicInfo.getText(),dob);*/
                     break;
                 case 5:
                     String patGender = patient.getAsJsonPrimitive("patGender").getAsString();
-                    Pages.WebCommon().assertjson(basicInfo.getText(), patGender);
+                    Pages.WebCommon().assertJson(basicInfo.getText(), patGender);
                     break;
                 case 6:
                     String maritalStatusValue = patient
                             .getAsJsonObject("maritalStatus")
                             .getAsJsonPrimitive("value")
                             .getAsString();
-                    Pages.WebCommon().assertjson(basicInfo.getText(), maritalStatusValue);
+                    Pages.WebCommon().assertJson(basicInfo.getText(), maritalStatusValue);
                     break;
                 case 7:
                     String nationalityValue = patient
                             .getAsJsonObject("nationality")
                             .getAsJsonPrimitive("value")
                             .getAsString();
-                    Pages.WebCommon().assertjson(basicInfo.getText(), nationalityValue);
+                    Pages.WebCommon().assertJson(basicInfo.getText(), nationalityValue);
                     break;
 
                 case 8:
@@ -98,15 +98,15 @@ public class PatientInformation {
                             .getAsJsonObject("language")
                             .getAsJsonPrimitive("value")
                             .getAsString();
-                    Pages.WebCommon().assertjson(basicInfo.getText(), languageValue);
+                    Pages.WebCommon().assertJson(basicInfo.getText(), languageValue);
                     break;
                 case 9:
                     String cmrn = patient.getAsJsonPrimitive("cmrn").getAsString();
-                    Pages.WebCommon().assertjson(basicInfo.getText(), cmrn);
+                    Pages.WebCommon().assertJson(basicInfo.getText(), cmrn);
                     break;
                 case 10:
                     String passportNumber = patient.getAsJsonPrimitive("passportNumber").getAsString();
-                    Pages.WebCommon().assertjson(basicInfo.getText(), passportNumber);
+                    Pages.WebCommon().assertJson(basicInfo.getText(), passportNumber);
                     break;
                 default:
                     System.out.println("value not found");
@@ -130,10 +130,10 @@ public class PatientInformation {
                     String phoneNumber = patient.getAsJsonPrimitive("phoneNumber").getAsString();
                     System.out.println(contactInfo.getText());
                     System.out.println(phoneNumber);
-                    Pages.WebCommon().assertjson(contactInfo.getText(), phoneNumber);
+                    Pages.WebCommon().assertJson(contactInfo.getText(), phoneNumber);
                     break;
                 case 1:
-                    Pages.WebCommon().assertjson(contactInfo.getText(), "+971502201010");
+                    Pages.WebCommon().assertJson(contactInfo.getText(), "+971502201010");
                     break;
                 default:
                     System.out.println("value not found");
@@ -155,21 +155,21 @@ public class PatientInformation {
             switch (i)
             {
                 case 0:
-                    Pages.WebCommon().assertjson(userInfo.getText(),prescriptionOrderID);
+                    Pages.WebCommon().assertJson(userInfo.getText(),prescriptionOrderID);
                     break;
                 case 1:
                     String prescriberValue = order
                             .getAsJsonObject("physician")
                             .getAsJsonPrimitive("prescriber")
                             .getAsString();
-                    Pages.WebCommon().assertjson(userInfo.getText(),prescriberValue);
+                    Pages.WebCommon().assertJson(userInfo.getText(),prescriberValue);
                     break;
                 case 2:
                     String orderLocationValue = order
                             .getAsJsonObject("orderLocation")
                             .getAsJsonPrimitive("value")
                             .getAsString();
-                    Pages.WebCommon().assertjson(userInfo.getText(),orderLocationValue);
+                    Pages.WebCommon().assertJson(userInfo.getText(),orderLocationValue);
                     break;
                 case 3:
                     break;

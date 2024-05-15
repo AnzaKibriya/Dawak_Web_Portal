@@ -24,7 +24,7 @@ public class NavigationsCP {
 
 
     @FindBy(xpath = "//span[text()=' Insurance In-Progress ']")
-    WebElement insurenceInprogressButton;
+    WebElement insuranceInprogressButton;
 
 
     public NavigationsCP(WebDriver Driver) {
@@ -32,8 +32,7 @@ public class NavigationsCP {
 
     }
 
-    public void navigateTOTodoTab()
-    {
+    public void navigateTOTodoTab() {
         webJavascriptExecutor().executeScript("arguments[0].click();", toDo);
     }
 
@@ -42,14 +41,12 @@ public class NavigationsCP {
         test.log(Status.PASS, "Navigated to new Prescription tab");
     }
 
-    public void navigateTOInprogressTab()
-    {
+    public void navigateTOInprogressTab() {
         test.log(Status.PASS, "Navigated to  in Inprogress tab");
         webJavascriptExecutor().executeScript("arguments[0].click();", inProgressTabButton);
 
 
     }
-
 
 
     public void openOrderDetailPage() throws InterruptedException {
@@ -60,7 +57,7 @@ public class NavigationsCP {
     }
 
     public void navigateTOInsuranceInprogressTab() {
-        webJavascriptExecutor().executeScript("arguments[0].click();", insurenceInprogressButton);
+        webJavascriptExecutor().executeScript("arguments[0].click();", insuranceInprogressButton);
         test.log(Status.PASS, "Navigated to insurenceInprogress Tab");
 
     }

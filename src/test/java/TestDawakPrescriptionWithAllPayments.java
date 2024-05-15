@@ -17,15 +17,15 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
         System.out.println(prescriptionOrderID);
         //  NewPatientApiCall.makeCreatePatientApiCall(accessToken, prescriptionOrderID);
         PrescriptionApiCall.makePrescriptionApiCall(accessToken, prescriptionOrderID);
-        Thread.sleep(8000);
+        Thread.sleep(10000);
     }
 
 
     @Test(priority = 2)
-    public  void loginTODawak() throws InterruptedException {
+    public void loginTODawak() throws InterruptedException {
         test = extent.createTest("Login to Dawak");
         DawakLoginAPICall.makeLoginApiCall();
-        Thread.sleep(30000);
+        Thread.sleep(10000);
 
     }
 
@@ -33,22 +33,16 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
     public void verifyListAPI() throws InterruptedException {
         test = extent.createTest("Verify List API");
         ListAPICall.makeListApiCall();
-        Thread.sleep(12000);
+        Thread.sleep(10000);
 
     }
 
     @Test(priority = 4)
-    public void deliveryAPI()
-    {
+    public void deliveryAPI() {
         test = extent.createTest("Verify Delivery API");
         DeliveryAPICall.deliveryApiCall();
         // Del.verifyDelivery();
-
-
     }
-
-
-
 
 
     @Test(priority = 5)
@@ -61,16 +55,6 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
 
     }
 
-
-  /*  @Test(priority = 6)
-    public void verifyFilterValidation() throws InterruptedException, FileNotFoundException {
-
-        test = extent.createTest("Verify Filter Validation");
-        Pages.WebCommon().waitForElementsInteractions();
-        Pages.Home().verifyFilters();
-
-
-    }*/
 
     @Test(priority = 7)
     public void verifyOrderInTOdo() throws InterruptedException, FileNotFoundException {
@@ -115,12 +99,13 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
         Pages.Home().moveOrderToInProgressStateAndVerify();
     }
 
-    @Test(priority =12)
+    @Test(priority = 12)
     public void verifyMoveToOrderDetails() throws InterruptedException {
         test = extent.createTest("Verify Navigation to order details page ");
         Pages.NavigationsCP().openOrderDetailPage();
 
     }
+
     @Test(priority = 13)
     public void verifyPatientInformation() throws FileNotFoundException {
         test = extent.createTest("Verify patient information in orderDetails page ");
@@ -129,6 +114,7 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
         Pages.PatientInformations().userDetails();
         Pages.PatientInformations().pendingMedicationTable();
     }
+
     @Test(priority = 14)
     public void verifyOrderDetails() throws FileNotFoundException {
         test = extent.createTest("Verify order details data and Header text ");
@@ -154,7 +140,6 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
         test = extent.createTest("Logout Functionality");
         Pages.Logout().verifyLogout();
     }
-
 
 
 }

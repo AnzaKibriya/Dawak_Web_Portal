@@ -15,14 +15,14 @@ public class OrderDetailsCallCentre {
 
     WebDriver driver;
 
-    @FindBy(xpath ="//span[normalize-space()='Accept Order']")
+    @FindBy(xpath = "//span[normalize-space()='Accept Order']")
     WebElement acceptOrder;
 
 
     @FindBy(xpath = "//button[@role='switch']")
     WebElement switchButton;
 
-    @FindBy(xpath ="//input[@placeholder='Search Location']")
+    @FindBy(xpath = "//input[@placeholder='Search Location']")
     WebElement searchLocation;
 
     @FindBy(xpath = "//mat-label[text()='Select Type']")
@@ -59,7 +59,7 @@ public class OrderDetailsCallCentre {
         switchButton.click();
         Pages.WebCommon().waitForElementsInteractions();
         searchLocation.sendKeys("Ain Al Faydah - Abu Dhabi - United Arab Emirates");
-        Robot robot=new Robot();
+        Robot robot = new Robot();
         Pages.WebCommon().waitForElementsInteractions();
         robot.keyPress(VK_DOWN);
         robot.keyRelease(VK_DOWN);
@@ -83,7 +83,7 @@ public class OrderDetailsCallCentre {
         test.log(Status.PASS, "clicked on mark as completed button successfully");
         Pages.WebCommon().waitForElementsInteractions();
         selectDate.click();
-        Robot robot=new Robot();
+        Robot robot = new Robot();
         robot.keyPress(VK_DOWN);
         robot.keyRelease(VK_DOWN);
         robot.keyPress(VK_ENTER);
@@ -96,7 +96,6 @@ public class OrderDetailsCallCentre {
         Pages.WebCommon().waitForLoaderInvisibility();
         proceedButton.click();
         test.log(Status.PASS, "clicked on proceed button successfully");
-
 
     }
 }
