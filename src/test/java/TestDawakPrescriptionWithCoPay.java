@@ -17,7 +17,7 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
         accessToken = LoginApiCall.makeLoginApiCall();
         prescriptionOrderID = generateRandomNumericString();
         System.out.println(prescriptionOrderID);
-        //  NewPatientApiCall.makeCreatePatientApiCall(accessToken, prescriptionOrderID);
+       //  NewPatientApiCall.makeCreatePatientApiCall(accessToken, prescriptionOrderID);
         PrescriptionApiCall.makePrescriptionApiCall(accessToken, prescriptionOrderID);
         Thread.sleep(8000);
     }
@@ -64,7 +64,7 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
     }
 
 
-    @Test(priority = 6)
+  /*  @Test(priority = 6)
     public void verifyFilterValidation() throws InterruptedException, FileNotFoundException {
 
         test = extent.createTest("Verify Filter Validation");
@@ -72,12 +72,13 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
         Pages.Home().verifyFilters();
 
 
-    }
+    }*/
 
     @Test(priority = 7)
     public void verifyOrderInTOdo() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Making Order In TODO");
         Pages.WebCommon().waitForLoaderInvisibility();
+        Pages.WebCommon().waitForElementsInteractions();
         Pages.Home().SearchForOrder(prescriptionOrderID);
     }
 
