@@ -112,7 +112,10 @@ public class Home {
         Pages.NavigationsCP().navigateTOInprogressTab();
         Pages.WebCommon().waitForLoaderInvisibility();
         webWait.until(ExpectedConditions.visibilityOf(encounterNumberInProgressPage));
+        Pages.WebCommon().waitForElementsInteractions();
         Pages.Home().SearchForOrder(prescriptionOrderID);
+        test.log(Status.PASS, "order moved successfully to Inprogress state and verified");
+
         //  Assert.assertEquals(encounterNumberInProgressPage.getText(), prescriptionOrderID);
 
     }

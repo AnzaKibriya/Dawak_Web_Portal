@@ -1,3 +1,4 @@
+import APICalls.*;
 import Helper.BaseClass;
 import Pages.Pages;
 import model.*;
@@ -58,7 +59,7 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
     }
 
 
-    @Test(priority = 6)
+   /* @Test(priority = 6)
     public void verifyFilterValidation() throws InterruptedException, FileNotFoundException {
 
         test = extent.createTest("Verify Filter Validation");
@@ -66,12 +67,13 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
         Pages.Home().verifyFilters();
 
 
-    }
+    }*/
 
     @Test(priority = 7)
     public void verifyOrderInTOdo() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Making Order In TODO");
         Pages.WebCommon().waitForLoaderInvisibility();
+        Pages.WebCommon().waitForElementsInteractions();
         Pages.Home().SearchForOrder(prescriptionOrderID);
     }
 

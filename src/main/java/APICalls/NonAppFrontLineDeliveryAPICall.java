@@ -1,7 +1,12 @@
-package model;
+package APICalls;
 
+import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
-import okhttp3.*;
+import model.PrescriptionRequest;
+import okhttp3.MediaType;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,11 +15,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
-
-import static Helper.BaseClass.client;
+import static Helper.BaseClass.*;
 import static Helper.BaseClass.emiratesID;
 
-public class NewPatientApiCall {
+public class NonAppFrontLineDeliveryAPICall {
 
     private static final String API_URL = "https://dawak-apim-uat.azure-api.net/dawak-portal/api/prescription/new";
 
@@ -22,8 +26,8 @@ public class NewPatientApiCall {
         try {
             MediaType mediaType = MediaType.parse("application/json");
             Gson gson = new Gson();
-            NewPatientApiCall NewPatientApiCall = new NewPatientApiCall();
-            String jsonPayload = gson.toJson(NewPatientApiCall.getPrescriptionRequest(orderID));
+            NonAppFrontLineDeliveryAPICall nonAppFrontLineDeliveryAPICall = new NonAppFrontLineDeliveryAPICall();
+            String jsonPayload = gson.toJson(nonAppFrontLineDeliveryAPICall.getPrescriptionRequest(orderID));
             RequestBody body = RequestBody.create(jsonPayload, mediaType);
             Request request = new Request.Builder()
                     .url(API_URL)
@@ -34,6 +38,8 @@ public class NewPatientApiCall {
             Response response = client.newCall(request).execute();
             int  a = response.code();
             if (response.isSuccessful()) {
+                test.log(Status.PASS, "make patient API called successfully");
+
                 System.out.println("API call successful!");
                 System.out.println("Response: " + response.body().string());
             } else {
@@ -46,16 +52,16 @@ public class NewPatientApiCall {
     }
 
     public PrescriptionRequest getPrescriptionRequest(String orderID) {
-        try (Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/CreateNewPatient.json"))) {
+        try (Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/CreateFrontLineOrder.json"))) {
             Gson gson = new Gson();
             PrescriptionRequest result = gson.fromJson(reader, PrescriptionRequest.class);
             result.getOrder().setPhysicianEncounterId(orderID);
             result.getOrder().setPhysicianOrderDate(getCurrentDateTime());
             result.getOrder().setOrderVisitDate(getCurrentDateTime());
-            result.getPatient().setEid("784985832907443");
+            result.getPatient().setEid("784"+ generateRandomEID());
             result.getPatient().setMrn(orderID);
             result.getPatient().setCmrn(orderID);
-            result.getPatient().setPhoneNumber("971502201010");
+            result.getPatient().setPhoneNumber("9715"+ orderID);
             System.out.println(result);
             return result;
         } catch (IOException e) {

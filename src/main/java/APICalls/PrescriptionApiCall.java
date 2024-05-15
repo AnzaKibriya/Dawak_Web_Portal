@@ -1,7 +1,8 @@
-package model;
+package APICalls;
 
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
+import model.PrescriptionRequest;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -16,15 +17,15 @@ import java.time.format.DateTimeFormatter;
 import static Helper.BaseClass.client;
 import static Helper.BaseClass.test;
 
-public class ShipaInitiateEventApiCall {
-    private static final String API_URL = "https://dawak-apim-uat.azure-api.net/dawak-patient/api/shipa/webhook";
+public class PrescriptionApiCall {
+    private static final String API_URL = "https://dawak-apim-uat.azure-api.net/dawak-portal/api/prescription/new";
 
-    public static void makeShipaInitiateEventApiCall(String AUTH_TOKEN, String orderID, String event) {
+    public static void makePrescriptionApiCall(String AUTH_TOKEN, String orderID) {
         try {
             MediaType mediaType = MediaType.parse("application/json");
             Gson gson = new Gson();
-            ShipaInitiateEventApiCall shipaInitiateEventApiCall = new ShipaInitiateEventApiCall();
-            String jsonPayload = gson.toJson(shipaInitiateEventApiCall.shipaInitiateEventRequest(orderID, event));
+            PrescriptionApiCall prescriptionApiCall = new PrescriptionApiCall();
+            String jsonPayload = gson.toJson(prescriptionApiCall.getPrescriptionRequest(orderID));
             RequestBody body = RequestBody.create(jsonPayload, mediaType);
             Request request = new Request.Builder()
                     .url(API_URL)
@@ -34,37 +35,27 @@ public class ShipaInitiateEventApiCall {
                     .build();
             Response response = client.newCall(request).execute();
             int  a = response.code();
-            assert response.body() != null;
-            String responseString = response.body().string();
-            if (responseString.contains("Notification")){
+            if (response.isSuccessful()) {
                 System.out.println("API call successful!");
-                System.out.println("Response: " + responseString);
-                test.log(Status.PASS, "ShipaInitiateEventApiCall called successfully");
+                System.out.println("Response: " + response.body().string());
+                test.log(Status.PASS, "Prescription created successfully");
 
-            }
-            else {
+            } else {
                 System.out.println("API call failed!");
+                System.out.println("Response: " + response.body().string());
             }
-
-//            if (response.isSuccessful()) {
-//                System.out.println("API call successful!");
-//                System.out.println("Response: " + response.body().string());
-//            } else {
-//                System.out.println("API call failed!");
-//                System.out.println("Response: " + response.body().string());
-//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public ShipaInitiateEvent shipaInitiateEventRequest(String orderID, String event) {
-        try (Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/ShipaInitiateEvent.json"))) {
+    public PrescriptionRequest getPrescriptionRequest(String orderID) {
+        try (Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/CreatingOrder.json"))) {
             Gson gson = new Gson();
-            ShipaInitiateEvent result = gson.fromJson(reader, ShipaInitiateEvent.class);
-            result.setShipaRef(orderID);
-            result.setDate(getCurrentDateTime());
-            result.setEvent("order.dropoff."+ event);
+            PrescriptionRequest result = gson.fromJson(reader, PrescriptionRequest.class);
+            result.getOrder().setPhysicianEncounterId(orderID);
+            result.getOrder().setPhysicianOrderDate(getCurrentDateTime());
+            result.getOrder().setOrderVisitDate(getCurrentDateTime());
             System.out.println(result);
             return result;
         } catch (IOException e) {
@@ -78,4 +69,5 @@ public class ShipaInitiateEventApiCall {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         return now.format(formatter);
     }
+
 }

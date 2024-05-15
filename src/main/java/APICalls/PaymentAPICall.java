@@ -1,8 +1,9 @@
-package model;
+package APICalls;
 
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import model.Medications;
+import model.Payment;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -12,8 +13,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.List;
 
 import static Helper.BaseClass.*;
 import static Helper.BaseClass.client;

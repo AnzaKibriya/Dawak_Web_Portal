@@ -1,7 +1,7 @@
 import Helper.BaseClass;
-import model.CreateOtpApiCall;
-import model.LoginDpApiCall;
-import model.PutOTPApiCall;
+import APICalls.CreateOtpApiCall;
+import APICalls.LoginDpApiCall;
+import APICalls.PutOTPApiCall;
 import org.testng.annotations.Test;
 
 public class TestDawakDPAPI extends BaseClass {

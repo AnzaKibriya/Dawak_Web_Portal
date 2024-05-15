@@ -1,6 +1,8 @@
-package model;
+package APICalls;
 
+import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
+import model.LoginDP;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -10,16 +12,17 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+
 import static Helper.BaseClass.*;
 
-public class LoginApiCall {
-    static String apiUrl = "https://dawak-apim-uat.azure-api.net/dawak-auth/api/auth/purenet/login";
-    public static String makeLoginApiCall() {
+public class LoginDpApiCall {
+    static String apiUrl = "https://dawak-apim-uat.azure-api.net/dawak-auth/api/auth/v2/web-login";
+    public static void makeLoginApiCall() {
         try{
             MediaType mediaType = MediaType.parse("application/json");
             Gson gson = new Gson();
-            LoginApiCall loginApiCall = new LoginApiCall();
-            String jsonPayload = gson.toJson(loginApiCall.getLogin());
+            LoginDpApiCall loginDpApiCall = new LoginDpApiCall();
+            String jsonPayload = gson.toJson(loginDpApiCall.getLoginDp());
             RequestBody body = RequestBody.create(jsonPayload, mediaType);
             Request request = new Request.Builder()
                     .url(apiUrl)
@@ -29,23 +32,22 @@ public class LoginApiCall {
             Response response = client.newCall(request).execute();
             if (response.isSuccessful()) {
                 JSONObject jsonResponse = new JSONObject(response.body().string());
-                JSONObject data = jsonResponse.getJSONObject("data");
-                accessToken = data.getString("access_token");
+                System.out.println(jsonResponse);
+                test.log(Status.PASS, "LoginDp API called successfully");
+
             } else {
                 System.out.println("API call failed!");
                 System.out.println("Response: " + response.body().string());
             }
-            return accessToken;
         }
         catch (Exception e){
             e.printStackTrace();
-            return null;
         }
     }
-    public Login getLogin() {
+    public LoginDP getLoginDp() {
         try (Reader reader = new InputStreamReader(this.getClass()
-                .getResourceAsStream("/Login.json"))) {
-            Login result = new Gson().fromJson(reader, Login.class);
+                .getResourceAsStream("/LoginDP.json"))) {
+            LoginDP result = new Gson().fromJson(reader, LoginDP.class);
             return result;
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,7 +1,8 @@
-package model;
+package APICalls;
 
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
+import model.PrescriptionRequest;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -16,15 +17,16 @@ import java.time.format.DateTimeFormatter;
 import static Helper.BaseClass.client;
 import static Helper.BaseClass.test;
 
-public class PrescriptionApiCall {
+public class PrescriptionHomeAPICall {
+
     private static final String API_URL = "https://dawak-apim-uat.azure-api.net/dawak-portal/api/prescription/new";
 
     public static void makePrescriptionApiCall(String AUTH_TOKEN, String orderID) {
         try {
             MediaType mediaType = MediaType.parse("application/json");
             Gson gson = new Gson();
-            PrescriptionApiCall prescriptionApiCall = new PrescriptionApiCall();
-            String jsonPayload = gson.toJson(prescriptionApiCall.getPrescriptionRequest(orderID));
+            PrescriptionHomeAPICall prescriptionHomeAPICall = new PrescriptionHomeAPICall();
+            String jsonPayload = gson.toJson(prescriptionHomeAPICall.getPrescriptionRequest(orderID));
             RequestBody body = RequestBody.create(jsonPayload, mediaType);
             Request request = new Request.Builder()
                     .url(API_URL)
@@ -49,7 +51,7 @@ public class PrescriptionApiCall {
     }
 
     public PrescriptionRequest getPrescriptionRequest(String orderID) {
-        try (Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/CreatingOrder.json"))) {
+        try (Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/CreateHomeDeliverOrder.json"))) {
             Gson gson = new Gson();
             PrescriptionRequest result = gson.fromJson(reader, PrescriptionRequest.class);
             result.getOrder().setPhysicianEncounterId(orderID);
@@ -68,5 +70,6 @@ public class PrescriptionApiCall {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         return now.format(formatter);
     }
+
 
 }
