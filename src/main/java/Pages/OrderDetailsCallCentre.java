@@ -46,6 +46,9 @@ public class OrderDetailsCallCentre {
     @FindBy(xpath = "//span[text()='Select time']")
     WebElement selectTime;
 
+    @FindBy(xpath = "//span[normalize-space()='Did not respond']")
+    WebElement didNotRespond;
+
 
     public OrderDetailsCallCentre(WebDriver Driver) {
 
@@ -96,6 +99,22 @@ public class OrderDetailsCallCentre {
         Pages.WebCommon().waitForLoaderInvisibility();
         proceedButton.click();
         test.log(Status.PASS, "clicked on proceed button successfully");
+    }
+
+
+    public  void response() throws AWTException {
+
+        didNotRespond.click();
+        test.log(Status.PASS, "clicked on did not respond button successfully");
+
 
     }
+
+
+
+
+
+
+
+
 }

@@ -49,6 +49,8 @@ public class DawakLoginAPICall {
                 System.out.println(jsonResponse);
                 JSONObject data = jsonResponse.getJSONObject("data");
               accessTokens = data.getString("accessToken");
+                 fullName = data.getString("fullName");
+
                 test.log(Status.PASS, "Login API called successful");
 
 

@@ -45,7 +45,7 @@ public class BaseClass {
     public static String formattedDateAPI;
 
     public static String paymentDate;
-
+    public  static String fullName;
 
     public static String accessTokens;
     public static String taskId;
