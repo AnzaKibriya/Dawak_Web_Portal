@@ -83,6 +83,11 @@ public class HomePageCallCentre {
             test.log(Status.PASS, "created date text verified");
 
         }
+        else if(element.getText().contains("Phone #"))
+        {
+            Pages.WebCommon().assertJson(actualText.getText(), mobileUserPhoneNumber);
+
+        }
 
 
     }
@@ -120,6 +125,8 @@ public class HomePageCallCentre {
         robot.keyPress(VK_SHIFT);
         Thread.sleep(1000);
         robot.keyPress(VK_R);
+        test.log(Status.PASS, "Page refreshed successfully");
+
 
     }
 

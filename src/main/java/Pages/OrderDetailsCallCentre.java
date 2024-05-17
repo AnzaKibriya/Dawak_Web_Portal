@@ -1,12 +1,15 @@
 package Pages;
 
 import com.aventstack.extentreports.Status;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
+import Enum.CallCentreUserDetailsEnum;
 
 import java.awt.*;
+import java.io.FileNotFoundException;
 
 import static Helper.BaseClass.test;
 import static java.awt.event.KeyEvent.*;
@@ -14,6 +17,10 @@ import static java.awt.event.KeyEvent.*;
 public class OrderDetailsCallCentre {
 
     WebDriver driver;
+
+
+    public String callCentreInfoSiblingstring = "//div[contains(text(), '%s')]/following-sibling::div";
+    public String callCentrecInfostring="//div[contains(text(), '%s')]";
 
     @FindBy(xpath = "//span[normalize-space()='Accept Order']")
     WebElement acceptOrder;
@@ -48,6 +55,10 @@ public class OrderDetailsCallCentre {
 
     @FindBy(xpath = "//span[normalize-space()='Did not respond']")
     WebElement didNotRespond;
+
+
+    @FindBy(xpath = "//span[normalize-space()='Task Completed']")
+    WebElement taskCompleted;
 
 
     public OrderDetailsCallCentre(WebDriver Driver) {
@@ -102,7 +113,7 @@ public class OrderDetailsCallCentre {
     }
 
 
-    public  void response() throws AWTException {
+    public void response() throws AWTException {
 
         didNotRespond.click();
         test.log(Status.PASS, "clicked on did not respond button successfully");
@@ -110,11 +121,27 @@ public class OrderDetailsCallCentre {
 
     }
 
+    public void taskCompleted() {
+
+        taskCompleted.click();
+        test.log(Status.PASS, "clicked on taskCompleted  button successfully");
 
 
+    }
 
 
-
+    public void verifyCallCentreUserDetailTable() {
+        CallCentreUserDetailsEnum[] CallCentreUserDetailsEnums = CallCentreUserDetailsEnum.values();
+        System.out.println(CallCentreUserDetailsEnums.length + "enum length");
+        test.log(Status.PASS, "verifying Basic Details Information");
+        for (int i = 0; i <= CallCentreUserDetailsEnums.length - 1; i++) {
+            WebElement CallCentreUserInfo = driver.findElement(By.xpath(String.format(callCentrecInfostring, CallCentreUserDetailsEnums[i].value)));
+            WebElement CallCentreUserSibling = driver.findElement(By.xpath(String.format(callCentreInfoSiblingstring, CallCentreUserDetailsEnums[i].value)));
+             System.out.println(CallCentreUserInfo.getText());
+             System.out.println(CallCentreUserSibling.getText());
+             Pages.HomePageCallCentre().infos(CallCentreUserInfo, CallCentreUserSibling);
+        }
+    }
 
 
 }
