@@ -104,14 +104,6 @@ public class TestCallMeBack extends BaseClass {
         Pages.WebCommon().waitForLoaderInvisibility();
     }
 
-    @Test(priority = 11)
-    public void moveToToDoTabSecondTime() throws InterruptedException, AWTException {
-        test = extent.createTest("Move To To Do Tab second Time");
-        Pages.NavigationsCP().navigateTOTodoTab();
-        Pages.HomePageCallCentre().refresh();
-        Pages.WebCommon().waitForLoaderInvisibility();
-    }
-
     @Test(priority = 12)
     public void verifyCallBackRecordNotPresent() {
         test = extent.createTest("verify Call Back RecordNotPresent");
@@ -124,6 +116,8 @@ public class TestCallMeBack extends BaseClass {
         Pages.WebCommon().waitForLoaderInvisibility();
         Pages.Logout().verifyLogout();
     }
+
+
 
 }
 
