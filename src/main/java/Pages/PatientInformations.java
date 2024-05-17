@@ -140,15 +140,24 @@ public class PatientInformations {
           System.out.println(element.getText());
         if (element.getText().contains("Patient Full Name"))
         {
-            System.out.println(element.getText());
-            String firstName = patient.getAsJsonPrimitive("firstName").getAsString();
-            String middleName = patient.getAsJsonPrimitive("middleName").getAsString();
-            String lastName = patient.getAsJsonPrimitive("lastName").getAsString();
-            String fullname = firstName + middleName + lastName;
-            String fullnamewithoutspace = fullname.replaceAll("\\s", "");
-            String fullnameUI = actualText.getText().replaceAll("\\s", "");
-          //  Pages.WebCommon().assertJson(fullnameUI, fullnamewithoutspace);
-            test.log(Status.PASS, "Full name verified");
+            if (element.getText().contains("Patient Full Name")) {
+
+                System.out.println(element.getText());
+                String firstName = patient.getAsJsonPrimitive("firstName").getAsString();
+                String middleName = patient.getAsJsonPrimitive("middleName").getAsString();
+                String lastName = patient.getAsJsonPrimitive("lastName").getAsString();
+                String fullname = firstName + middleName + lastName;
+                String fullnamewithoutspace = fullname.replaceAll("\\s", "");
+                String fullnameUI = actualText.getText().replaceAll("\\s", "");
+                //  Pages.WebCommon().assertJson(fullnameUI, fullnamewithoutspace);
+                test.log(Status.PASS, "Full name verified");
+            }
+            else if (actualText.getText().contains("Anza Kibriya"))
+            {
+                Pages.WebCommon().assertJson(actualText.getText(), BaseClass.propertyFile("config", "TaskName"));
+                test.log(Status.PASS, "Task Name verified");
+
+            }
 
         }
         else if(element.getText().contains("Emirates ID"))
@@ -235,6 +244,12 @@ public class PatientInformations {
                 Pages.WebCommon().assertJson(actualText.getText(), BaseClass.propertyFile("config", "TaskNameReadyForDelivery"));
                 test.log(Status.PASS, "Task Name verified");
 
+            }
+
+            else if(actualText.getText().contains("Call me back"))
+            {
+                Pages.WebCommon().assertJson(actualText.getText(), BaseClass.propertyFile("config", "CallMeBackTaskName"));
+                test.log(Status.PASS, "Task Name verified");
             }
 
 

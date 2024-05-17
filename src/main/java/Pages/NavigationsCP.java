@@ -34,6 +34,8 @@ public class NavigationsCP {
 
     public void navigateTOTodoTab() {
         webJavascriptExecutor().executeScript("arguments[0].click();", toDo);
+        test.log(Status.PASS, "Navigated to TO DO Tab");
+
     }
 
     public void moveToNewPrescription() {

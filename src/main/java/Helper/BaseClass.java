@@ -43,10 +43,9 @@ public class BaseClass {
     public static String emiratesID;
     public static String formattedDate;
     public static String formattedDateAPI;
-
     public static String paymentDate;
-
-
+    public  static String fullName;
+    public static String mobileUserPhoneNumber;
     public static String accessTokens;
     public static String taskId;
 

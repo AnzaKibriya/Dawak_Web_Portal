@@ -23,7 +23,7 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
 
 
     @Test(priority = 2)
-    public void loginTODawak() throws InterruptedException {
+    public void loginToDawak() throws InterruptedException {
         test = extent.createTest("Login to Dawak");
         DawakLoginAPICall.makeLoginApiCall();
         Pages.WebCommon().waitForAPIResponse();
