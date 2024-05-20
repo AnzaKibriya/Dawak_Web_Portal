@@ -202,8 +202,9 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
     }
 
     @Test(priority = 25)
-    public void verifyPatientInformationDP() throws FileNotFoundException {
+    public void verifyPatientInformationDP() throws FileNotFoundException, InterruptedException {
         test = extent.createTest("Verify patientInformation");
+        Pages.WebCommon().waitForElementsInteractions();
         Pages.PatientInformations().verifyBasicDetailTable();
         Pages.PatientInformations().verifyContactDetail();
         Pages.PatientInformations().userDetails();
