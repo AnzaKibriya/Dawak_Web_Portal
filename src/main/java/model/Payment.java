@@ -8,68 +8,147 @@ import java.util.List;
 
 public class Payment {
 
-    @Setter
-    @Getter
+    public int getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(int addressId) {
+        this.addressId = addressId;
+    }
+
+    public String getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(String deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+
+    public String getDeliveryFee() {
+        return deliveryFee;
+    }
+
+    public void setDeliveryFee(String deliveryFee) {
+        this.deliveryFee = deliveryFee;
+    }
+
+    public String getDeliveryTime() {
+        return deliveryTime;
+    }
+
+    public void setDeliveryTime(String deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getIsConfirmed() {
+        return isConfirmed;
+    }
+
+    public void setIsConfirmed(String isConfirmed) {
+        this.isConfirmed = isConfirmed;
+    }
+
+    public List<Medications> getMedications() {
+        return medications;
+    }
+
+    public void setMedications(List<Medications> medications) {
+        this.medications = medications;
+    }
+
+    public String getCopay() {
+        return copay;
+    }
+
+    public void setCopay(String copay) {
+        this.copay = copay;
+    }
+
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
+    }
+
+    public int getPaymentMode() {
+        return paymentMode;
+    }
+
+    public void setPaymentMode(int paymentMode) {
+        this.paymentMode = paymentMode;
+    }
+
+    public int getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
+    }
+
+    public String getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(String totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public String getWarehouseId() {
+        return warehouseId;
+    }
+
+    public void setWarehouseId(String warehouseId) {
+        this.warehouseId = warehouseId;
+    }
+
     @SerializedName("addressId")
     private int addressId;
 
-    @Setter
-    @Getter
     @SerializedName("deliveryDate")
     private String deliveryDate;
 
-    @Setter
-    @Getter
     @SerializedName("deliveryFee")
     private String deliveryFee;
 
 
-    @Setter
-    @Getter
     @SerializedName("deliveryTime")
     private String deliveryTime;
 
-
-    @Setter
-    @Getter
     @SerializedName("id")
     private int id;
-    @Setter
-    @Getter
+
     @SerializedName("isConfirmed")
     private String isConfirmed;
 
-    @Setter
-    @Getter
     private List<Medications> medications;
 
-    @Setter
-    @Getter
     @SerializedName("copay")
     private String copay;
 
-
-    @Setter
-    @Getter
     @SerializedName("patientId")
     private String patientId;
 
     @SerializedName("paymentMode")
     private int paymentMode;
 
-    @Setter
-    @Getter
     @SerializedName("taskId")
     private int taskId;
 
 
-    @Setter
-    @Getter
     @SerializedName("totalAmount")
     private String totalAmount;
 
-    @Setter
-    @Getter
     @SerializedName("warehouseId")
     private String warehouseId;
 
@@ -82,16 +161,6 @@ public Payment()
 }
 
 
-
-   /* @SerializedName("medications")
-    private List<Medication> medications = new ArrayList<>();*/
-
-
-
-    // Method to add medication to the list
-   /* public void addMedication(Medication medication) {
-        medications.add(medication);
-    }*/
 
 
 
