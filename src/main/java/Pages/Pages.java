@@ -139,4 +139,13 @@ public class Pages {
         return pg;
 
     }
+
+    public static CallCentreNavigations CallCentreNavigations()
+    {
+        CallCentreNavigations pg = new CallCentreNavigations(BaseClass.driver);
+        PageFactory.initElements(BaseClass.driver, pg);
+        return pg;
+
+
+    }
 }

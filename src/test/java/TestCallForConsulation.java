@@ -1,13 +1,14 @@
-import APICalls.*;
+import APICalls.LoginApiCall;
+import APICalls.NonAppHomeDeliveryAPICall;
 import Helper.BaseClass;
 import Pages.Pages;
-import model.*;
 import org.testng.annotations.Test;
 
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class TestDawakPrescriptionWithCoPay extends BaseClass {
+public class TestCallForConsulation extends BaseClass {
 
 
     @Test(priority = 1)
@@ -17,43 +18,52 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
         prescriptionOrderID = generateRandomNumericString();
         System.out.println(prescriptionOrderID);
         //  NewPatientApiCall.makeCreatePatientApiCall(accessToken, prescriptionOrderID);
-        PrescriptionApiCall.makePrescriptionApiCall(accessToken, prescriptionOrderID);
+        NonAppHomeDeliveryAPICall.makeCreatePatientApiCall(accessToken, prescriptionOrderID);
         Pages.WebCommon().waitForAPIResponse();
     }
 
 
     @Test(priority = 2)
-    public void loginToDawak() throws InterruptedException {
-        test = extent.createTest("Login to Dawak");
-        DawakLoginAPICall.makeLoginApiCall();
+    public void loginCallCenter() throws InterruptedException {
+        test = extent.createTest("Login Call Centre");
+        Pages.LoginCallCentre().CCLogin();
+        Pages.LoginCallCentre().verifyEnteringOtp();
         Pages.WebCommon().waitForAPIResponse();
-
     }
 
-    @Test(priority = 3)
-    public void verifyListAPI() throws InterruptedException {
-        test = extent.createTest("Verify List API");
-        ListAPICall.makeListApiCall();
-        Pages.WebCommon().waitForAPIResponse();
 
+    @Test(priority = 3)
+    public void verifyHomePageCalCenter() throws FileNotFoundException, InterruptedException {
+        test = extent.createTest("Home page call centre");
+        Pages.HomePageCallCentre().SearchForOrder(prescriptionOrderID);
+        Pages.WebCommon().waitForElementsInteractions();
+        Pages.Home().clickOnAssign();
+        Pages.Home().moveOrderToInProgressStateAndVerify();
     }
 
     @Test(priority = 4)
-    public void deliveryAPI() {
-        test = extent.createTest("Verify Delivery API");
-        DeliveryAPICall.deliveryApiCall();
+    public void verifyMoveToOrderDetailsCallCenter() throws InterruptedException, AWTException {
+        test = extent.createTest("Verify Navigation to order details page ");
+        Pages.NavigationsCP().openOrderDetailPage();
+        Pages.OrderDetailsCallCentre().addAddress();
+        Pages.WebCommon().waitForLoaderInvisibility();
     }
 
-
     @Test(priority = 5)
-    public void verifyCPLogin() throws IOException, InterruptedException {
+    public void verifyLogoutCallCenterFunctionality() throws InterruptedException {
+        test = extent.createTest("Logout Functionality");
+        Pages.Logout().verifyLogout();
+        Pages.WebCommon().waitForElementsInteractions();
+    }
+
+    @Test(priority = 6)
+    public void verifyCPLogin() throws IOException {
         test = extent.createTest("Login to Central Pharmacist");
         Pages.LoginCP().invalidCPLogin();
         Pages.LoginCP().CPLogin();
         Pages.LoginCP().verifyEnteringOtp();
 
     }
-
 
     @Test(priority = 7)
     public void verifyOrderInTOdo() throws InterruptedException, FileNotFoundException {
@@ -115,7 +125,7 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
     }
 
     @Test(priority = 14)
-    public void verifyOrderDetails() throws FileNotFoundException {
+    public void verifyOrderDetails() {
         test = extent.createTest("Verify order details data and Header text ");
         Pages.OrderDetails().verifyDeliveryDetailTable();
         Pages.OrderDetails().verifyOrderDetailTable();
@@ -134,46 +144,51 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
     }
 
     @Test(priority = 16)
-    public void verifyLogoutFunctionality() {
+    public void verifyLogoutFunctionality() throws InterruptedException {
         test = extent.createTest("Logout Functionality");
+        Pages.WebCommon().waitForElementsInteractions();
         Pages.Logout().verifyLogout();
     }
 
     @Test(priority = 17)
-    public void verifyLogin() throws InterruptedException {
-        test = extent.createTest("Verify LOgin to Dawak Mobile  API");
-        BaseClass.getCurrentDateTime();
-        DawakLoginAPICall.makeLoginApiCall();
-        Pages.WebCommon().waitForAPIResponse();
+    public void LoginCallCentre() throws InterruptedException {
+        test = extent.createTest("Login Call Center");
+        Pages.WebCommon().waitForElementsInteractions();
+        Pages.LoginCallCentre().CCLogin();
+        Pages.LoginCallCentre().verifyEnteringOtp();
+        Pages.WebCommon().waitForLoaderInvisibility();
     }
 
-    @Test(priority = 18)
-    public void verifyListAPIPayment() throws InterruptedException {
-        test = extent.createTest("Verify List API");
-        ListAPICall.makeListApiCall();
-        Pages.WebCommon().waitForAPIResponse();
 
+    @Test(priority = 18)
+    public void verifyHomePageCallCentre() throws FileNotFoundException, InterruptedException {
+        test = extent.createTest("Home page call centre");
+        Pages.HomePageCallCentre().SearchForOrder(prescriptionOrderID);
+        Pages.WebCommon().waitForElementsInteractions();
+        Pages.Home().clickOnAssign();
+        Pages.Home().moveOrderToInProgressStateAndVerify();
     }
 
     @Test(priority = 19)
-    public void verifyDateAPICall() throws InterruptedException {
-        test = extent.createTest("Verify selecting Date API");
-        SelectingDateAPICall.selectDateApiCall();
-        Pages.WebCommon().waitForAPIResponse();
+    public void moveToOrderDetails() throws InterruptedException {
+        test = extent.createTest("Move to order details page ");
+        Pages.NavigationsCP().openOrderDetailPage();
     }
 
+
     @Test(priority = 20)
-    public void verifyDashboardAPI() {
-        test = extent.createTest("Verify DashboardPrescription API");
-        DashboardPrescriptionAPICall.dashBoardPrescriptionAPICall();
+    public void completOorder() throws InterruptedException, AWTException {
+        test = extent.createTest("complete order ");
+        Pages.OrderDetailsCallCentre().payment();
+        Pages.WebCommon().waitForLoaderInvisibility();
     }
 
     @Test(priority = 21)
-    public void verifyPaymentAPI() {
-        test = extent.createTest("Verify Payment API");
-        PaymentAPICall.paymentAPICAll();
+    public void verifyLogoutCallCentreFunctionality() throws InterruptedException {
+        test = extent.createTest("Logout Functionality");
+        Pages.Logout().verifyLogout();
+        Pages.WebCommon().waitForElementsInteractions();
     }
-
 
     @Test(priority = 22)
     public void verifyDPLogin() {
@@ -204,6 +219,7 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
     @Test(priority = 25)
     public void verifyPatientInformationDP() throws FileNotFoundException {
         test = extent.createTest("Verify patientInformation");
+        Pages.WebCommon().waitForLoaderInvisibility();
         Pages.PatientInformations().verifyBasicDetailTable();
         Pages.PatientInformations().verifyContactDetail();
         Pages.PatientInformations().userDetails();
@@ -221,12 +237,13 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
         Pages.HomeDP().searchOrderInDispensingInProgress();
         Pages.WebCommon().waitForElementsInteractions();
         Pages.HomeDP().clickDetailButtonInDispensingInprogress();
+
     }
 
     @Test(priority = 27)
-    public void verifyPatientInformationDispensingOrderTab() throws FileNotFoundException, InterruptedException {
-        test = extent.createTest("Verify Patient Information Dispensing Order Tab");
-        Pages.WebCommon().waitForElementsInteractions();
+    public void verifyPatientInformationDispensingTab() throws FileNotFoundException, InterruptedException {
+        test = extent.createTest("Verify Patient Information Dispensing Tab");
+        Pages.WebCommon().waitForLoaderInvisibility();
         Pages.PatientInformations().verifyBasicDetailTable();
         Pages.PatientInformations().verifyContactDetail();
         Pages.PatientInformations().userDetails();
@@ -234,6 +251,8 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
         Pages.OrderDetailsDP().verifyDeliveryDetail();
         Pages.OrderDetailsDP().pendingMedicationTableDp();
         Pages.OrderDetailsDP().orderReadyForDelivery();
+
+
     }
 
     @Test(priority = 28)
@@ -250,8 +269,8 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
     }
 
     @Test(priority = 30)
-    public void verifyOrderOutForDelivery() throws InterruptedException, FileNotFoundException {
-        test = extent.createTest("Login to DP Portal");
+    public void verifyOutForDelivery() throws InterruptedException, FileNotFoundException {
+        test = extent.createTest("Login to DP Portal and Verify Order Out For Delivery");
         Pages.LoginDP().DPLogin();
         Pages.LoginDP().verifyEnteringOtp();
         Pages.WebCommon().waitForLoaderInvisibility();
@@ -259,9 +278,45 @@ public class TestDawakPrescriptionWithCoPay extends BaseClass {
         Pages.WebCommon().waitForLoaderInvisibility();
     }
 
-    @Test(priority = 31)
+    @Test(priority = 32)
     public void verifyLogoutAfterDispatchedFunctionality() {
         test = extent.createTest("Logout Functionality");
         Pages.Logout().verifyLogout();
     }
+
+    @Test(priority = 33)
+    public void verifyCallCentreLogin() throws InterruptedException {
+        test = extent.createTest("Login Call Centre");
+        Pages.LoginCallCentre().CCLogin();
+        Pages.LoginCallCentre().verifyEnteringOtp();
+        Pages.WebCommon().waitForAPIResponse();
+    }
+
+    @Test(priority = 34)
+    public void verifyHomePage() throws FileNotFoundException, InterruptedException {
+        test = extent.createTest("Home page call centre");
+        Pages.HomePageCallCentre().SearchForOrder(prescriptionOrderID);
+        Pages.WebCommon().waitForElementsInteractions();
+        Pages.HomePageCallCentre().verifyTaskTable();
+        Pages.Home().clickOnAssign();
+        Pages.Home().moveOrderToInProgressStateAndVerify();
+    }
+
+    @Test(priority = 35)
+    public void verifyMoveToCompletedTab() throws FileNotFoundException, InterruptedException, AWTException {
+        test = extent.createTest("Verify Navigation to Completed Tab page ");
+        Pages.CallCentreNavigations().navigateToComplete();
+        Pages.HomePageCallCentre().SearchForOrder(prescriptionOrderID);
+        Pages.NavigationsCP().openOrderDetailPage();
+        Pages.WebCommon().waitForLoaderInvisibility();
+       // Pages.OrderDetailsCallCentre().patientRejected();
+
+    }
+    @Test(priority = 36)
+    public void verifyLogoutCallCenter() throws InterruptedException {
+        test = extent.createTest("Logout Functionality");
+        Pages.Logout().verifyLogout();
+        Pages.WebCommon().waitForElementsInteractions();
+    }
+
 }

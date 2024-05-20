@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import Enum.CallCentreUserDetailsEnum;
+import org.testng.Assert;
 
 import java.awt.*;
 import java.io.FileNotFoundException;
@@ -59,6 +60,21 @@ public class OrderDetailsCallCentre {
 
     @FindBy(xpath = "//span[normalize-space()='Task Completed']")
     WebElement taskCompleted;
+
+
+    @FindBy(xpath = "//span[text()=' Reject Order ']")
+    WebElement rejectOrder;
+
+    @FindBy(xpath = "//span[text()='Select an reason']")
+    WebElement rejectReason;
+
+    @FindBy(xpath = "//span[normalize-space()='Submit']")
+    WebElement submitButton;
+
+    @FindBy(xpath = "//span[text()='Patient Rejected']")
+    WebElement patientRejected;
+
+
 
 
     public OrderDetailsCallCentre(WebDriver Driver) {
@@ -127,6 +143,26 @@ public class OrderDetailsCallCentre {
         test.log(Status.PASS, "clicked on taskCompleted  button successfully");
 
 
+    }
+
+
+    public void rejectOrder() throws AWTException {
+
+        rejectOrder.click();
+        rejectReason.click();
+        Robot robot = new Robot();
+        robot.keyPress(VK_DOWN);
+        robot.keyRelease(VK_DOWN);
+        robot.keyPress(VK_ENTER);
+        robot.keyRelease(VK_ENTER);
+        submitButton.click();
+        Pages.WebCommon().waitForLoaderInvisibility();
+
+    }
+
+    public void patientRejected() throws AWTException {
+       String rejectedText= patientRejected.getText();
+        Assert.assertEquals(rejectedText,"Patient Rejected");
     }
 
 
