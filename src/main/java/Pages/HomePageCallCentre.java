@@ -69,8 +69,15 @@ public class HomePageCallCentre {
 
     public void infos(WebElement element, WebElement actualText) {
         if (element.getText().contains("Task Name")) {
-            Pages.WebCommon().assertJson(actualText.getText(), BaseClass.propertyFile("config", "CallMeBackTaskName"));
-            test.log(Status.PASS, "Task Name verified");
+            if(actualText.getText().contains("Call me back")) {
+                Pages.WebCommon().assertJson(actualText.getText(), BaseClass.propertyFile("config", "CallMeBackTaskName"));
+                test.log(Status.PASS, "Task Name verified");
+            }
+            else if(actualText.getText().contains("Call for Consultation"))
+            {
+                Pages.WebCommon().assertJson(actualText.getText(), BaseClass.propertyFile("config", "CallMeBackTaskName"));
+                test.log(Status.PASS, "Task Name verified");
+            }
         } else if (element.getText().contains("Patient Name")) {
 
             Pages.WebCommon().assertJson(actualText.getText(), BaseClass.propertyFile("config", "FullNames"));

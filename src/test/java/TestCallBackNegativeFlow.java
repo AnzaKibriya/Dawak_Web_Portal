@@ -15,7 +15,6 @@ public class TestCallBackNegativeFlow  extends BaseClass {
         test = extent.createTest("Login to Dawak");
         DawakLoginAPICall.makeLoginApiCall();
         Pages.WebCommon().waitForAPIResponse();
-
     }
 
     @Test(priority = 2)
