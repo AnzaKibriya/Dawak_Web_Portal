@@ -7,8 +7,8 @@ import org.testng.annotations.Test;
 
 public class TestExternalPrescription extends BaseClass {
     @Test(priority = 1)
-    public void loginToDawakAPP() throws InterruptedException {
-        test = extent.createTest("Login to Dawak APP");
+    public void creatingExternalPrescription() throws InterruptedException {
+        test = extent.createTest("Creating External Prescription : Happy Scenario" );
         DawakLoginAPICall.makeLoginApiCall();
         Pages.WebCommon().waitForAPIResponse();
         String cardFront= UploadFileAPICall.makeUploadFileAPICall();
