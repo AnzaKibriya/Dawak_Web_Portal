@@ -15,6 +15,5 @@ public class TestExternalPrescription extends BaseClass {
         String cardBack= UploadFileAPICall.makeUploadFileAPICall();
         String prescriptionFile= UploadFileAPICall.makeUploadFileAPICall();
         prescriptionOrderID = ExternalPrescriptionAPICall.makeExternalPrescriptionAPICall(cardFront, cardBack,prescriptionFile);
-
     }
 }
