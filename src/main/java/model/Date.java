@@ -7,13 +7,25 @@ import lombok.Setter;
 @Getter
 public class Date {
 
-
-
-    @Setter
     @SerializedName("currentDate")
     private String currentDate;
 
-    @Setter
+    public String getCurrentDate() {
+        return currentDate;
+    }
+
+    public void setCurrentDate(String currentDate) {
+        this.currentDate = currentDate;
+    }
+
+    public String getEncounterId() {
+        return encounterId;
+    }
+
+    public void setEncounterId(String encounterId) {
+        this.encounterId = encounterId;
+    }
+
     @SerializedName("encounterId")
     private String encounterId;
 

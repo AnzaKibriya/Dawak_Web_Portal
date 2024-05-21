@@ -17,7 +17,7 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
         System.out.println(prescriptionOrderID);
         //  NewPatientApiCall.makeCreatePatientApiCall(accessToken, prescriptionOrderID);
         PrescriptionApiCall.makePrescriptionApiCall(accessToken, prescriptionOrderID);
-        Thread.sleep(10000);
+        Pages.WebCommon().waitForAPIResponse();
     }
 
 
@@ -25,7 +25,7 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
     public void loginTODawak() throws InterruptedException {
         test = extent.createTest("Login to Dawak");
         DawakLoginAPICall.makeLoginApiCall();
-        Thread.sleep(10000);
+        Pages.WebCommon().waitForAPIResponse();
 
     }
 
@@ -33,7 +33,7 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
     public void verifyListAPI() throws InterruptedException {
         test = extent.createTest("Verify List API");
         ListAPICall.makeListApiCall();
-        Thread.sleep(10000);
+        Pages.WebCommon().waitForAPIResponse();
 
     }
 
@@ -41,16 +41,14 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
     public void deliveryAPI() {
         test = extent.createTest("Verify Delivery API");
         DeliveryAPICall.deliveryApiCall();
-        // Del.verifyDelivery();
     }
 
 
     @Test(priority = 5)
-    public void verifyCPLogin() throws IOException, InterruptedException {
+    public void verifyCPLogin() throws IOException {
         test = extent.createTest("Login to Central Pharmacist");
         Pages.LoginCP().invalidCPLogin();
         Pages.LoginCP().CPLogin();
-//        Pages.Mailinator().verifyOtp();
         Pages.LoginCP().verifyEnteringOtp();
 
     }
