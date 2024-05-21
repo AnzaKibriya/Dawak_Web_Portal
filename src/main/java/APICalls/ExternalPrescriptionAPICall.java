@@ -7,6 +7,7 @@ import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,7 +20,7 @@ import static Helper.BaseClass.client;
 public class ExternalPrescriptionAPICall {
     static String apiUrl = "https://dawak-apim-uat.azure-api.net/dawak-patient/api/external-prescription/v2/upload";
 
-    public static void makeExternalPrescriptionAPICall(String cardFront, String cardBack, String prescriptionFile){
+    public static String makeExternalPrescriptionAPICall(String cardFront, String cardBack, String prescriptionFile){
         MediaType mediaType = MediaType.parse("application/json");
         Gson gson = new Gson();
         ExternalPrescriptionAPICall externalPrescriptionAPICall = new ExternalPrescriptionAPICall();
@@ -33,10 +34,14 @@ public class ExternalPrescriptionAPICall {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            JSONObject jsonResponse = new JSONObject(response.body().string());
             if (response.isSuccessful()) {
-                System.out.println("Request was successful: " + response.body().string());
+                System.out.println("Request was successful: " + jsonResponse);
+                JSONObject data = jsonResponse.getJSONObject("data");
+                return data.getString("dawakPrescriptionNumber");
             } else {
                 System.out.println("Request failed: " + response.code() + " " + response.message());
+                return null;
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

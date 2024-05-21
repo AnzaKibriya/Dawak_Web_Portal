@@ -12,9 +12,11 @@ public class ExternalPrescription {
 
     @SerializedName("insuranceCardFront")
     private String insuranceCardFront;
-
     @SerializedName("patientId")
     private int patientId;
+
+    @SerializedName("insurancePlanName")
+    private String insurancePlanName;
 
     @SerializedName("paymentType")
     private int paymentType;
@@ -70,6 +72,13 @@ public class ExternalPrescription {
     // Getter and Setter for prescriptionFiles
     public List<String> getPrescriptionFiles() {
         return prescriptionFiles;
+    }
+    public String getInsurancePlanName() {
+        return insurancePlanName;
+    }
+
+    public void setInsurancePlanName(String insurancePlanName) {
+        this.insurancePlanName = insurancePlanName;
     }
 
     public void setPrescriptionFiles(List<String> prescriptionFiles) {
