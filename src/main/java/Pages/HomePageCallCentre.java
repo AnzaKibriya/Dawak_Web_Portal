@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import java.awt.*;
 import java.io.FileNotFoundException;
@@ -32,6 +33,9 @@ public class HomePageCallCentre {
 
     @FindBy(xpath = "//input[@placeholder='Search by Attribute']")
     WebElement search;
+
+    @FindBy(xpath = "//td[@class='mat-cell']")
+    WebElement noRecordFoundText;
 
     @FindBy(xpath = "//app-callcenter-task-list//table//tbody//tr[1]//td[2]")
     WebElement taskName;
@@ -103,6 +107,14 @@ public class HomePageCallCentre {
         search.sendKeys(fullName);
         test.log(Status.PASS, "order searched successfully");
         return null;
+    }
+
+    public void verifyNoRecordfoundText()
+    {
+       String noRecordText= noRecordFoundText.getText();
+        Assert.assertEquals(noRecordText,"NO SUCH RECORD EXISTS");
+        test.log(Status.PASS, "verified Record not found in Call Centre");
+
     }
 
     public void clickonDetails() {

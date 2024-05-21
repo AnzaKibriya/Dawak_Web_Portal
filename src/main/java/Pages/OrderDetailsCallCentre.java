@@ -113,23 +113,27 @@ public class OrderDetailsCallCentre {
         test.log(Status.PASS, "clicked on mark as completed button successfully");
         Pages.WebCommon().waitForElementsInteractions();
         selectDate.click();
+        Thread.sleep(2000);
         Robot robot = new Robot();
         robot.keyPress(VK_DOWN);
-        robot.keyRelease(VK_DOWN);
-        robot.keyPress(VK_ENTER);
-        robot.keyRelease(VK_ENTER);
-        selectTime.click();
+        Thread.sleep(1000);
         robot.keyPress(VK_DOWN);
-        robot.keyRelease(VK_DOWN);
+        Thread.sleep(1000);
         robot.keyPress(VK_ENTER);
-        robot.keyRelease(VK_ENTER);
+        selectTime.click();
+        Thread.sleep(2000);
+        robot.keyPress(VK_DOWN);
+        Thread.sleep(1000);
+        robot.keyPress(VK_DOWN);
+        Thread.sleep(1000);
+        robot.keyPress(VK_ENTER);
         Pages.WebCommon().waitForLoaderInvisibility();
         proceedButton.click();
         test.log(Status.PASS, "clicked on proceed button successfully");
     }
 
 
-    public void response() throws AWTException {
+    public void response() {
 
         didNotRespond.click();
         test.log(Status.PASS, "clicked on did not respond button successfully");

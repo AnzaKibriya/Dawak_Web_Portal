@@ -22,10 +22,11 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
 
 
     @Test(priority = 2)
-    public void loginTODawak() throws InterruptedException {
+    public void loginToDawak() throws InterruptedException {
         test = extent.createTest("Login to Dawak");
         DawakLoginAPICall.makeLoginApiCall();
         Pages.WebCommon().waitForAPIResponse();
+
     }
 
     @Test(priority = 3)
@@ -44,13 +45,14 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
 
 
     @Test(priority = 5)
-    public void verifyCPLogin() throws IOException {
+    public void verifyCPLogin() throws IOException, InterruptedException {
         test = extent.createTest("Login to Central Pharmacist");
         Pages.LoginCP().invalidCPLogin();
         Pages.LoginCP().CPLogin();
         Pages.LoginCP().verifyEnteringOtp();
 
     }
+
 
     @Test(priority = 7)
     public void verifyOrderInTOdo() throws InterruptedException, FileNotFoundException {
@@ -103,7 +105,7 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
     }
 
     @Test(priority = 13)
-    public void verifyPatientInformation() throws FileNotFoundException {
+    public void verifyPatientInformationCP() throws FileNotFoundException {
         test = extent.createTest("Verify patient information in orderDetails page ");
         Pages.PatientInformations().verifyBasicDetailTable();
         Pages.PatientInformations().verifyContactDetail();
@@ -112,7 +114,7 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
     }
 
     @Test(priority = 14)
-    public void verifyOrderDetails() {
+    public void verifyOrderDetails() throws FileNotFoundException {
         test = extent.createTest("Verify order details data and Header text ");
         Pages.OrderDetails().verifyDeliveryDetailTable();
         Pages.OrderDetails().verifyOrderDetailTable();
@@ -171,15 +173,17 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
         PaymentAPICall.paymentAPICAll();
     }
 
+
     @Test(priority = 22)
     public void verifyDPLogin() {
         test = extent.createTest("Login to DP Portal");
         Pages.LoginDP().DPLogin();
         Pages.LoginDP().verifyEnteringOtp();
+
     }
 
     @Test(priority = 23)
-    public void verifyOrderInTOdoDespensing() throws InterruptedException, FileNotFoundException {
+    public void verifyOrderInTOdoDispensing() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Making Order In TODO");
         Pages.HomeDP().verifyHomePageHeader();
         Pages.HomeDP().SearchForOrder();
@@ -197,8 +201,9 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
     }
 
     @Test(priority = 25)
-    public void verifyPatientInformationDP() throws FileNotFoundException {
+    public void verifyPatientInformationDP() throws FileNotFoundException, InterruptedException {
         test = extent.createTest("Verify patientInformation");
+        Pages.WebCommon().waitForElementsInteractions();
         Pages.PatientInformations().verifyBasicDetailTable();
         Pages.PatientInformations().verifyContactDetail();
         Pages.PatientInformations().userDetails();
@@ -219,9 +224,9 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
     }
 
     @Test(priority = 27)
-    public void verifyPatientInformationDispensingTab() throws FileNotFoundException, InterruptedException {
-        test = extent.createTest("Verify patientInformation");
-        Pages.WebCommon().waitForLoaderInvisibility();
+    public void verifyPatientInformationDispensingOrderTab() throws FileNotFoundException, InterruptedException {
+        test = extent.createTest("Verify Patient Information Dispensing Order Tab");
+        Pages.WebCommon().waitForElementsInteractions();
         Pages.PatientInformations().verifyBasicDetailTable();
         Pages.PatientInformations().verifyContactDetail();
         Pages.PatientInformations().userDetails();
@@ -245,7 +250,7 @@ public class TestDawakPrescriptionWithSelfPay extends BaseClass {
     }
 
     @Test(priority = 30)
-    public void verifyOutForDelivery() throws InterruptedException, FileNotFoundException {
+    public void verifyOrderOutForDelivery() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Login to DP Portal");
         Pages.LoginDP().DPLogin();
         Pages.LoginDP().verifyEnteringOtp();

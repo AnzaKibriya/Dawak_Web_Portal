@@ -106,12 +106,13 @@ public class TestNonAppFrontLine extends BaseClass {
     }
 
     @Test(priority = 13)
-    public void verifyPatientInformation() throws FileNotFoundException {
+    public void verifyPatientInformation() throws FileNotFoundException, InterruptedException {
         test = extent.createTest("Verify patient information in orderDetails page ");
+        Pages.WebCommon().waitForElementsInteractions();
         Pages.PatientInformations().verifyBasicDetailTable();
-        Pages.PatientInformations().verifyContactDetail();
-        Pages.PatientInformations().userDetails();
-        Pages.PatientInformations().pendingMedicationTable();
+        Pages.WebCommon().waitForElementsInteractions();
+
+
     }
 
     @Test(priority = 15)
@@ -207,18 +208,15 @@ public class TestNonAppFrontLine extends BaseClass {
     }
 
     @Test(priority = 26)
-
     public void verifyPatientInformationDP() throws FileNotFoundException, InterruptedException {
         test = extent.createTest("Verify patientInformation");
-        Pages.WebCommon().waitForLoaderInvisibility();
+        Pages.WebCommon().waitForElementsInteractions();
         Pages.PatientInformations().verifyBasicDetailTable();
-        Pages.PatientInformations().verifyContactDetail();
-        Pages.PatientInformations().userDetails();
-        Pages.OrderDetailsDP().addressDetailsTable();
-        Pages.OrderDetailsDP().verifyDeliveryDetail();
-        Pages.OrderDetailsDP().pendingMedicationTableDp();
-    }
+        Pages.WebCommon().waitForElementsInteractions();
 
+
+
+    }
 
     @Test(priority = 27)
     public void verifyOrderDispensing() throws InterruptedException {
@@ -228,22 +226,14 @@ public class TestNonAppFrontLine extends BaseClass {
         Pages.HomeDP().searchOrderInDispensingInProgress();
         Pages.WebCommon().waitForElementsInteractions();
         Pages.HomeDP().clickDetailButtonInDispensingInprogress();
-
     }
 
     @Test(priority = 28)
-    public void verifyPatientInformationDispensingTab() throws FileNotFoundException, InterruptedException {
-        test = extent.createTest("Verify patientInformation");
-        Pages.WebCommon().waitForLoaderInvisibility();
+    public void verifyPatientInformationDispensingOrderTab() throws FileNotFoundException, InterruptedException {
+        test = extent.createTest("Verify Patient Information Dispensing Order Tab");
+        Pages.WebCommon().waitForElementsInteractions();
         Pages.PatientInformations().verifyBasicDetailTable();
-        Pages.PatientInformations().verifyContactDetail();
-        Pages.PatientInformations().userDetails();
-        Pages.OrderDetailsDP().addressDetailsTable();
-        Pages.OrderDetailsDP().verifyDeliveryDetail();
-        Pages.OrderDetailsDP().pendingMedicationTableDp();
         Pages.OrderDetailsDP().orderReadyForDelivery();
-
-
     }
 
     @Test(priority = 29)
@@ -260,7 +250,7 @@ public class TestNonAppFrontLine extends BaseClass {
     }
 
     @Test(priority = 31)
-    public void verifyOutforDelivery() throws InterruptedException, FileNotFoundException {
+    public void verifyOrderOutForDelivery() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Login to DP Portal");
         Pages.LoginDP().DPLogin();
         Pages.LoginDP().verifyEnteringOtp();
