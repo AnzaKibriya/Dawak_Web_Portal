@@ -148,4 +148,11 @@ public class Pages {
 
 
     }
+
+    public static ExternalPrescription ExternalPrescription() {
+
+        ExternalPrescription pg  = new ExternalPrescription(BaseClass.driver);
+        PageFactory.initElements(BaseClass.driver, pg);
+        return pg;
+    }
 }

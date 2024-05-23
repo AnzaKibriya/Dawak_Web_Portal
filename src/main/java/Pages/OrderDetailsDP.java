@@ -81,6 +81,8 @@ public class OrderDetailsDP {
         Pages.WebCommon().waitForElementsInteractions();
         webJavascriptExecutor().executeScript("arguments[0].click();", readyForDelivery);
        webJavascriptExecutor().executeScript("arguments[0].click();", yesButton);
+        Pages.WebCommon().waitForLoaderInvisibility();
+        Pages.WebCommon().waitForElementsInteractions();
         test.log(Status.PASS, "Navigated to Detail page and clicked on  Ready for Delivery");
     }
 
