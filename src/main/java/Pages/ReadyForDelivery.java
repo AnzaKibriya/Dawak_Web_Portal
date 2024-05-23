@@ -12,7 +12,7 @@ import static Helper.BaseClass.webJavascriptExecutor;
 
 public class ReadyForDelivery {
     WebDriver driver;
-    @FindBy(xpath = "//span[text()=' Ready For Delivery ']")
+    @FindBy(xpath = "//span[text()=' Ready for Delivery ']")
     WebElement readyDelivery;
 
     @FindBy(xpath = "//button[@aria-label='Yes']")
@@ -26,7 +26,6 @@ public class ReadyForDelivery {
 
     public void deliveryFunctionality(String ID) throws InterruptedException, FileNotFoundException {
         webJavascriptExecutor().executeScript("arguments[0].click();", readyDelivery);
-        webJavascriptExecutor().executeScript("arguments[0].click();", yesButton);
         Pages.WebCommon().waitForLoaderInvisibility();//waiting for loader
         Pages.HomeDP().SearchForOrder();// searching for sepecific order
         Pages.WebCommon().waitForLoaderInvisibility(); //waiting for loader
