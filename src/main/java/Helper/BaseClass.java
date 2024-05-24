@@ -70,9 +70,6 @@ public class BaseClass {
 
     public static int drugDescriptionCounter=0;
 
-    //refills related data
-    public static String refillsOrderID;
-
 
     public static String propertyFile(String PropFileName, String stringName) {
         try {
