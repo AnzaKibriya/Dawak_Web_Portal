@@ -24,6 +24,19 @@ public class ExternalPrescription {
     @SerializedName("prescriptionFiles")
     private List<String> prescriptionFiles;
 
+
+    @SerializedName("prescriptionId")
+    private int prescriptionId;
+
+    public int getPrescriptionId() {
+        return prescriptionId;
+    }
+
+    public void setPrescriptionId(int prescriptionId) {
+        this.prescriptionId = prescriptionId;
+    }
+
+
     // Getter and Setter for deliveryAddressId
     public int getDeliveryAddressId() {
         return deliveryAddressId;
