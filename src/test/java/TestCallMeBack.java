@@ -69,6 +69,7 @@ public class TestCallMeBack extends BaseClass {
     }
 
 
+
     @Test(priority = 7)
     public void moveToToDoTab() {
         test = extent.createTest("Move to To Do Tab");
@@ -107,18 +108,18 @@ public class TestCallMeBack extends BaseClass {
     @Test(priority = 12)
     public void verifyCallBackRecordNotPresent() {
         test = extent.createTest("verify Call Back RecordNotPresent");
-        Pages.HomePageCallCentre().verifyCallBackRecord();
+        Pages.HomePageCallCentre().searchForRecord();
+        Pages.HomePageCallCentre().verifyNoRecordfoundText();
     }
-
     @Test(priority = 13)
     public void verifyLogoutFunctionality() {
+        Pages.Logout().verifyLogout();
         test = extent.createTest("Logout Functionality");
         Pages.WebCommon().waitForLoaderInvisibility();
-        Pages.Logout().verifyLogout();
     }
-
 
 
 }
+
 
 

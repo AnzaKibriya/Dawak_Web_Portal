@@ -60,7 +60,7 @@ public class NonAppHomeDeliveryAPICall {
             result.getPatient().setEid("784"+ generateRandomEID());
             result.getPatient().setMrn(orderID);
             result.getPatient().setCmrn(orderID);
-            result.getPatient().setPhoneNumber("9715"+ orderID);
+            result.getPatient().setPhoneNumber("971502201010");
             System.out.println(result);
             return result;
         } catch (IOException e) {

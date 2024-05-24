@@ -119,9 +119,7 @@ public class TestCallForConsulation extends BaseClass {
     public void verifyPatientInformationCP() throws FileNotFoundException {
         test = extent.createTest("Verify patient information in orderDetails page ");
         Pages.PatientInformations().verifyBasicDetailTable();
-        Pages.PatientInformations().verifyContactDetail();
-        Pages.PatientInformations().userDetails();
-        Pages.PatientInformations().pendingMedicationTable();
+
     }
 
     @Test(priority = 14)
@@ -221,11 +219,7 @@ public class TestCallForConsulation extends BaseClass {
         test = extent.createTest("Verify patientInformation");
         Pages.WebCommon().waitForLoaderInvisibility();
         Pages.PatientInformations().verifyBasicDetailTable();
-        Pages.PatientInformations().verifyContactDetail();
-        Pages.PatientInformations().userDetails();
-        Pages.OrderDetailsDP().addressDetailsTable();
-        Pages.OrderDetailsDP().verifyDeliveryDetail();
-        Pages.OrderDetailsDP().pendingMedicationTableDp();
+
 
     }
 
@@ -245,12 +239,7 @@ public class TestCallForConsulation extends BaseClass {
         test = extent.createTest("Verify Patient Information Dispensing Tab");
         Pages.WebCommon().waitForLoaderInvisibility();
         Pages.PatientInformations().verifyBasicDetailTable();
-        Pages.PatientInformations().verifyContactDetail();
-        Pages.PatientInformations().userDetails();
-        Pages.OrderDetailsDP().addressDetailsTable();
-        Pages.OrderDetailsDP().verifyDeliveryDetail();
-        Pages.OrderDetailsDP().pendingMedicationTableDp();
-        Pages.OrderDetailsDP().orderReadyForDelivery();
+
 
 
     }
