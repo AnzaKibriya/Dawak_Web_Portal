@@ -76,6 +76,18 @@ public class ExternalPrescription {
     @FindBy(xpath = "(//app-add-medication-info//mat-form-field)[last()]/div[contains(@class, 'mdc-text-field--filled')]")
     WebElement dosageInstruction;
 
+    @FindBy(xpath ="//input[@id='mat-mdc-checkbox-4-input']")
+    WebElement prescriptionCheckbox;
+
+    @FindBy(xpath = "//span[normalize-space()='Re-Submit Order']")
+    WebElement reSubmitButton;
+
+    @FindBy(xpath ="//span[text()=' Submit']")
+    WebElement submitButton;
+
+    @FindBy(xpath ="//div[@class='mat-mdc-form-field-infix ng-tns-c3736059725-60']//textarea")
+    WebElement resubmitOrderTextArea;
+
     String dosagetexts="//app-add-medication-info//input[@id='mat-input-21']";
     String dosageText="(//app-add-medication-info//mat-form-field)[last()]/div[contains(@class, 'mdc-text-field--focused')]";
 
@@ -197,6 +209,15 @@ public class ExternalPrescription {
         okButton.click();
         Pages.WebCommon().waitForElementsInteractions();
 
+    }
+
+    public void selfPayPrescription()
+    {
+        reSubmitButton.click();
+        prescriptionCheckbox.click();
+        resubmitOrderTextArea.sendKeys("test");
+        submitButton.click();
+        Pages.WebCommon().waitForLoaderInvisibility();
     }
 
 }

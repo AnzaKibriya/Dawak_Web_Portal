@@ -115,6 +115,10 @@ public class Pages {
         return pg;
     }
 
+
+
+
+
     public static OrderDetailsCallCentre OrderDetailsCallCentre() {
         OrderDetailsCallCentre pg = new OrderDetailsCallCentre(BaseClass.driver);
         PageFactory.initElements(BaseClass.driver, pg);
