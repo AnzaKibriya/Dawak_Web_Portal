@@ -2,14 +2,17 @@ package Pages;
 
 import com.aventstack.extentreports.Status;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import Enum.CallCentreUserDetailsEnum;
 import org.testng.Assert;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 
 import static Helper.BaseClass.test;
@@ -21,7 +24,7 @@ public class OrderDetailsCallCentre {
 
 
     public String callCentreInfoSiblingstring = "//div[contains(text(), '%s')]/following-sibling::div";
-    public String callCentrecInfostring="//div[contains(text(), '%s')]";
+    public String callCentrecInfostring = "//div[contains(text(), '%s')]";
 
     @FindBy(xpath = "//span[normalize-space()='Accept Order']")
     WebElement acceptOrder;
@@ -75,8 +78,6 @@ public class OrderDetailsCallCentre {
     WebElement patientRejected;
 
 
-
-
     public OrderDetailsCallCentre(WebDriver Driver) {
 
         driver = Driver;
@@ -113,16 +114,13 @@ public class OrderDetailsCallCentre {
         test.log(Status.PASS, "clicked on mark as completed button successfully");
         Pages.WebCommon().waitForElementsInteractions();
         selectDate.click();
-        Robot robot = new Robot();
-        robot.keyPress(VK_DOWN);
-        robot.keyRelease(VK_DOWN);
-        robot.keyPress(VK_ENTER);
-        robot.keyRelease(VK_ENTER);
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.DOWN).build().perform();
+        actions.sendKeys(Keys.ENTER).build().perform();
         selectTime.click();
-        robot.keyPress(VK_DOWN);
-        robot.keyRelease(VK_DOWN);
-        robot.keyPress(VK_ENTER);
-        robot.keyRelease(VK_ENTER);
+        Thread.sleep(2000);
+        actions.sendKeys(Keys.DOWN).build().perform();
+        actions.sendKeys(Keys.ENTER).build().perform();
         Pages.WebCommon().waitForLoaderInvisibility();
         proceedButton.click();
         test.log(Status.PASS, "clicked on proceed button successfully");
@@ -161,8 +159,8 @@ public class OrderDetailsCallCentre {
     }
 
     public void patientRejected() throws AWTException {
-       String rejectedText= patientRejected.getText();
-        Assert.assertEquals(rejectedText,"Patient Rejected");
+        String rejectedText = patientRejected.getText();
+        Assert.assertEquals(rejectedText, "Patient Rejected");
     }
 
 
@@ -173,9 +171,9 @@ public class OrderDetailsCallCentre {
         for (int i = 0; i <= CallCentreUserDetailsEnums.length - 1; i++) {
             WebElement CallCentreUserInfo = driver.findElement(By.xpath(String.format(callCentrecInfostring, CallCentreUserDetailsEnums[i].value)));
             WebElement CallCentreUserSibling = driver.findElement(By.xpath(String.format(callCentreInfoSiblingstring, CallCentreUserDetailsEnums[i].value)));
-             System.out.println(CallCentreUserInfo.getText());
-             System.out.println(CallCentreUserSibling.getText());
-             Pages.HomePageCallCentre().infos(CallCentreUserInfo, CallCentreUserSibling);
+            System.out.println(CallCentreUserInfo.getText());
+            System.out.println(CallCentreUserSibling.getText());
+            Pages.HomePageCallCentre().infos(CallCentreUserInfo, CallCentreUserSibling);
         }
     }
 

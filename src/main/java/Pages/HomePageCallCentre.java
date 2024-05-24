@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import java.awt.*;
 import java.io.FileNotFoundException;
@@ -43,6 +44,9 @@ public class HomePageCallCentre {
     @FindBy(xpath = "//tbody//tr[1]//img[2]")
     WebElement details;
 
+    @FindBy(xpath = "//td[@class='mat-cell']")
+    WebElement noRecordFoundText;
+
 
     @FindBy(xpath = "//img[@src='/assets/images/back-arrow.svg']")
     WebElement backArrow;
@@ -66,6 +70,17 @@ public class HomePageCallCentre {
         test.log(Status.PASS, "Call me Back order is not present");
 
     }
+
+
+    public void verifyNoRecordfoundText()
+    {
+        String noRecordText= noRecordFoundText.getText();
+        Assert.assertEquals(noRecordText,"NO SUCH RECORD EXISTS");
+        test.log(Status.PASS, "verified Record not found in Call Centre");
+
+    }
+
+
 
     public void infos(WebElement element, WebElement actualText) {
         if (element.getText().contains("Task Name")) {
@@ -110,7 +125,6 @@ public class HomePageCallCentre {
         action.click();
         test.log(Status.PASS, "clicked on assign button successfully");
 
-
     }
 
     public void openOrderDetails() throws InterruptedException {
@@ -127,6 +141,7 @@ public class HomePageCallCentre {
         Thread.sleep(60000);
 
         Robot robot = new Robot();
+
         robot.keyPress(VK_CONTROL);
         Thread.sleep(1000);
         robot.keyPress(VK_SHIFT);
