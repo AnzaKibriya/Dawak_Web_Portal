@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Parallel Tests" parallel="classes" thread-count="2">
+    <test name="ChromeTests">
+        <classes>
+            <class name="TestNonAppFrontLine"/>
+            <class name="TestSelfPrescription"/>
+        </classes>
+    </test>
+</suite>
