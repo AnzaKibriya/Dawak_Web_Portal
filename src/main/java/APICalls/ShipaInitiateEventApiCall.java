@@ -18,7 +18,7 @@ import static Helper.BaseClass.client;
 import static Helper.BaseClass.test;
 
 public class ShipaInitiateEventApiCall {
-    private static final String API_URL = "https://dawak-apim-uat.azure-api.net/dawak-patient/api/shipa/webhook";
+    private static final String API_URL = "https://dawak-apim-training.azure-api.net/dawak-patient/api/shipa/webhook";
 
     public static void makeShipaInitiateEventApiCall(String AUTH_TOKEN, String orderID, String event) {
         try {

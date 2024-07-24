@@ -53,6 +53,9 @@ public class OrderDetailsDP {
     @FindBy(xpath = "//span[text()='New Prescription']")
     WebElement newPrescriptionText;
 
+    @FindBy(xpath = "//span[text()=' Confirm Failed Delivery ']")
+    WebElement confirmFailedDelivery;
+
 
 
     public OrderDetailsDP(WebDriver Driver) {
@@ -102,6 +105,13 @@ public class OrderDetailsDP {
 
         }
 
+    }
+
+
+    public void cancelFailedOrder()
+    {
+
+        confirmFailedDelivery.click();
     }
 
 

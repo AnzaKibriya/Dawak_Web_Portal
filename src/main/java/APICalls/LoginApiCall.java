@@ -1,5 +1,6 @@
 package APICalls;
 
+import Helper.BaseClass;
 import com.google.gson.Gson;
 import model.Login;
 import okhttp3.MediaType;
@@ -7,6 +8,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.json.JSONObject;
+import org.testng.Assert;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,7 +16,7 @@ import java.io.Reader;
 import static Helper.BaseClass.*;
 
 public class LoginApiCall {
-    static String apiUrl = "https://dawak-apim-uat.azure-api.net/dawak-auth/api/auth/purenet/login";
+    static String apiUrl = BaseClass.propertyFile("config", "url")+"/dawak-auth/api/auth/purenet/login";
     public static String makeLoginApiCall() {
         try{
             MediaType mediaType = MediaType.parse("application/json");
@@ -35,6 +37,7 @@ public class LoginApiCall {
             } else {
                 System.out.println("API call failed!");
                 System.out.println("Response: " + response.body().string());
+                Assert.fail();
             }
             return accessToken;
         }

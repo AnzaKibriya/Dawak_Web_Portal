@@ -53,6 +53,18 @@ public class LoginCallCentre {
         otp.click();
     }
 
+
+    public void LoginCallCentreAdmin() {
+        Assert.assertEquals(header.getText(), BaseClass.propertyFile("config", "HeaderText"));
+        test.log(Status.PASS, "Header is Verified");
+        userName.sendKeys(BaseClass.propertyFile("config", "UsernameCallCentreAdmin"));
+        password.sendKeys(BaseClass.propertyFile("config", "passwordCallCentreAdmin"));
+        signInButton.click();
+        WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(40));
+        wait.until(ExpectedConditions.elementToBeClickable(otp));
+        otp.click();
+    }
+
     public void  verifyEnteringOtp()
     {
         otp.sendKeys("1234");
@@ -60,6 +72,20 @@ public class LoginCallCentre {
         test.log(Status.PASS, "Home page Header verified");
         test.log(Status.PASS, "Sign In is Successful");
     }
+
+
+    public void adminLogin() {
+        Assert.assertEquals(header.getText(), BaseClass.propertyFile("config", "HeaderText"));
+        test.log(Status.PASS, "Header is Verified");
+        userName.sendKeys(BaseClass.propertyFile("config", "usernameAdmin"));
+        password.sendKeys(BaseClass.propertyFile("config", "PasswordAdmin"));
+        signInButton.click();
+        WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(40));
+        wait.until(ExpectedConditions.elementToBeClickable(otp));
+        otp.click();
+
+    }
+
 
 
 

@@ -37,15 +37,18 @@ public class HomePageCallCentre {
     @FindBy(xpath = "//app-callcenter-task-list//table//tbody//tr[1]//td[2]")
     WebElement taskName;
 
-
-    @FindBy(xpath = "//tbody//tr[1]//img[1]")
+    @FindBy(xpath = "//img[@mattooltip='Assign']")
     WebElement action;
 
-    @FindBy(xpath = "//tbody//tr[1]//img[2]")
+    @FindBy(xpath = "//img[@mattooltip='Details']")
     WebElement details;
 
     @FindBy(xpath = "//td[@class='mat-cell']")
     WebElement noRecordFoundText;
+
+
+    @FindBy(xpath = "//img[@mattooltip='Un-Assign']")
+    WebElement unAssign;
 
 
     @FindBy(xpath = "//img[@src='/assets/images/back-arrow.svg']")
@@ -63,7 +66,6 @@ public class HomePageCallCentre {
         test.log(Status.PASS, "order searched successfully");
 
     }
-
     public void verifyCallBackRecord() {
         String tasktext = taskName.getText();
         Pages.WebCommon().assertJson(tasktext, "Pending Order Confirmation by User");
@@ -87,6 +89,13 @@ public class HomePageCallCentre {
             if(actualText.getText().contains("Call me back")) {
                 Pages.WebCommon().assertJson(actualText.getText(), BaseClass.propertyFile("config", "CallMeBackTaskName"));
                 test.log(Status.PASS, "Task Name verified");
+            }
+            else if(actualText.getText().contains("Capture Patient Address"))
+            {
+
+                Pages.WebCommon().assertJson(actualText.getText(), "Capture Patient Address");
+                test.log(Status.PASS, "Task Name verified");
+
             }
             else if(actualText.getText().contains("Call for Consultation"))
             {
@@ -138,7 +147,7 @@ public class HomePageCallCentre {
 
     public void refresh() throws AWTException, InterruptedException {
 
-        Thread.sleep(60000);
+        Thread.sleep(70000);
 
         Robot robot = new Robot();
 
@@ -148,8 +157,6 @@ public class HomePageCallCentre {
         Thread.sleep(1000);
         robot.keyPress(VK_R);
         test.log(Status.PASS, "Page refreshed successfully");
-
-
     }
 
 
@@ -164,9 +171,19 @@ public class HomePageCallCentre {
             Pages.HomePageCallCentre().infos(tableHeading, tasktableData);
 
         }
-
-
     }
+
+
+        public void unassign()
+        {
+            unAssign.click();
+            test.log(Status.PASS, "verifying task table information");
+
+
+        }
+
+
+
 
 
 }

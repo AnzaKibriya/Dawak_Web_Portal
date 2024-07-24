@@ -1,5 +1,4 @@
 package APICalls;
-
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
 import model.PrescriptionRequest;
@@ -7,20 +6,18 @@ import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
-
 import static Helper.BaseClass.*;
 import static Helper.BaseClass.emiratesID;
 
 public class NonAppFrontLineDeliveryAPICall {
 
-    private static final String API_URL = "https://dawak-apim-uat.azure-api.net/dawak-portal/api/prescription/new";
+    private static final String API_URL = "https://dawak-apim-training.azure-api.net/dawak-portal/api/prescription/new";
 
     public static void makeCreatePatientApiCall(String AUTH_TOKEN, String orderID) {
         try {

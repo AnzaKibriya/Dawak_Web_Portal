@@ -49,8 +49,6 @@ public class NavigationsCP {
 
 
     }
-
-
     public void openOrderDetailPage() throws InterruptedException {
         actionButton.click();
         test.log(Status.PASS, "order details page opened successfully");

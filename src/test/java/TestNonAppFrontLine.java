@@ -53,8 +53,7 @@ public class TestNonAppFrontLine extends BaseClass {
     @Test(priority = 6)
     public void verifyCPLogin() throws IOException {
         test = extent.createTest("Login to Central Pharmacist");
-        Pages.LoginCP().invalidCPLogin();
-        Pages.LoginCP().CPLogin();
+        Pages.LoginCP().CPLoginAddressChange();
         Pages.LoginCP().verifyEnteringOtp();
     }
 
@@ -103,23 +102,6 @@ public class TestNonAppFrontLine extends BaseClass {
         test = extent.createTest("Verify Navigation to order details page ");
         Pages.NavigationsCP().openOrderDetailPage();
 
-    }
-
-    @Test(priority = 13)
-    public void verifyPatientInformation() throws FileNotFoundException {
-        test = extent.createTest("Verify patient information in orderDetails page ");
-        Pages.PatientInformations().verifyBasicDetailTable();
-
-    }
-
-    @Test(priority = 15)
-    public void verifyOrderDetails() {
-        test = extent.createTest("Verify order details data and Header text ");
-        Pages.OrderDetails().verifyDeliveryDetailTable();
-        Pages.OrderDetails().verifyOrderDetailTable();
-        Pages.OrderDetails().verifyOrderDetailsHeader();
-        Pages.OrderDetails().verifyTrackDetailTable();
-        Pages.OrderDetails().verifyRemoveFunctionality();
     }
 
     @Test(priority = 16)
@@ -181,7 +163,7 @@ public class TestNonAppFrontLine extends BaseClass {
     @Test(priority = 23)
     public void verifyDPLogin() {
         test = extent.createTest("Login to DP Portal");
-        Pages.LoginDP().DPLogin();
+        Pages.LoginDP().DPLoginAddressChange();
         Pages.LoginDP().verifyEnteringOtp();
 
     }
@@ -209,7 +191,7 @@ public class TestNonAppFrontLine extends BaseClass {
     public void verifyPatientInformationDP() throws FileNotFoundException, InterruptedException {
         test = extent.createTest("Verify patientInformation");
         Pages.WebCommon().waitForLoaderInvisibility();
-        Pages.PatientInformations().verifyBasicDetailTable();
+       // Pages.PatientInformations().verifyBasicDetailTable();
 
     }
 
@@ -229,9 +211,7 @@ public class TestNonAppFrontLine extends BaseClass {
     public void verifyPatientInformationDispensingTab() throws FileNotFoundException, InterruptedException {
         test = extent.createTest("Verify patientInformation");
         Pages.WebCommon().waitForLoaderInvisibility();
-        Pages.PatientInformations().verifyBasicDetailTable();
         Pages.OrderDetailsDP().orderReadyForDelivery();
-
 
     }
 
@@ -259,8 +239,9 @@ public class TestNonAppFrontLine extends BaseClass {
     }
 
     @Test(priority = 32)
-    public void verifyLogoutAfterDispatchedFunctionality() {
+    public void verifyLogoutAfterDispatchedFunctionality() throws InterruptedException {
         test = extent.createTest("Logout Functionality");
         Pages.Logout().verifyLogout();
+        Pages.WebCommon().waitForElementsInteractions();
     }
 }

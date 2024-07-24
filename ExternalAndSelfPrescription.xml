@@ -1,0 +1,12 @@
+<suite name="Dawak  NonApp Scenario">
+    <test name="Dawak Call centre Scenario">
+        <classes>
+            <class name="TestNonAppJorney"/>
+        </classes>
+    </test>
+    <test name="Dawak FrontLine Scenario">
+        <classes>
+            <class name="TestNonAppFrontLine"/>
+        </classes>
+    </test>
+</suite>

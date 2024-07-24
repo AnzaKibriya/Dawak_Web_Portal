@@ -1,6 +1,7 @@
 package APICalls;
 
 import com.google.gson.Gson;
+import model.EditExternalPrescription;
 import model.ExternalPrescription;
 import okhttp3.MediaType;
 import okhttp3.Request;
@@ -17,7 +18,7 @@ import static Helper.BaseClass.accessTokens;
 import static Helper.BaseClass.client;
 
 public class ExternalPrescriptionAPICall {
-    static String apiUrl = "https://dawak-apim-uat.azure-api.net/dawak-patient/api/external-prescription/v2/upload";
+    static String apiUrl = "https://dawak-apim-training.azure-api.net/dawak-patient/api/external-prescription/v2/upload";
 
     public static String makeExternalPrescriptionAPICall(String cardFront, String cardBack, String prescriptionFile) {
         MediaType mediaType = MediaType.parse("application/json");

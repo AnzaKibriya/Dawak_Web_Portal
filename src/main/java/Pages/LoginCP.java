@@ -45,7 +45,23 @@ public class LoginCP {
         WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(40));
         wait.until(ExpectedConditions.elementToBeClickable(otp));
         otp.click();
+
     }
+
+
+
+    public void CPLoginAddressChange() {
+        Assert.assertEquals(header.getText(), BaseClass.propertyFile("config", "HeaderText"));
+        test.log(Status.PASS, "Header is Verified");
+        userName.sendKeys(BaseClass.propertyFile("config", "usernamecp"));
+        password.sendKeys(BaseClass.propertyFile("config", "password"));
+        signInButton.click();
+        WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(40));
+        wait.until(ExpectedConditions.elementToBeClickable(otp));
+        otp.click();
+    }
+
+
 
     public void verifyEnteringOtp() {
         otp.sendKeys("1234");
@@ -64,5 +80,6 @@ public class LoginCP {
         test.log(Status.PASS, "Invalid Login Error Message Verified");
         userName.clear();
         password.clear();
+
     }
 }

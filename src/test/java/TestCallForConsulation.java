@@ -10,7 +10,6 @@ import java.io.IOException;
 
 public class TestCallForConsulation extends BaseClass {
 
-
     @Test(priority = 1)
     public void createANewPrescription() throws InterruptedException {
         test = extent.createTest("create a new prescription");
@@ -30,8 +29,6 @@ public class TestCallForConsulation extends BaseClass {
         Pages.LoginCallCentre().verifyEnteringOtp();
         Pages.WebCommon().waitForAPIResponse();
     }
-
-
     @Test(priority = 3)
     public void verifyHomePageCalCenter() throws FileNotFoundException, InterruptedException {
         test = extent.createTest("Home page call centre");
@@ -59,8 +56,7 @@ public class TestCallForConsulation extends BaseClass {
     @Test(priority = 6)
     public void verifyCPLogin() throws IOException {
         test = extent.createTest("Login to Central Pharmacist");
-        Pages.LoginCP().invalidCPLogin();
-        Pages.LoginCP().CPLogin();
+        Pages.LoginCP().CPLoginAddressChange();
         Pages.LoginCP().verifyEnteringOtp();
 
     }
@@ -112,16 +108,7 @@ public class TestCallForConsulation extends BaseClass {
     public void verifyMoveToOrderDetails() throws InterruptedException {
         test = extent.createTest("Verify Navigation to order details page ");
         Pages.NavigationsCP().openOrderDetailPage();
-
     }
-
-    @Test(priority = 13)
-    public void verifyPatientInformationCP() throws FileNotFoundException {
-        test = extent.createTest("Verify patient information in orderDetails page ");
-        Pages.PatientInformations().verifyBasicDetailTable();
-
-    }
-
     @Test(priority = 14)
     public void verifyOrderDetails() {
         test = extent.createTest("Verify order details data and Header text ");
@@ -191,11 +178,10 @@ public class TestCallForConsulation extends BaseClass {
     @Test(priority = 22)
     public void verifyDPLogin() {
         test = extent.createTest("Login to DP Portal");
-        Pages.LoginDP().DPLogin();
+        Pages.LoginDP().DPLoginAddressChange();
         Pages.LoginDP().verifyEnteringOtp();
 
     }
-
     @Test(priority = 23)
     public void verifyOrderInTOdoDispensing() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Making Order In TODO");
@@ -214,14 +200,7 @@ public class TestCallForConsulation extends BaseClass {
 
     }
 
-    @Test(priority = 25)
-    public void verifyPatientInformationDP() throws FileNotFoundException {
-        test = extent.createTest("Verify patientInformation");
-        Pages.WebCommon().waitForLoaderInvisibility();
-        Pages.PatientInformations().verifyBasicDetailTable();
 
-
-    }
 
     @Test(priority = 26)
     public void verifyOrderDispensing() throws InterruptedException {
@@ -231,17 +210,13 @@ public class TestCallForConsulation extends BaseClass {
         Pages.HomeDP().searchOrderInDispensingInProgress();
         Pages.WebCommon().waitForElementsInteractions();
         Pages.HomeDP().clickDetailButtonInDispensingInprogress();
-
     }
 
     @Test(priority = 27)
-    public void verifyPatientInformationDispensingTab() throws FileNotFoundException, InterruptedException {
-        test = extent.createTest("Verify Patient Information Dispensing Tab");
-        Pages.WebCommon().waitForLoaderInvisibility();
-        Pages.PatientInformations().verifyBasicDetailTable();
-
-
-
+    public void verifyPatientInformationDispensingOrderTab() throws FileNotFoundException, InterruptedException {
+        test = extent.createTest("Verify Patient Information Dispensing Order Tab");
+        Pages.WebCommon().waitForElementsInteractions();
+        Pages.OrderDetailsDP().orderReadyForDelivery();
     }
 
     @Test(priority = 28)
@@ -258,24 +233,25 @@ public class TestCallForConsulation extends BaseClass {
     }
 
     @Test(priority = 30)
-    public void verifyOutForDelivery() throws InterruptedException, FileNotFoundException {
-        test = extent.createTest("Login to DP Portal and Verify Order Out For Delivery");
-        Pages.LoginDP().DPLogin();
+    public void verifyOrderOutForDelivery() throws InterruptedException, FileNotFoundException {
+        test = extent.createTest("Login to DP Portal");
+        Pages.LoginDP().DPLoginAddressChange();
         Pages.LoginDP().verifyEnteringOtp();
         Pages.WebCommon().waitForLoaderInvisibility();
         Pages.Dispatched().OutForDeliveryFunctionality();
         Pages.WebCommon().waitForLoaderInvisibility();
     }
 
-    @Test(priority = 32)
-    public void verifyLogoutAfterDispatchedFunctionality() {
+    @Test(priority = 31)
+    public void verifyLogoutAfterDispatchedFunctionality() throws InterruptedException {
         test = extent.createTest("Logout Functionality");
         Pages.Logout().verifyLogout();
+        Pages.WebCommon().waitForElementsInteractions();
     }
-
     @Test(priority = 33)
     public void verifyCallCentreLogin() throws InterruptedException {
         test = extent.createTest("Login Call Centre");
+        Pages.WebCommon().waitForElementsInteractions();
         Pages.LoginCallCentre().CCLogin();
         Pages.LoginCallCentre().verifyEnteringOtp();
         Pages.WebCommon().waitForAPIResponse();

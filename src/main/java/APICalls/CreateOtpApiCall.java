@@ -17,7 +17,7 @@ import static Helper.BaseClass.client;
 import static Helper.BaseClass.test;
 
 public class CreateOtpApiCall {
-    static String apiUrl = "https://dawak-apim-uat.azure-api.net/dawak-auth/api/auth/createOtp";
+    static String apiUrl = "https://dawak-apim-training.azure-api.net/dawak-auth/api/auth/createOtp";
     public static void createOtpApiCall() {
         try{
             MediaType mediaType = MediaType.parse("application/json");

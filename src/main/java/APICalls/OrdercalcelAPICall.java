@@ -1,5 +1,6 @@
 package APICalls;
 
+import Helper.BaseClass;
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
 import model.OrderCancel;
@@ -16,7 +17,7 @@ import static Helper.BaseClass.*;
 
 public class OrdercalcelAPICall {
 
-    private static final String API_URL = "https://dawak-apim-uat.azure-api.net/dawak-patient/api/dashboard/patient-order-cancel";
+    private static final String API_URL = BaseClass.propertyFile("config", "url")+"/dawak-patient/api/dashboard/patient-order-cancel";
 
 
     public static String ordercancelAPI() {

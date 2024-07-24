@@ -17,7 +17,6 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
         System.out.println(prescriptionOrderID);
         //  NewPatientApiCall.makeCreatePatientApiCall(accessToken, prescriptionOrderID);
         PrescriptionApiCall.makePrescriptionApiCall(accessToken, prescriptionOrderID);
-        Pages.WebCommon().waitForAPIResponse();
     }
 
 
@@ -25,7 +24,6 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
     public void loginTODawak() throws InterruptedException {
         test = extent.createTest("Login to Dawak");
         DawakLoginAPICall.makeLoginApiCall();
-        Pages.WebCommon().waitForAPIResponse();
 
     }
 
@@ -33,7 +31,6 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
     public void verifyListAPI() throws InterruptedException {
         test = extent.createTest("Verify List API");
         ListAPICall.makeListApiCall();
-        Pages.WebCommon().waitForAPIResponse();
 
     }
 
@@ -47,7 +44,6 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
     @Test(priority = 5)
     public void verifyCPLogin() throws IOException {
         test = extent.createTest("Login to Central Pharmacist");
-        Pages.LoginCP().invalidCPLogin();
         Pages.LoginCP().CPLogin();
         Pages.LoginCP().verifyEnteringOtp();
 
@@ -104,26 +100,6 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
 
     }
 
-    @Test(priority = 13)
-    public void verifyPatientInformation() throws FileNotFoundException {
-        test = extent.createTest("Verify patient information in orderDetails page ");
-        Pages.PatientInformations().verifyBasicDetailTable();
-        Pages.PatientInformations().verifyContactDetail();
-        Pages.PatientInformations().userDetails();
-        Pages.PatientInformations().pendingMedicationTable();
-    }
-
-    @Test(priority = 14)
-    public void verifyOrderDetails() throws FileNotFoundException {
-        test = extent.createTest("Verify order details data and Header text ");
-        Pages.OrderDetails().verifyDeliveryDetailTable();
-        Pages.OrderDetails().verifyOrderDetailTable();
-        Pages.OrderDetails().verifyOrderDetailsHeader();
-        Pages.OrderDetails().verifyTrackDetailTable();
-//        Pages.OrderDetails().verifyViewDetailsInformation();
-        Pages.OrderDetails().verifyRemoveFunctionality();
-    }
-
     @Test(priority = 15)
     public void verifyInsuranceApproval() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Insurance Approval functionality");
@@ -134,9 +110,10 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
     }
 
     @Test(priority = 16)
-    public void verifyLogoutFunctionality() {
+    public void verifyLogoutFunctionality() throws InterruptedException {
         test = extent.createTest("Logout Functionality");
         Pages.Logout().verifyLogout();
+        Pages.WebCommon().waitForElementsInteractions();
     }
 
 

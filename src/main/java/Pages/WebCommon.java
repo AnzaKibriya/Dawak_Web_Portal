@@ -132,7 +132,7 @@ public class WebCommon {
     }
 
     public void waitForElementsInteractions() throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(3000);
     }
 
     public void ExtractDateFromString(String timeDate) {

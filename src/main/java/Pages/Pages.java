@@ -154,9 +154,29 @@ public class Pages {
     }
 
     public static ExternalPrescription ExternalPrescription() {
-
         ExternalPrescription pg  = new ExternalPrescription(BaseClass.driver);
         PageFactory.initElements(BaseClass.driver, pg);
         return pg;
     }
+
+
+    public static HomePageAdmin HomePageAdmin() {
+        HomePageAdmin pg  = new HomePageAdmin(BaseClass.driver);
+        PageFactory.initElements(BaseClass.driver, pg);
+        return pg;
+    }
+
+
+    public static FacilityDashboardAdmin FacilityDashboardAdmin() {
+        FacilityDashboardAdmin pg  = new FacilityDashboardAdmin(BaseClass.driver);
+        PageFactory.initElements(BaseClass.driver, pg);
+        return pg;
+    }
+
+    public static OrderDetailsAdmin  OrderDetailsAdmin() {
+        OrderDetailsAdmin pg  = new OrderDetailsAdmin(BaseClass.driver);
+        PageFactory.initElements(BaseClass.driver, pg);
+        return pg;
+    }
+
 }

@@ -40,7 +40,6 @@ public class TestCallMeBackHappyFlow extends BaseClass {
         Pages.HomePageCallCentre().searchForRecord();
         Pages.HomePageCallCentre().verifyTaskTable();
         Pages.HomePageCallCentre().clickonDetails();
-
     }
 
     @Test(priority = 5)

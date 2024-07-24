@@ -1,10 +1,13 @@
 package APICalls;
 
+import Helper.BaseClass;
+import Pages.Pages;
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
 import model.LoginRequest;
 import okhttp3.*;
 import org.json.JSONObject;
+import org.testng.Assert;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,9 +19,10 @@ import static Helper.BaseClass.*;
 
 public class DawakLoginAPICall {
 
-    private static final String API_URL = "https://dawak-apim-uat.azure-api.net/dawak-auth/api/auth/v3/mobile-login";
+    private static final String API_URL = BaseClass.propertyFile("config", "url")+"/dawak-auth/api/auth/v3/mobile-login";
 
-    public static String makeLoginApiCall() {
+    public static String makeLoginApiCall() throws InterruptedException {
+        Pages.WebCommon().waitForElementsInteractions();
         client = new OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS) // Adjust timeout as needed
                 .readTimeout(30, TimeUnit.SECONDS) // Adjust timeout as needed
                 .build();
@@ -48,11 +52,16 @@ public class DawakLoginAPICall {
 
             } else {
                 System.out.println("Request failed: " + response.code() + " " + response.message());
+                Assert.fail();
             }
         } catch (IOException e) {
             System.err.println("Error reading JSON file: " + e.getMessage());
+            Assert.fail();
+
         } catch (Exception e) {
             System.err.println("Request failed: " + e.getMessage());
+            Assert.fail();
+
         }
         return null;
 
