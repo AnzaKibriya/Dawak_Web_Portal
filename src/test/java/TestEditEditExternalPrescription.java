@@ -7,7 +7,7 @@ import Pages.Pages;
 import model.ListAPICall;
 import org.testng.annotations.Test;
 
-public class TestEditExternalPrescription extends BaseClass {
+public class TestEditEditExternalPrescription extends BaseClass {
     @Test(priority = 1)
     public void creatingExternalPrescription() throws InterruptedException {
         test = extent.createTest("Creating External Prescription : Happy Scenario" );

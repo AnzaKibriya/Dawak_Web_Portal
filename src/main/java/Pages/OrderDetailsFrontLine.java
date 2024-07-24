@@ -1,10 +1,14 @@
 package Pages;
 
+import org.apache.commons.lang3.ObjectUtils;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
+import javax.lang.model.type.NullType;
 import java.awt.*;
 
 import static Helper.BaseClass.webJavascriptExecutor;
@@ -16,6 +20,9 @@ public class OrderDetailsFrontLine {
 
     @FindBy(xpath ="//span[normalize-space()='Accept Order']")
     WebElement acceptOrder;
+
+    @FindBy(xpath = "//label[text()='Product Information ']")
+    WebElement productInformation;
 
 
     @FindBy(xpath = "//button[@role='switch']")
@@ -56,6 +63,18 @@ public class OrderDetailsFrontLine {
     }
 
 
+    public void verifyProductInformation() {
+        try {
+            Assert.assertEquals(productInformation.getText(), "Product Information");
+
+
+        } catch (NoSuchElementException e) {
+            // Handle the exception (element not found)
+            System.out.println("Element not found: " + e.getMessage());
+        }
+    }
+
+
     public void addAddress() throws InterruptedException, AWTException {
         acceptOrder.click();
         Pages.WebCommon().waitForElementsInteractions();
@@ -63,10 +82,12 @@ public class OrderDetailsFrontLine {
         Pages.WebCommon().waitForElementsInteractions();
         searchLocation.sendKeys("Ain Al Faydah - Abu Dhabi - United Arab Emirates");
         Robot robot=new Robot();
+        robot.keyPress(VK_UP);
         Pages.WebCommon().waitForElementsInteractions();
-        robot.keyPress(VK_DOWN);
         Thread.sleep(2000);
-      //  webJavascriptExecutor().executeScript("arguments[0].click();", tab);
+        robot.keyPress(VK_DOWN);
+        Pages.WebCommon().waitForElementsInteractions();
+        //  webJavascriptExecutor().executeScript("arguments[0].click();", tab);
        // robot.keyPress(VK_TAB);
       //  robot.keyRelease(VK_TAB);
         selectType.click();

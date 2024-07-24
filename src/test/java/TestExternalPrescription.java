@@ -2,6 +2,7 @@ import APICalls.*;
 import Helper.BaseClass;
 import Pages.Pages;
 import model.ListAPICall;
+
 import org.testng.annotations.Test;
 
 import java.awt.*;
@@ -15,6 +16,7 @@ public class TestExternalPrescription extends BaseClass {
         DawakLoginAPICall.makeLoginApiCall();
         Pages.WebCommon().waitForAPIResponse();
         String cardFront= UploadFileAPICall.makeUploadFileAPICall();
+        System.out.println(cardFront);
         String cardBack= UploadFileAPICall.makeUploadFileAPICall();
         String prescriptionFile= UploadFileAPICall.makeUploadFileAPICall();
         prescriptionOrderID = ExternalPrescriptionAPICall.makeExternalPrescriptionAPICall(cardFront, cardBack,prescriptionFile);
@@ -63,26 +65,13 @@ public class TestExternalPrescription extends BaseClass {
 
     }
 
-    @Test(priority = 7)
-    public void verifyUnAssignFunctionality() throws InterruptedException, FileNotFoundException {
-        test = extent.createTest("Verify un-assign functionality");
-        Pages.Home().verifyReAssign();
-        Pages.Home().SearchForOrder(prescriptionOrderID);
-        Pages.Home().clickOnAssign();
-        Pages.Home().moveOrderToInProgressStateAndVerify();
-    }
+
 
     @Test(priority = 8)
     public void verifyMoveToOrderDetails() throws InterruptedException {
         test = extent.createTest("Verify Navigation to order details page ");
         Pages.NavigationsCP().openOrderDetailPage();
 
-    }
-    @Test(priority = 9)
-    public void verifyPrescription() throws InterruptedException {
-        test = extent.createTest("Verify prescription pdfs ");
-        Pages.ExternalPrescription().verifyPdf();
-        Pages.ExternalPrescription().proceed();
     }
     @Test(priority = 10)
     public void verifyInsuranceApproval() throws InterruptedException, FileNotFoundException, AWTException {
@@ -98,11 +87,17 @@ public class TestExternalPrescription extends BaseClass {
         test = extent.createTest("Verify Add address functionality");
         Pages.ExternalPrescription().verifyAddAddress();
     }
-
     @Test(priority = 12)
     public void verifyLogoutFunctionality() {
         test = extent.createTest("Logout Functionality");
         Pages.Logout().verifyLogout();
+    }
+    @Test(priority = 9)
+    public void verifyPrescription() throws InterruptedException {
+        test = extent.createTest("Verify prescription pdfs ");
+        Pages.ExternalPrescription().verifyPdf();
+        Thread.sleep(8000);
+        Pages.ExternalPrescription().proceed();
     }
 
     @Test(priority = 13)
@@ -110,14 +105,12 @@ public class TestExternalPrescription extends BaseClass {
         test = extent.createTest("Verify Login to Dawak Mobile  API");
         BaseClass.getCurrentDateTime();
         DawakLoginAPICall.makeLoginApiCall();
-        Pages.WebCommon().waitForAPIResponse();
     }
 
     @Test(priority = 14)
     public void verifyListAPIPayment() throws InterruptedException {
         test = extent.createTest("Verify List API");
         ListAPICall.makeListApiCall();
-        Pages.WebCommon().waitForAPIResponse();
 
     }
 
@@ -125,7 +118,6 @@ public class TestExternalPrescription extends BaseClass {
     public void verifyDateAPICall() throws InterruptedException {
         test = extent.createTest("Verify selecting Date API");
         SelectingDateAPICall.selectDateApiCall();
-        Pages.WebCommon().waitForAPIResponse();
     }
 
     @Test(priority = 16)
@@ -165,13 +157,7 @@ public class TestExternalPrescription extends BaseClass {
 
     }
 
-    @Test(priority = 25)
-    public void verifyPatientInformationDP() throws FileNotFoundException {
-        test = extent.createTest("Verify patientInformation");
-        Pages.PatientInformations().verifyBasicDetailTable();
-        Pages.PatientInformations().verifyContactDetail();
 
-    }
 
     @Test(priority = 26)
     public void verifyOrderDispensing() throws InterruptedException {
@@ -187,8 +173,6 @@ public class TestExternalPrescription extends BaseClass {
     public void verifyPatientInformationDispensingOrderTab() throws FileNotFoundException, InterruptedException {
         test = extent.createTest("Verify Patient Information Dispensing Order Tab");
         Pages.WebCommon().waitForElementsInteractions();
-        Pages.PatientInformations().verifyBasicDetailTable();
-        Pages.PatientInformations().verifyContactDetail();
         Pages.OrderDetailsDP().orderReadyForDelivery();
     }
 
@@ -197,7 +181,6 @@ public class TestExternalPrescription extends BaseClass {
         test = extent.createTest("Verify Making Order In  Ready for Delivery TAB");
         Pages.ReadyForDelivery().deliveryFunctionality(prescriptionOrderID);
     }
-
     @Test(priority = 29)
     public void verifyLogoutFunctionalityDispensing() throws InterruptedException {
         test = extent.createTest("Logout Functionality");

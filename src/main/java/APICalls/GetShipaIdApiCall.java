@@ -15,7 +15,7 @@ public class GetShipaIdApiCall {
 
     public static String makeShipaIdApiCall(String AUTH_TOKEN) {
         try {
-            String apiUrl = "https://dawak-apim-uat.azure-api.net/dawak-patient/api/shipa/get-delivery-details?encounterId=" + getDeliveryID();
+            String apiUrl = "https://dawak-apim-training.azure-api.net/dawak-patient/api/shipa/get-delivery-details?encounterId=" + getDeliveryID();
             Request request = new Request.Builder()
                     .url(apiUrl)
                     .get()

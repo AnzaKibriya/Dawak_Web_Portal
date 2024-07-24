@@ -231,6 +231,7 @@ public class TestRefillAppJourneyCancelOrderDespensing extends BaseClass {
         Pages.WebCommon().waitForElementsInteractions();
         Pages.Logout().verifyLogout();
         Pages.WebCommon().waitForElementsInteractions();
+
     }
 
 }

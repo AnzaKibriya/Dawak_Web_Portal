@@ -42,7 +42,6 @@ public class TestAppJourneyCancelOrderDispensing  extends BaseClass {
     @Test(priority = 5)
     public void verifyCPLogin() throws IOException, InterruptedException {
         test = extent.createTest("Login to Central Pharmacist");
-        Pages.LoginCP().invalidCPLogin();
         Pages.LoginCP().CPLogin();
         Pages.LoginCP().verifyEnteringOtp();
 
@@ -88,11 +87,6 @@ public class TestAppJourneyCancelOrderDispensing  extends BaseClass {
         Pages.NavigationsCP().openOrderDetailPage();
 
     }
-
-
-
-
-
     @Test(priority = 13)
     public void verifyInsuranceApproval() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Insurance Approval functionality");
@@ -115,7 +109,6 @@ public class TestAppJourneyCancelOrderDispensing  extends BaseClass {
         DawakLoginAPICall.makeLoginApiCall();
         Pages.WebCommon().waitForAPIResponse();
     }
-
     @Test(priority = 16)
     public void verifyListAPIPayment() throws InterruptedException {
         test = extent.createTest("Verify List API");
@@ -123,7 +116,6 @@ public class TestAppJourneyCancelOrderDispensing  extends BaseClass {
         Pages.WebCommon().waitForAPIResponse();
 
     }
-
     @Test(priority = 17)
     public void verifyDateAPICall() throws InterruptedException {
         test = extent.createTest("Verify selecting Date API");
@@ -142,8 +134,6 @@ public class TestAppJourneyCancelOrderDispensing  extends BaseClass {
         test = extent.createTest("Verify Payment API");
         PaymentAPICall.paymentAPICAll();
     }
-
-
     @Test(priority = 20)
     public void verifyDPLogin() {
         test = extent.createTest("Login to DP Portal");

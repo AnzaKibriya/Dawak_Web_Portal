@@ -16,7 +16,7 @@ import java.io.Reader;
 import static Helper.BaseClass.*;
 
 public class LoginDpApiCall {
-    static String apiUrl = "https://dawak-apim-uat.azure-api.net/dawak-auth/api/auth/v2/web-login";
+    static String apiUrl = "https://dawak-apim-training.azure-api.net/dawak-auth/api/auth/v2/web-login";
     public static void makeLoginApiCall() {
         try{
             MediaType mediaType = MediaType.parse("application/json");

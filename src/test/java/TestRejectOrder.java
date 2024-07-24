@@ -9,8 +9,6 @@ import java.io.FileNotFoundException;
 
 public class TestRejectOrder extends BaseClass {
 
-
-
     @Test(priority = 1)
     public void createANewPrescription() throws InterruptedException {
         test = extent.createTest("create a new prescription");
@@ -53,6 +51,7 @@ public class TestRejectOrder extends BaseClass {
     public void verifyMoveToCompletedTab() throws FileNotFoundException, InterruptedException, AWTException {
         test = extent.createTest("Verify Navigation to Completed Tab page ");
         Pages.CallCentreNavigations().navigateToComplete();
+        Pages.WebCommon().waitForElementsInteractions();
         Pages.HomePageCallCentre().SearchForOrder(prescriptionOrderID);
         Pages.NavigationsCP().openOrderDetailPage();
         Pages.WebCommon().waitForLoaderInvisibility();

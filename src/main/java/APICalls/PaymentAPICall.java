@@ -1,5 +1,6 @@
 package APICalls;
 
+import Helper.BaseClass;
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
 import model.Medications;
@@ -29,7 +30,7 @@ public class PaymentAPICall {
             System.out.println(jsonPayload);
             RequestBody body = RequestBody.create(jsonPayload, mediaType);
             Request request = new Request.Builder()
-                    .url("https://dawak-apim-uat.azure-api.net/dawak-patient/api/dashboard/delivery-payment-confirmation")
+                    .url(BaseClass.propertyFile("config", "url")+"/dawak-patient/api/dashboard/delivery-payment-confirmation")
                     .header("Authorization", "Bearer " + accessTokens)
                     .addHeader("deviceType", "android")
                     .addHeader("devicePlayerId", "1b68739e-d137-40f7-8100-1a854e5c9769")
@@ -75,15 +76,15 @@ public class PaymentAPICall {
             // Example value for MedicationRequestId
             for (Medications medications : result.getMedications()) {
                 if (count == 0) {
-                    medications.setMedicationRequestId(medicationRequestId);
+                  //  medications.setMedicationRequestId(medicationRequestId);
                 }
                 if (count == 1) {
 
-                    medications.setMedicationRequestId(medicationRequestId2);
+                   // medications.setMedicationRequestId(medicationRequestId2);
 
                 }
                 if (count == 2) {
-                    medications.setMedicationRequestId(medicationRequestId3);
+                    //medications.setMedicationRequestId(medicationRequestId3);
                 }
                 count++;
             }

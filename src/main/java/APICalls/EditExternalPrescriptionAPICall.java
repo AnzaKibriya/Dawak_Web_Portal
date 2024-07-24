@@ -1,7 +1,7 @@
 package APICalls;
 
 import com.google.gson.Gson;
-import model.ExternalPrescription;
+import model.EditExternalPrescription;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -47,14 +47,14 @@ public class EditExternalPrescriptionAPICall {
 
     }
 
-    public ExternalPrescription getExternalPrescription(String cardFront, String cardBack, String prescriptionFile) {
+    public EditExternalPrescription getExternalPrescription(String cardFront, String cardBack, String prescriptionFile) {
         try (Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/EditExternalPrescription.json"))) {
             Gson gson = new Gson();
-            ExternalPrescription result = gson.fromJson(reader, ExternalPrescription.class);
+            EditExternalPrescription result = gson.fromJson(reader, EditExternalPrescription.class);
             result.setInsuranceCardBack(cardBack);
             result.setInsuranceCardFront(cardFront);
             result.setPrescriptionFiles(Collections.singletonList(prescriptionFile));
-            result.setPrescriptionId(Integer.parseInt(id));
+           // result.setPrescriptionId(Integer.parseInt(id));
             System.out.println(result);
             return result;
         } catch (IOException e) {

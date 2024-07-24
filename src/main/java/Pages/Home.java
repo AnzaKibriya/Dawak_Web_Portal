@@ -3,6 +3,7 @@ package Pages;
 import Helper.BaseClass;
 import com.aventstack.extentreports.Status;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -72,6 +73,13 @@ public class Home {
     @FindBy(xpath = "//span[normalize-space()='Apply']")
     WebElement apply;
 
+    @FindBy(xpath="//img[@class='mat-mdc-tooltip-trigger high-risk-warn ng-star-inserted']")
+    WebElement icon;
+
+
+    @FindBy(xpath = "//td[text()='Salamtak Dispense Cancellation']")
+    WebElement cancelOrderVerificationText;
+
 
     public Home(WebDriver Driver) {
         driver = Driver;
@@ -86,7 +94,37 @@ public class Home {
         Thread.sleep(3000);
         search.sendKeys(orderid);
         Pages.WebCommon().verifyTaskTable();
+        test.log(Status.PASS, " order searched  successfully ");
 
+
+    }
+
+    public void highlight() throws NullPointerException{
+        Actions actions=new Actions(driver);
+        actions.moveToElement(icon).perform();
+        String displayedText = icon.getText();
+        String actualText="This prescription includes high risk medicines.";
+        if(actualText.equals(displayedText)){
+            System.out.println("Text matches! and it has high risk medicine");
+        } else {
+            System.out.println("Text does not match. Expected: " + displayedText + ", Actual: " + actualText);
+        }
+    }
+
+    public void searchTaskTable(String orderid) throws InterruptedException {
+
+        Thread.sleep(3000);
+        search.sendKeys(orderid);
+        test.log(Status.PASS, "search is successful ");
+
+
+    }
+
+    public void verifyTaskName()
+    {
+      String CancelOrderText= cancelOrderVerificationText.getText();
+      Assert.assertEquals(CancelOrderText,"Salamtak Dispense Cancellation");
+        test.log(Status.PASS, "Task Name verified");
     }
 
     public void clearSearch() {

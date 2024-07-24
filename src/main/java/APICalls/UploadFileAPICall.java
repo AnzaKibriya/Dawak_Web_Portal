@@ -12,8 +12,7 @@ import static Helper.BaseClass.client;
 
 public class UploadFileAPICall {
     static String filePath = Path.of(System.getProperty("user.dir"), "/src/main/resources/dummy.pdf").toString();
-    static String apiUrl = "https://dawak-apim-uat.azure-api.net/dawak-auth/api/user/upload-file";
-
+    static String apiUrl = "https://dawak-apim-training.azure-api.net/dawak-auth/api/user/upload-file";
     public static String makeUploadFileAPICall() {
         File file = new File(filePath);
         RequestBody fileBody = RequestBody.create(file, MediaType.parse("application/pdf"));
