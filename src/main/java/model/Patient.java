@@ -1,9 +1,12 @@
 package model;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Patient {
     @SerializedName("firstName")
     private String firstName;
+
     @SerializedName("middleName")
     private String middleName;
 
@@ -48,6 +51,32 @@ public class Patient {
 
     @SerializedName("address")
     private Address address;
+
+    @SerializedName("PHID")
+    private String PHID;
+    @SerializedName("PatientIdentifiers")
+    private List<PatientIdentifiers> PatientIdentifiers;
+
+    public String getPHID() {
+        return PHID;
+    }
+
+    public void setPHID(String PHID) {
+        this.PHID = PHID;
+    }
+
+
+
+    public Address getPharmacist() {
+        return pharmacist;
+    }
+
+    public void setPharmacist(Address pharmacist) {
+        this.pharmacist = pharmacist;
+    }
+
+    @SerializedName("pharmacist")
+    private Address pharmacist;
 
 
     public String getMiddleName() {
@@ -180,6 +209,14 @@ public class Patient {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public List<model.PatientIdentifiers> getPatientIdentifiers() {
+        return PatientIdentifiers;
+    }
+
+    public void setPatientIdentifiers(List<model.PatientIdentifiers> patientIdentifiers) {
+        PatientIdentifiers = patientIdentifiers;
     }
 }
 

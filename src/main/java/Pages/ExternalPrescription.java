@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import javax.xml.xpath.XPath;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -36,6 +37,12 @@ public class ExternalPrescription {
 
     @FindBy(xpath = "//span[normalize-space()='Add Medication']")
     WebElement addAddressButton;
+
+    @FindBy(xpath ="//i[@class='das das-total-tasks-icon']")
+    WebElement edit;
+
+    @FindBy(xpath ="//button[@class='save-btn ng-star-inserted']")
+    WebElement saveButtonAddaddress;
 
     @FindBy(xpath = "//input[@placeholder='Enter prescriber name']")
     WebElement prescriberName;
@@ -76,7 +83,7 @@ public class ExternalPrescription {
     @FindBy(xpath = "(//app-add-medication-info//mat-form-field)[last()]/div[contains(@class, 'mdc-text-field--filled')]")
     WebElement dosageInstruction;
 
-    @FindBy(xpath ="//input[@id='mat-mdc-checkbox-4-input']")
+    @FindBy(xpath ="//input[@id='mat-mdc-checkbox-1-input']")
     WebElement prescriptionCheckbox;
 
     @FindBy(xpath = "//span[normalize-space()='Re-Submit Order']")
@@ -108,7 +115,7 @@ public class ExternalPrescription {
     @FindBy(xpath = "//input[@placeholder='Number of medicines (In this file/ Image)*']")
     WebElement medicineNumber;
 
-    @FindBy(xpath = "//i[@class='das das-save']")
+    @FindBy(xpath = "//button[text()='Save']")
     WebElement saveButton;
 
     public ExternalPrescription(WebDriver Driver) {
@@ -119,6 +126,7 @@ public class ExternalPrescription {
         Pdf1.click();
         webJavascriptExecutor().executeScript("arguments[0].click();", verifyButton);
         Pages.WebCommon().waitForLoaderInvisibility();
+        Pages.WebCommon().waitForElementsInteractions();
         cardBackPdf.click();
         webJavascriptExecutor().executeScript("arguments[0].click();", verifyButton);
         Pages.WebCommon().waitForLoaderInvisibility();
@@ -128,6 +136,7 @@ public class ExternalPrescription {
         Pages.WebCommon().waitForLoaderInvisibility();
         prescriptionPdf.click();
         webJavascriptExecutor().executeScript("arguments[0].click();", verifyButton);
+        webJavascriptExecutor().executeScript("arguments[0].click();", saveButton);
         Pages.WebCommon().waitForLoaderInvisibility();
         Pages.WebCommon().waitForElementsInteractions();
         test.log(Status.PASS, "All pdfs verified successfully");
@@ -164,6 +173,14 @@ public class ExternalPrescription {
     public void verifyAddAddress() throws AWTException, InterruptedException {
         Pages.WebCommon().waitForLoaderInvisibility();
         Actions action =  new Actions(driver);
+
+        edit.click();
+        Pages.WebCommon().waitForElementsInteractions();
+        saveButtonAddaddress.click();
+        Pages.WebCommon().waitForLoaderInvisibility();
+        Pages.WebCommon().waitForElementsInteractions();
+
+
 
         addAddressButton.click();
         test.log(Status.PASS, "clicked on Add address button  successfully");

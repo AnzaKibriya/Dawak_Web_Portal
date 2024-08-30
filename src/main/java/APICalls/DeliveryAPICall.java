@@ -1,30 +1,36 @@
 package APICalls;
 
+import Helper.BaseClass;
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
 import model.Delivery;
+import model.Medications;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
 
 import static Helper.BaseClass.*;
 
 public class DeliveryAPICall {
 
-    private static final String API_URL = "https://dawak-apim-uat.azure-api.net/dawak-patient/api/dashboard/v2/patient-accept-reject-order";
+    private static final String API_URL = BaseClass.propertyFile("config", "url")+"/dawak-patient/api/dashboard/place-order";
 
     public static String deliveryApiCall() {
         try {
+            //Delivery del=new Delivery();
             MediaType mediaType = MediaType.parse("application/json");
             Gson gson = new Gson();
             DeliveryAPICall deliveryApiCall = new DeliveryAPICall();
-            String jsonPayload = gson.toJson(deliveryApiCall.getDelivery(taskId, id));
+            String jsonPayload = gson.toJson(deliveryApiCall.getDelivery());
             System.out.println(jsonPayload);
             RequestBody body = RequestBody.create(jsonPayload, mediaType);
             Request request = new Request.Builder()
@@ -57,13 +63,15 @@ public class DeliveryAPICall {
 
     }
 
-    public Delivery getDelivery(String taskId, String id) {
+    public Delivery getDelivery() {
         try (Reader reader = new InputStreamReader(this.getClass()
                 .getResourceAsStream("/Delivery.json"))) {
             Gson gson = new Gson();
             Delivery result = gson.fromJson(reader, Delivery.class);
-            result.setTaskId(taskId);
-            result.setId(id);
+            result.addMedication(medicationRequestId);
+            result.addMedication(medicationRequestId2);
+            result.addMedication(medicationRequestId3);
+            result.setPrescriptionId(processInstanceId);
             return result;
         } catch (IOException e) {
             e.printStackTrace();

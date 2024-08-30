@@ -8,8 +8,12 @@ public class Medication {
     @SerializedName("ndcCode")
     private String ndcCode;
 
+    @SerializedName("stopDate")
+    private String stopDate;
+
     @SerializedName("drugDescription")
     private String drugDescription;
+
     public String getPhysicianOrderId() {
         return physicianOrderId;
     }
@@ -32,5 +36,13 @@ public class Medication {
 
     public void setDrugDescription(String drugDescription) {
         this.drugDescription = drugDescription;
+    }
+
+    public String getStopDate() {
+        return stopDate;
+    }
+
+    public void setStopDate(String stopDate) {
+        this.stopDate = stopDate;
     }
 }

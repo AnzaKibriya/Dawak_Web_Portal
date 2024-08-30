@@ -19,6 +19,8 @@ public class NavigationsCP {
     @FindBy(xpath = "//img[@mattooltip='Details']")
     WebElement actionButton;
 
+
+
     @FindBy(xpath = "//span[text()=' To-do ']")
     WebElement toDo;
 
@@ -49,8 +51,6 @@ public class NavigationsCP {
 
 
     }
-
-
     public void openOrderDetailPage() throws InterruptedException {
         actionButton.click();
         test.log(Status.PASS, "order details page opened successfully");

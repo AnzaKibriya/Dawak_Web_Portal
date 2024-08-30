@@ -1,9 +1,14 @@
 package APICalls;
 
+import Helper.BaseClass;
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import okhttp3.MediaType;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,14 +26,21 @@ public class DashboardPrescriptionAPICall {
         try {
             MediaType mediaType = MediaType.parse("application/json");
             Gson gson = new Gson();
+            JsonObject emptyJson = new JsonObject();
+            // Convert the empty JSON object to a string
+            String jsonBody = gson.toJson(emptyJson);
+            System.out.println(processInstanceId);
+            // Create the request body
+            RequestBody body = RequestBody.create(jsonBody, mediaType);
             Request request = new Request.Builder()
-                    .url("https://dawak-apim-uat.azure-api.net/dawak-patient/api/dashboard/prescriptions?encounterId="+id)
+                    .url(BaseClass.propertyFile("config", "url")+"/dawak-patient/api/dashboard/get-prescriptions?prescriptionId="+processInstanceId)
                     .header("Authorization", "Bearer " + accessTokens)
                     .addHeader("deviceType", "android")
                     .addHeader("devicePlayerId", "1b68739e-d137-40f7-8100-1a854e5c9769")
                     .addHeader("Content-Type", "application/json")
                     .addHeader("Accept", "application/json")
                     .addHeader("accept-language", "en")
+                    .post(body)
                     .build();
 
             // Execute the request
@@ -40,11 +52,14 @@ public class DashboardPrescriptionAPICall {
                 System.out.println(jsonResponse);
                 test.log(Status.PASS, "Dashboard prescription API called successfully");
                 try {
+
+
                     // Parse the JSON response
                     JSONArray medications = jsonResponse.getJSONObject("data")
                             .getJSONArray("result")
                             .getJSONObject(0)
                             .getJSONArray("medications");
+
 
                     // Extract and print medicationRequestId and copay amount
                     for (int i = 0; i < medications.length(); i++) {
@@ -70,10 +85,10 @@ public class DashboardPrescriptionAPICall {
 
 
                         }
-                        int copay = medication.getInt("copay");
+                        //int copay = medication.getInt("copay");
 
                         System.out.println("Medication Request ID: " + medicationRequestId);
-                        System.out.println("Copay Amount: " + copay);
+                        //System.out.println("Copay Amount: " + copay);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

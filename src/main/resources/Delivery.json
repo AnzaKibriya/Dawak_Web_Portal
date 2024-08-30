@@ -1,7 +1,10 @@
 {
-  "addressId": "3635",
-  "id": "",
-  "isAccepted": "true",
-  "patientId": "3055",
-  "taskId": ""
+  "addressId": 3635,
+  "medications": [
+
+
+    ],
+   "patientId": 35803,
+   "prescriptionId":0
+
 }

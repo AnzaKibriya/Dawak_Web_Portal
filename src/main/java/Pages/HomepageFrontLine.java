@@ -13,7 +13,7 @@ public class HomepageFrontLine {
 
     WebDriver driver;
 
-    @FindBy(xpath = "//input[@placeholder='Prescription#']")
+    @FindBy(xpath = "//input[@placeholder='Encounter#']")
     WebElement prescription;
 
     @FindBy(xpath = "//span[text()=' Search ']")

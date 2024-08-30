@@ -2,35 +2,45 @@ package model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Delivery {
+import java.util.ArrayList;
+import java.util.List;
 
+public class Delivery {
     @SerializedName("addressId")
     private int addressId;
 
-    @SerializedName("id")
-    private String id;
-
-    @SerializedName("isAccepted")
-    private boolean isAccepted;
+    @SerializedName("medications")
+    private List<Integer> medications;
 
     @SerializedName("patientId")
     private int patientId;
 
-    @SerializedName("taskId")
-    private String taskId;
+    @SerializedName("prescriptionId")
+    private int prescriptionId;
 
-    public String getId() {return id; }
-
-    public void setId(String id) {
-        this.id = id;
+    public Delivery() {
+        this.medications = new ArrayList<>();
     }
 
-    public boolean isAccepted() {
-        return isAccepted;
+    // Getters and Setters
+    public int getAddressId() {
+        return addressId;
     }
 
-    public void setAccepted(boolean accepted) {
-        isAccepted = accepted;
+    public void setAddressId(int addressId) {
+        this.addressId = addressId;
+    }
+
+    public List<Integer> getMedications() {
+        return medications;
+    }
+
+    public void setMedications(List<Integer> medications) {
+        this.medications = medications;
+    }
+
+    public void addMedication(int medication) {
+        this.medications.add(medication);
     }
 
     public int getPatientId() {
@@ -41,19 +51,12 @@ public class Delivery {
         this.patientId = patientId;
     }
 
-    public String getTaskId() {
-        return taskId;
+    public int getPrescriptionId() {
+        return prescriptionId;
     }
 
-    public void setTaskId(String taskid) {
-        this.taskId = taskid;
-    }
-
-    public int getAddressId() {
-        return addressId;
-    }
-    public void setAddressId(int addressId) {
-        this.addressId = addressId;
+    public void setPrescriptionId(int prescriptionId) {
+        this.prescriptionId = prescriptionId;
     }
 }
 

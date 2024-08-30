@@ -1,5 +1,6 @@
 package APICalls;
 
+import Helper.BaseClass;
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
 import model.Medications;
@@ -29,7 +30,7 @@ public class PaymentAPICall {
             System.out.println(jsonPayload);
             RequestBody body = RequestBody.create(jsonPayload, mediaType);
             Request request = new Request.Builder()
-                    .url("https://dawak-apim-uat.azure-api.net/dawak-patient/api/dashboard/delivery-payment-confirmation")
+                    .url(BaseClass.propertyFile("config", "url")+"/dawak-patient/api/dashboard/v2/delivery-payment-confirmation")
                     .header("Authorization", "Bearer " + accessTokens)
                     .addHeader("deviceType", "android")
                     .addHeader("devicePlayerId", "1b68739e-d137-40f7-8100-1a854e5c9769")
@@ -66,11 +67,12 @@ public class PaymentAPICall {
             Gson gson = new Gson();
             Payment result = gson.fromJson(reader, Payment.class);
           //  result.setId(id);
-            int encounterid=Integer.parseInt(id);
-            result.setId(encounterid);
-            result.setDeliveryDate(paymentDate);
-            int taskIdInteger=Integer.parseInt(taskId);
-            result.setTaskId(taskIdInteger);
+           // int encounterid=Integer.parseInt();
+            int Orderid=Integer.parseInt(OrderId);
+            result.setId(Orderid);
+          //  System.out.println(taskId);
+           // int Orderid=Integer.parseInt();
+            result.setTaskId(taskids);
             int count=0;
             // Example value for MedicationRequestId
             for (Medications medications : result.getMedications()) {

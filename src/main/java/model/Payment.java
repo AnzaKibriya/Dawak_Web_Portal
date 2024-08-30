@@ -16,28 +16,12 @@ public class Payment {
         this.addressId = addressId;
     }
 
-    public String getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public void setDeliveryDate(String deliveryDate) {
-        this.deliveryDate = deliveryDate;
-    }
-
     public String getDeliveryFee() {
         return deliveryFee;
     }
 
     public void setDeliveryFee(String deliveryFee) {
         this.deliveryFee = deliveryFee;
-    }
-
-    public String getDeliveryTime() {
-        return deliveryTime;
-    }
-
-    public void setDeliveryTime(String deliveryTime) {
-        this.deliveryTime = deliveryTime;
     }
 
     public int getId() {
@@ -72,11 +56,11 @@ public class Payment {
         this.copay = copay;
     }
 
-    public String getPatientId() {
+    public int getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(String patientId) {
+    public void setPatientId(int patientId) {
         this.patientId = patientId;
     }
 
@@ -104,26 +88,11 @@ public class Payment {
         this.totalAmount = totalAmount;
     }
 
-    public String getWarehouseId() {
-        return warehouseId;
-    }
-
-    public void setWarehouseId(String warehouseId) {
-        this.warehouseId = warehouseId;
-    }
-
     @SerializedName("addressId")
     private int addressId;
 
-    @SerializedName("deliveryDate")
-    private String deliveryDate;
-
     @SerializedName("deliveryFee")
     private String deliveryFee;
-
-
-    @SerializedName("deliveryTime")
-    private String deliveryTime;
 
     @SerializedName("id")
     private int id;
@@ -137,7 +106,7 @@ public class Payment {
     private String copay;
 
     @SerializedName("patientId")
-    private String patientId;
+    private int patientId;
 
     @SerializedName("paymentMode")
     private int paymentMode;
@@ -149,8 +118,7 @@ public class Payment {
     @SerializedName("totalAmount")
     private String totalAmount;
 
-    @SerializedName("warehouseId")
-    private String warehouseId;
+
 
 public Payment()
 {
@@ -159,9 +127,6 @@ public Payment()
     medications.add(new Medications());
 
 }
-
-
-
 
 
 }

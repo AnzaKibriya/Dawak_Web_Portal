@@ -1,8 +1,6 @@
 {
   "addressId": 3635,
-  "deliveryDate": "",
   "deliveryFee": 0.0,
-  "deliveryTime": "22:30:00",
   "id":0,
   "isConfirmed": true,
   "medications": [
@@ -19,9 +17,8 @@
       "medicationRequestId":0
     }
   ],
-  "patientId": 3055,
+  "patientId": 35803,
   "paymentMode": 1,
   "taskId": 0,
-  "totalAmount": "300.0",
-  "warehouseId": "2"
+  "totalAmount": "300.0"
 }

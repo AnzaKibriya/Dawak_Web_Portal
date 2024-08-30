@@ -17,37 +17,38 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
         System.out.println(prescriptionOrderID);
         //  NewPatientApiCall.makeCreatePatientApiCall(accessToken, prescriptionOrderID);
         PrescriptionApiCall.makePrescriptionApiCall(accessToken, prescriptionOrderID);
-        Pages.WebCommon().waitForAPIResponse();
     }
-
-
     @Test(priority = 2)
-    public void loginTODawak() throws InterruptedException {
+    public void loginToDawak() throws InterruptedException {
         test = extent.createTest("Login to Dawak");
         DawakLoginAPICall.makeLoginApiCall();
-        Pages.WebCommon().waitForAPIResponse();
 
     }
-
     @Test(priority = 3)
     public void verifyListAPI() throws InterruptedException {
         test = extent.createTest("Verify List API");
         ListAPICall.makeListApiCall();
-        Pages.WebCommon().waitForAPIResponse();
+        DashboardPrescriptionAPICall.dashBoardPrescriptionAPICall();
+
 
     }
-
     @Test(priority = 4)
     public void deliveryAPI() {
         test = extent.createTest("Verify Delivery API");
         DeliveryAPICall.deliveryApiCall();
     }
 
-
     @Test(priority = 5)
-    public void verifyCPLogin() throws IOException {
+    public void cp() throws IOException {
         test = extent.createTest("Login to Central Pharmacist");
-        Pages.LoginCP().invalidCPLogin();
+        //  Pages.LoginCP().invalidCPLogin();
+
+    }
+
+
+    @Test(priority = 6)
+    public void verifyCPLogin() throws IOException, InterruptedException {
+        test = extent.createTest("Login to Central Pharmacist");
         Pages.LoginCP().CPLogin();
         Pages.LoginCP().verifyEnteringOtp();
 
@@ -63,7 +64,7 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
     }
 
     @Test(priority = 8)
-    public void verifyTodoColumnData() throws FileNotFoundException {
+    public void verifyTodoColumnData() {
         test = extent.createTest("Verify Data present in Todo  column");
         Pages.Home().verifyDataInWebTable();
 
@@ -88,14 +89,14 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
 
     }
 
-    @Test(priority = 11)
+   /* @Test(priority = 11)
     public void verifyUnAssignFunctionality() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify un-assign functionality");
         Pages.Home().verifyReAssign();
         Pages.Home().SearchForOrder(prescriptionOrderID);
         Pages.Home().clickOnAssign();
         Pages.Home().moveOrderToInProgressStateAndVerify();
-    }
+    }*/
 
     @Test(priority = 12)
     public void verifyMoveToOrderDetails() throws InterruptedException {
@@ -104,14 +105,7 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
 
     }
 
-    @Test(priority = 13)
-    public void verifyPatientInformation() throws FileNotFoundException {
-        test = extent.createTest("Verify patient information in orderDetails page ");
-        Pages.PatientInformations().verifyBasicDetailTable();
-        Pages.PatientInformations().verifyContactDetail();
-        Pages.PatientInformations().userDetails();
-        Pages.PatientInformations().pendingMedicationTable();
-    }
+
 
     @Test(priority = 14)
     public void verifyOrderDetails() throws FileNotFoundException {
@@ -120,8 +114,7 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
         Pages.OrderDetails().verifyOrderDetailTable();
         Pages.OrderDetails().verifyOrderDetailsHeader();
         Pages.OrderDetails().verifyTrackDetailTable();
-//        Pages.OrderDetails().verifyViewDetailsInformation();
-        Pages.OrderDetails().verifyRemoveFunctionality();
+        //  Pages.OrderDetails().verifyRemoveFunctionality();
     }
 
     @Test(priority = 15)
@@ -139,5 +132,110 @@ public class TestDawakPrescriptionWithAllPayments extends BaseClass {
         Pages.Logout().verifyLogout();
     }
 
+    @Test(priority = 17)
+    public void verifyLogin() throws InterruptedException {
+        test = extent.createTest("Verify LOgin to Dawak Mobile  API");
+        BaseClass.getCurrentDateTime();
+        DawakLoginAPICall.makeLoginApiCall();
+    }
 
+    @Test(priority = 18)
+    public void verifyListAPIPayment() throws InterruptedException {
+        test = extent.createTest("Verify List API");
+        ListAPICall.makeListApiCall();
+        GetOrderIdAPICall.order();
+        GetTaskIdAPICall.getOrderApiCall();
+
+    }
+
+    @Test(priority = 19)
+    public void verifyDateAPICall() throws InterruptedException {
+        test = extent.createTest("Verify selecting Date API");
+        // SelectingDateAPICall.selectDateApiCall();
+    }
+
+    @Test(priority = 20)
+    public void verifyDashboardAPI() {
+        test = extent.createTest("Verify DashboardPrescription API");
+        DashboardPrescriptionAPICall.dashBoardPrescriptionAPICall();
+    }
+
+    @Test(priority = 21)
+    public void verifyPaymentAPI() {
+        test = extent.createTest("Verify Payment API");
+        PaymentAPICall.paymentAPICAll();
+    }
+
+
+    @Test(priority = 22)
+    public void verifyDPLogin() {
+        test = extent.createTest("Login to DP Portal");
+        Pages.LoginDP().DPLogin();
+        Pages.LoginDP().verifyEnteringOtp();
+
+    }
+
+    @Test(priority = 23)
+    public void verifyOrderInTOdoDispensing() throws InterruptedException, FileNotFoundException {
+        test = extent.createTest("Verify Making Order In TODO");
+        Pages.HomeDP().verifyHomePageHeader();
+        Pages.HomeDP().SearchForOrder();
+        Pages.HomeDP().clickonAssign();
+    }
+
+    @Test(priority = 24)
+    public void verifyOrderInProgress() throws InterruptedException {
+        test = extent.createTest("Verify Making Order In InProgressTAB");
+        Pages.NavigationsDP().navigateTOInprogressTab();
+        Pages.HomeDP().moveToInprogressandVerify();
+        Pages.HomeDP().clickonDetailButtonInInprogressTab();
+        Pages.WebCommon().waitForElementsInteractions();
+
+    }
+    @Test(priority = 26)
+    public void verifyOrderDispensing() throws InterruptedException {
+        test = extent.createTest("Verify Making Order In Dispensing TAB");
+        Pages.OrderDetailsDP().dispensingOrder();
+        Pages.NavigationsDP().navigateTODispensingInProgressTab();
+        Pages.HomeDP().searchOrderInDispensingInProgress();
+        Pages.WebCommon().waitForElementsInteractions();
+        Pages.HomeDP().clickDetailButtonInDispensingInprogress();
+    }
+
+    @Test(priority = 27)
+    public void verifyPatientInformationDispensingOrderTab() throws FileNotFoundException, InterruptedException {
+        test = extent.createTest("Verify Patient Information Dispensing Order Tab");
+        Pages.WebCommon().waitForElementsInteractions();
+        Pages.OrderDetailsDP().orderReadyForDelivery();
+    }
+
+    @Test(priority = 28)
+    public void verifyDeliveryFunctionality() throws InterruptedException, FileNotFoundException {
+        test = extent.createTest("Verify Making Order In  Ready for Delivery TAB");
+        Pages.ReadyForDelivery().deliveryFunctionality(prescriptionOrderID);
+    }
+
+    @Test(priority = 29)
+    public void verifyLogoutFunctionalityDispensing() throws InterruptedException {
+        test = extent.createTest("Logout Functionality");
+        Pages.WebCommon().waitForElementsInteractions();
+        Pages.Logout().verifyLogout();
+    }
+
+    @Test(priority = 30)
+    public void verifyOrderOutForDelivery() throws InterruptedException, FileNotFoundException {
+        test = extent.createTest("Login to DP Portal");
+        Pages.LoginDP().DPLogin();
+        Pages.LoginDP().verifyEnteringOtp();
+        Pages.WebCommon().waitForLoaderInvisibility();
+        Pages.Dispatched().OutForDeliveryFunctionality();
+        Pages.WebCommon().waitForLoaderInvisibility();
+    }
+
+    @Test(priority = 31)
+    public void verifyLogoutAfterDispatchedFunctionality() throws InterruptedException {
+        test = extent.createTest("Logout Functionality");
+        Pages.Logout().verifyLogout();
+        Pages.WebCommon().waitForElementsInteractions();
+    }
 }

@@ -17,7 +17,7 @@ import static Helper.BaseClass.client;
 import static Helper.BaseClass.test;
 
 public class PutOTPApiCall {
-    static String apiUrl = "https://dawak-apim-uat.azure-api.net/dawak-auth/api/auth/verifyOtp";
+    static String apiUrl = "https://dawak-apim-training.azure-api.net/dawak-auth/api/auth/verifyOtp";
     static String dpAccessToken;
 
     public static String OTPApiCall() {
@@ -31,6 +31,7 @@ public class PutOTPApiCall {
                     .url(apiUrl)
                     .post(RequestBody.create(jsonPayload, MediaType.parse("application/json")))
                     .addHeader("Content-Type", "application/json")
+                    //.addHeader("recaptcha-token","12345")
                     .build();
             try (Response response = client.newCall(request).execute()) {
                 if (response.isSuccessful()) {

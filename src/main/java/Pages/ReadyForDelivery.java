@@ -15,6 +15,9 @@ public class ReadyForDelivery {
     @FindBy(xpath = "//span[text()=' Ready for Delivery ']")
     WebElement readyDelivery;
 
+    @FindBy(xpath = "//button[text()=' Yes']")
+    WebElement yes;
+
     @FindBy(xpath = "//button[@aria-label='Yes']")
     WebElement yesButton;
     @FindBy(xpath = "//i[@mattooltip='Detail']")
@@ -43,6 +46,28 @@ public class ReadyForDelivery {
         String shipaOrderNum = GetShipaIdApiCall.makeShipaIdApiCall(dpAccessToken);
         ShipaInitiateEventApiCall.makeShipaInitiateEventApiCall(dpAccessToken, shipaOrderNum, "initiated");
         ShipaInitiateEventApiCall.makeShipaInitiateEventApiCall(dpAccessToken, shipaOrderNum, "completed");
+    }
+
+    public void deliveryFunctionalityFailed(String ID) throws InterruptedException, FileNotFoundException {
+        webJavascriptExecutor().executeScript("arguments[0].click();", readyDelivery);
+        Pages.WebCommon().waitForLoaderInvisibility();//waiting for loader
+        Pages.HomeDP().SearchForOrder();// searching for sepecific order
+        Pages.WebCommon().waitForLoaderInvisibility(); //waiting for loader
+        details.click();//clicking on detailed button
+        String getUrl = driver.getCurrentUrl();//getting current url
+        String[] tokens = getUrl.split("/");//
+        System.out.println(tokens[tokens.length-3]);
+        GetShipaIdApiCall.setDeliveryID(tokens[tokens.length-3]); //getting shipa id from url
+        LoginDpApiCall.makeLoginApiCall();
+        CreateOtpApiCall.createOtpApiCall();
+        String dpAccessToken = PutOTPApiCall.OTPApiCall();
+        String shipaOrderNum = GetShipaIdApiCall.makeShipaIdApiCall(dpAccessToken);
+        ShipaInitiateEventApiCall.makeShipaInitiateEventApiCall(dpAccessToken, shipaOrderNum, "initiated");
+        ShipaInitiateEventApiCall.makeShipaInitiateEventApiCall(dpAccessToken, shipaOrderNum, "failed");
 
     }
+
+
+
+
 }

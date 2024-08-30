@@ -64,16 +64,19 @@
       {
         "physicianOrderId": "1402202612",
         "ndcCode": "99991-0098-32",
+        "stopDate": "30/08/2024 10:50:10",
         "drugDescription": "Montelukast chewable 5mg Tablet"
       },
       {
         "physicianOrderId": "1402202713",
         "ndcCode": "10003-0000-30",
+        "stopDate": "30/08/2024 10:50:10",
         "drugDescription": "metFormin 500mg Tablet"
       },
       {
         "physicianOrderId": "1402702713",
         "ndcCode": "99999-0000-33",
+        "stopDate": "30/08/2024 10:50:10",
         "drugDescription": "Enalapril 5mg Tablet"
       }
     ]

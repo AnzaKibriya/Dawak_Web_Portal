@@ -1,0 +1,53 @@
+<suite name="Dawak  App Scenario">
+    <test name="Dawak cancel Order scenario">
+        <classes>
+            <class name="TestCancelOrder"/>
+        </classes>
+    </test>
+    <test name="Dawak cancel Order Add Patient scenario">
+        <classes>
+            <class name="TestCancelOrderAddPatient"/>
+        </classes>
+    </test>
+    <test name="Dawak cancel Order Before Payment scenario">
+        <classes>
+            <class name="TestCancelOrderBeforePaymentNonApp"/>
+        </classes>
+    </test>
+    <test name="Dawak cancel Order Central Pharmacist scenario">
+        <classes>
+            <class name="TestCancelOrderCentralPharmacist"/>
+        </classes>
+    </test>
+    <test name="Dawak cancel Order External Prescription scenario">
+        <classes>
+            <class name="TestCancelOrderExternalPrescription"/>
+        </classes>
+    </test>
+    <test name="Dawak cancel Order New Prescription scenario">
+        <classes>
+            <class name="TestCancelOrderNewPrescription"/>
+        </classes>
+    </test>
+    <test name="Dawak cancel Order Reschedule scenario">
+        <classes>
+            <class name="TestCancelRescheduleNewPrescription"/>
+        </classes
+        >
+    </test>
+    <test name="Dawak Reject Order scenario">
+        <classes>
+            <class name="TestRejectOrder"/>
+        </classes>
+    </test>
+    <test name="Dawak Reject Order scenario">
+        <classes>
+            <class name="TestReschedule"/>
+        </classes>
+    </test>
+    <test name="Dawak Capture Patient Address scenario">
+        <classes>
+            <class name="TestCapurePatientAddress"/>
+        </classes>
+    </test>
+</suite>
