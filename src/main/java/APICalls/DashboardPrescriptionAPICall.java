@@ -1,5 +1,6 @@
 package APICalls;
 
+import Helper.BaseClass;
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
 import okhttp3.MediaType;
@@ -22,7 +23,7 @@ public class DashboardPrescriptionAPICall {
             MediaType mediaType = MediaType.parse("application/json");
             Gson gson = new Gson();
             Request request = new Request.Builder()
-                    .url("https://dawak-apim-uat.azure-api.net/dawak-patient/api/dashboard/prescriptions?encounterId="+id)
+                    .url(BaseClass.propertyFile("config", "url")+"/dawak-patient/api/dashboard/prescriptions?encounterId="+id)
                     .header("Authorization", "Bearer " + accessTokens)
                     .addHeader("deviceType", "android")
                     .addHeader("devicePlayerId", "1b68739e-d137-40f7-8100-1a854e5c9769")

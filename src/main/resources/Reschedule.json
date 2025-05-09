@@ -1,0 +1,18 @@
+{
+"encounterId":0,
+"isBrandChanged": false,
+
+"medications": [
+{
+
+"isOTCProduct":false,
+"isRemoved":true,
+"id":0,
+"newQuantity":1,
+"previousQuantity":1
+}
+],
+"taskId":0
+}
+
+

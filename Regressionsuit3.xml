@@ -1,0 +1,27 @@
+<suite name="Dawak  App Scenario">
+    <test name="Dawak Facility Dashboard Admin  scenario">
+        <classes>
+            <class name="TestFacilityDashboardAdmin"/>
+        </classes>
+    </test>
+    <test name="Dawak Facility Dashboard Dispensing  scenario">
+        <classes>
+            <class name="TestFacilityDashboardDespensing"/>
+        </classes>
+    </test>
+    <test name="Dawak FrontLine OTC Removed  scenario">
+        <classes>
+            <class name="TestFrontLineOTCRemoved"/>
+        </classes>
+    </test>
+    <test name="Dawak HighRisk Medicine scenario">
+        <classes>
+            <class name="TestHighRiskMedicine"/>
+        </classes>
+    </test>
+    <test name="Dawak Non App OTC scenario">
+        <classes>
+            <class name="TestNonAppOTC"/>
+        </classes>
+    </test>
+</suite>

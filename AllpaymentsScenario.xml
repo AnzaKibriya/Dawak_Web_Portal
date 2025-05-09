@@ -1,17 +1,17 @@
-<suite name="Dawak  Payments Scenario">
-    <test name="Dawak NoPay Scenario">
+<suite name="Dawak  App Scenario">
+    <test name="Dawak Cancel order Dispensing scenario">
         <classes>
-            <class name="TestDawakPrescriptionWithNoPay"/>
+            <class name="TestButtonAfterDeliveryFail"/>
         </classes>
     </test>
-    <test name="Dawak CoPay Scenario">
+    <test name="Dawak Cancel Order scenario">
         <classes>
-            <class name="TestDawakPrescriptionWithCoPay"/>
+            <class name="TestButtonsCallCentreAfterPayment"/>
         </classes>
     </test>
-    <test name="Dawak selfPay Scenario">
+    <test name="Dawak Buttons scenario">
         <classes>
-            <class name="TestDawakPrescriptionWithSelfPay"/>
+            <class name="TestButtonsInCallCentre"/>
         </classes>
     </test>
 </suite>

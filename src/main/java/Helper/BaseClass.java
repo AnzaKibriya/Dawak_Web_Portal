@@ -10,6 +10,8 @@ import com.google.common.io.Files;
 import okhttp3.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
@@ -23,6 +25,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
 
@@ -55,8 +58,13 @@ public class BaseClass {
 
     public static DateTimeFormatter DateFormatpayment;
 
+   public static String generatedEID ;
 
-    public static int medicationRequestId;
+    public static String mobileNumber;
+
+   public static int patientId;
+
+   public static int medicationRequestId;
 
     public static int medicationRequestId2;
 
@@ -69,7 +77,6 @@ public class BaseClass {
     public static int ndcCodecounter=0;
 
     public static int drugDescriptionCounter=0;
-
 
     public static String propertyFile(String PropFileName, String stringName) {
         try {
@@ -100,7 +107,7 @@ public class BaseClass {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().window().maximize();
         loginWindow = driver.getWindowHandle();
-        driver.get("https://dawakportaluat.z1.web.core.windows.net/#/auth/login");
+        driver.get("https://dawakportaltraining.z1.web.core.windows.net/#/auth/login");
         ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter("target/Dawak.html");
         extent.attachReporter(extentSparkReporter);
     }
@@ -111,7 +118,8 @@ public class BaseClass {
         if (result.getStatus() == ITestResult.FAILURE) {
             test.log(Status.FAIL, MarkupHelper.createLabel(result.getName() + "Test case failed", ExtentColor.RED));
             test.fail(result.getThrowable());
-            String destination = screenshot("Failed Scenario Screenshot");
+            String timestamp = new SimpleDateFormat("yyyyMMdd-HHmmss").format(new Date());
+            String destination = screenshot("Failed Scenario Screenshot"+timestamp);
             test.fail(result.getThrowable()).addScreenCaptureFromPath(destination);
         } else if (result.getStatus() == ITestResult.SUCCESS) {
             test.log(Status.PASS, MarkupHelper.createLabel(result.getName() + "Test case passed", ExtentColor.GREEN));

@@ -1,0 +1,52 @@
+<suite name="Dawak  App Scenario">
+    <test name="Dawak Add Patient scenario">
+        <classes>
+            <class name="TestAddPatient"/>
+        </classes>
+    </test>
+    <test name="Dawak App Journey Cancel Order scenario">
+        <classes>
+            <class name="TestAppJourneyCancelOrderDispensing"/>
+        </classes>
+    </test>
+    <test name="Dawak App Journey OTC  scenario">
+        <classes>
+            <class name="TestAppJourneyOTC"/>
+        </classes>
+    </test>
+    <test name="Dawak Assign User Central Pharmacist  scenario">
+        <classes>
+            <class name="TestAssignUserCentralPharmacist"/>
+        </classes>
+    </test>
+    <test name="Dawak Assign User Dispensing Pharmacist scenario">
+        <classes>
+            <class name="TestAssignUserDispensingPharmacist"/>
+        </classes>
+    </test>
+    <test name="Dawak Verify Buttons After Delivery Fail scenario">
+        <classes>
+            <class name="TestButtonAfterDeliveryFail"/>
+        </classes>
+    </test>
+    <test name="Dawak Buttons Call Centre After Payment scenario">
+        <classes>
+            <class name="TestButtonsCallCentreAfterPayment"/>
+        </classes>
+    </test>
+    <test name="Dawak  Buttons Call Centre scenario">
+        <classes>
+            <class name="TestButtonsInCallCentre"/>
+        </classes>
+    </test>
+    <test name="Dawak  CallForConsulation scenario">
+        <classes>
+            <class name="TestCallForConsulation"/>
+        </classes>
+    </test>
+    <test name="Dawak  Call Back Negative Flow scenario">
+        <classes>
+            <class name="TestCallBackNegativeFlow"/>
+        </classes>
+    </test>
+</suite>

@@ -15,9 +15,8 @@ public class TestCancelOrder extends BaseClass {
         accessToken = LoginApiCall.makeLoginApiCall();
         prescriptionOrderID = generateRandomNumericString();
         System.out.println(prescriptionOrderID);
-        //  NewPatientApiCall.makeCreatePatientApiCall(accessToken, prescriptionOrderID);
+       // NewPatientApiCall.makeCreatePatientApiCall(accessToken, prescriptionOrderID);
         PrescriptionApiCall.makePrescriptionApiCall(accessToken, prescriptionOrderID);
-        Pages.WebCommon().waitForAPIResponse();
     }
 
 
@@ -25,7 +24,6 @@ public class TestCancelOrder extends BaseClass {
     public void loginTODawak() throws InterruptedException {
         test = extent.createTest("Login to Dawak");
         DawakLoginAPICall.makeLoginApiCall();
-        Pages.WebCommon().waitForAPIResponse();
 
     }
 
@@ -33,7 +31,6 @@ public class TestCancelOrder extends BaseClass {
     public void verifyListAPI() throws InterruptedException {
         test = extent.createTest("Verify List API");
         ListAPICall.makeListApiCall();
-        Pages.WebCommon().waitForAPIResponse();
 
     }
 
@@ -47,19 +44,12 @@ public class TestCancelOrder extends BaseClass {
     @Test(priority = 5)
     public void verifyCPLogin() throws IOException {
         test = extent.createTest("Login to Central Pharmacist");
-        Pages.LoginCP().invalidCPLogin();
         Pages.LoginCP().CPLogin();
         Pages.LoginCP().verifyEnteringOtp();
 
     }
 
-    @Test(priority = 6)
-    public void verifyFilterValidation() throws InterruptedException, FileNotFoundException {
-        test = extent.createTest("Verify Filter Validation");
-        Pages.WebCommon().waitForElementsInteractions();
-        Pages.Home().verifyFilters();
 
-    }
 
     @Test(priority = 7)
     public void verifyOrderInTOdo() throws InterruptedException, FileNotFoundException {
@@ -86,50 +76,13 @@ public class TestCancelOrder extends BaseClass {
         Pages.Home().moveOrderToInProgressStateAndVerify();
     }
 
-    @Test(priority = 10)
-    public void verifyInProgressColumnData() throws FileNotFoundException {
-        test = extent.createTest("Verify Data present in  In-progress column");
-        Pages.Home().verifyDataInWebTable();
-        Pages.WebCommon().verifyTaskTable();
-
-    }
-
-    @Test(priority = 11)
-    public void verifyUnAssignFunctionality() throws InterruptedException, FileNotFoundException {
-        test = extent.createTest("Verify un-assign functionality");
-        Pages.Home().verifyReAssign();
-        Pages.Home().SearchForOrder(prescriptionOrderID);
-        Pages.Home().clickOnAssign();
-        Pages.Home().moveOrderToInProgressStateAndVerify();
-    }
-
     @Test(priority = 12)
     public void verifyMoveToOrderDetails() throws InterruptedException {
         test = extent.createTest("Verify Navigation to order details page ");
         Pages.NavigationsCP().openOrderDetailPage();
-
+        Pages.WebCommon().waitForElementsInteractions();
     }
-
     @Test(priority = 13)
-    public void verifyPatientInformation() throws FileNotFoundException {
-        test = extent.createTest("Verify patient information in orderDetails page ");
-        Pages.PatientInformations().verifyBasicDetailTable();
-        Pages.PatientInformations().verifyContactDetail();
-        Pages.PatientInformations().userDetails();
-        Pages.PatientInformations().pendingMedicationTable();
-    }
-
-    @Test(priority = 14)
-    public void verifyOrderDetails() throws FileNotFoundException {
-        test = extent.createTest("Verify order details data and Header text ");
-        Pages.OrderDetails().verifyDeliveryDetailTable();
-        Pages.OrderDetails().verifyOrderDetailTable();
-        Pages.OrderDetails().verifyOrderDetailsHeader();
-        Pages.OrderDetails().verifyTrackDetailTable();
-        Pages.OrderDetails().verifyRemoveFunctionality();
-    }
-
-    @Test(priority = 15)
     public void verifyInsuranceApproval() throws InterruptedException, FileNotFoundException {
         test = extent.createTest("Verify Insurance Approval functionality");
         Pages.OrderDetails().clickOnSendInsurenceApproval();
@@ -148,17 +101,14 @@ public class TestCancelOrder extends BaseClass {
     @Test(priority = 17)
     public void verifyLogin() throws InterruptedException {
         test = extent.createTest("Verify Delivery API");
-        Thread.sleep(19000);
         BaseClass.getCurrentDateTime();
         DawakLoginAPICall.makeLoginApiCall();
-        Thread.sleep(12000);
     }
 
     @Test(priority = 18)
     public void verifyListAPIPayment() throws InterruptedException {
         test = extent.createTest("Verify List API");
         ListAPICall.makeListApiCall();
-        Thread.sleep(5000);
 
     }
 

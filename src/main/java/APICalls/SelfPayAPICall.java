@@ -1,7 +1,8 @@
 package APICalls;
 
 import com.google.gson.Gson;
-import model.ExternalPrescription;
+import model.EditExternalPrescription;
+import model.SelpPayPrescription;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -18,7 +19,7 @@ import static Helper.BaseClass.client;
 
 public class SelfPayAPICall {
 
-    static String apiUrl = "https://dawak-apim-uat.azure-api.net/dawak-patient/api/external-prescription/v2/upload";
+    static String apiUrl = "https://dawak-apim-training.azure-api.net/dawak-patient/api/external-prescription/v2/upload";
 
 
 
@@ -27,6 +28,7 @@ public class SelfPayAPICall {
         Gson gson = new Gson();
         SelfPayAPICall selfPayAPICall = new SelfPayAPICall();
         String jsonPayload = gson.toJson(selfPayAPICall.getExternalPrescription(prescriptionFile));
+        System.out.println(jsonPayload);
         RequestBody body = RequestBody.create(jsonPayload, mediaType);
         Request request = new Request.Builder()
                 .url(apiUrl)
@@ -51,10 +53,10 @@ public class SelfPayAPICall {
 
     }
 
-    public ExternalPrescription getExternalPrescription(String prescriptionFile) {
-        try (Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/ExternalPrescription.json"))) {
+    public SelpPayPrescription getExternalPrescription(String prescriptionFile) {
+        try (Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/SelppayPrescription.json"))) {
             Gson gson = new Gson();
-            ExternalPrescription result = gson.fromJson(reader, ExternalPrescription.class);
+            SelpPayPrescription result = gson.fromJson(reader, SelpPayPrescription.class);
             result.setPrescriptionFiles(Collections.singletonList(prescriptionFile));
             System.out.println(result);
             return result;

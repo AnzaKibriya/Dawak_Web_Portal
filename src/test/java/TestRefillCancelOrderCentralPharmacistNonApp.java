@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class TestRefillCancelOrderCentralPharmacistNonApp extends BaseClass {
 
+
     @Test(priority = 1)
     public void createANewPrescription() throws InterruptedException {
         test = extent.createTest("create a refill prescription");

@@ -1,5 +1,6 @@
 package APICalls;
 
+import Helper.BaseClass;
 import com.aventstack.extentreports.Status;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -9,7 +10,7 @@ import static Helper.BaseClass.client;
 import static Helper.BaseClass.test;
 
 public class CallMeBackAPICall {
-    static String apiUrl = "https://dawak-apim-uat.azure-api.net/dawak-patient/api/dashboard/call-me-back";
+    static String apiUrl = BaseClass.propertyFile("config", "url")+"/dawak-patient/api/dashboard/call-me-back";
 
     public static void makeCallMeBackAPICall(String AUTH_TOKEN) {
         try {

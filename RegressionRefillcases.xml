@@ -1,9 +1,52 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Parallel Tests" parallel="classes" thread-count="2">
-    <test name="ChromeTests">
+<suite name="Dawak  NonApp Scenario">
+    <test name="Dawak Co pay scenario">
         <classes>
-            <class name="TestNonAppFrontLine"/>
-            <class name="TestSelfPrescription"/>
+            <class name="TestAppJourneyRefillCopay"/>
+        </classes>
+    </test>
+    <test name="Dawak Selp pay scenario">
+        <classes>
+            <class name="TestAppJourneyRefillSelppay"/>
+        </classes>
+    </test>
+    <test name="Dawak No pay scenario">
+        <classes>
+            <class name="TestRefillNopay"/>
+        </classes>
+    </test>
+    <test name="Dawak Refill Journey Cancel Order scenario">
+        <classes>
+            <class name="TestRefillAppJourneyCancelOrderDespensing"/>
+        </classes>
+    </test>
+    <test name="Dawak Refill Assign User Central Pharmacist scenario">
+        <classes>
+            <class name="TestRefillAssignUserCentralPharmacist"/>
+        </classes>
+    </test>
+    <test name="Dawak Refill Assign Dispensing  Pharmacist scenario">
+        <classes>
+            <class name="TestRefillAssignUserDispensingPharmacist"/>
+        </classes>
+    </test>
+    <test name="Dawak Refill Call For Consulation scenario">
+        <classes>
+            <class name="TestRefillCallForConsulation"/>
+        </classes>
+    </test>
+    <test name="Dawak Refill Cancel Order Central Pharmacist scenario">
+        <classes>
+            <class name="TestRefillCancelOrderCentralPharmacistNonApp"/>
+        </classes>
+    </test>
+    <test name="Dawak Refill Capture Patient Address scenario">
+        <classes>
+            <class name="TestRefillCapturePatientAddress"/>
+        </classes>
+    </test>
+    <test name="Dawak Refill insurance Cancel scenario">
+        <classes>
+            <class name="TestRefillInsuranceCancel"/>
         </classes>
     </test>
 </suite>

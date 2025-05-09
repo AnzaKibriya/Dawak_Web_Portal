@@ -11,7 +11,6 @@ public class MedicationData {
     private List<Medication> medications = new ArrayList<>();
 
 
-
     // Method to add medication to the list
     public void addMedication(Medication medication) {
         medications.add(medication);

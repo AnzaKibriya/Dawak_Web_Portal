@@ -1,5 +1,6 @@
 package APICalls;
 
+import Helper.BaseClass;
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
 import model.Delivery;
@@ -17,7 +18,7 @@ import static Helper.BaseClass.*;
 
 public class DeliveryAPICall {
 
-    private static final String API_URL = "https://dawak-apim-uat.azure-api.net/dawak-patient/api/dashboard/v2/patient-accept-reject-order";
+    private static final String API_URL = BaseClass.propertyFile("config", "url")+"/dawak-patient/api/dashboard/v2/patient-accept-reject-order";
 
     public static String deliveryApiCall() {
         try {

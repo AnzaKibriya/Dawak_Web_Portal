@@ -19,8 +19,6 @@ public class TestAppJourneyOTC  extends BaseClass {
         PrescriptionApiCall.makePrescriptionApiCall(accessToken, prescriptionOrderID);
         Pages.WebCommon().waitForAPIResponse();
     }
-
-
     @Test(priority = 2)
     public void loginToDawak() throws InterruptedException {
         test = extent.createTest("Login to Dawak");

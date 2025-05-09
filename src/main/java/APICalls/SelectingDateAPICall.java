@@ -1,5 +1,6 @@
 package APICalls;
 
+import Helper.BaseClass;
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
 import model.Date;
@@ -27,7 +28,7 @@ public class SelectingDateAPICall {
             String jsonPayload = gson.toJson(selectDateApiCallList.getDate(formattedDateAPI, id));
             RequestBody body = RequestBody.create(jsonPayload, mediaType);
             Request request = new Request.Builder()
-                    .url("https://dawak-apim-uat.azure-api.net/dawak-patient/api/warehouse/v3/get-warehouse-date-time")
+                    .url(BaseClass.propertyFile("config", "url")+"/dawak-patient/api/warehouse/v3/get-warehouse-date-time")
                     .header("Authorization", "Bearer " + accessTokens)
                     .addHeader("deviceType", "android")
                     .addHeader("devicePlayerId", "1b68739e-d137-40f7-8100-1a854e5c9769")

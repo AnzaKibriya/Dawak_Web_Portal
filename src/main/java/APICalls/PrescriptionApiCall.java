@@ -1,5 +1,6 @@
 package APICalls;
 
+import Helper.BaseClass;
 import com.aventstack.extentreports.Status;
 import com.google.gson.Gson;
 import model.PrescriptionRequest;
@@ -18,7 +19,7 @@ import static Helper.BaseClass.client;
 import static Helper.BaseClass.test;
 
 public class PrescriptionApiCall {
-    private static final String API_URL = "https://dawak-apim-uat.azure-api.net/dawak-portal/api/prescription/new";
+    private static final String API_URL = BaseClass.propertyFile("config", "url")+"/dawak-portal/api/prescription/new";
 
     public static void makePrescriptionApiCall(String AUTH_TOKEN, String orderID) {
         try {
